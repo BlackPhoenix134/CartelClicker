@@ -1,33 +1,44 @@
 package sf.cartel;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
-public class CartelClickerGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
+import sf.cartel.assets.SYAssetManager;
+import sf.cartel.assets.ShaderManager;
+import sf.cartel.rendering.RenderPipeline;
+import sf.cartel.screens.GameScreen;
+import sf.cartel.screens.MainMenuScreen;
+import sf.cartel.screens.ScreenManager;
+
+public class CartelClickerGame extends Game {
+	private ScreenManager screenManager;
+	private RenderPipeline renderPipeline;
+	private ExtendViewport viewport;
+	private OrthographicCamera camera;
+
 	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+	public void create() {
+		SYAssetManager.loadAssets();
+		camera = new OrthographicCamera();
+		viewport = new ExtendViewport(5000, 3000, camera);
+		renderPipeline = new RenderPipeline(new SpriteBatch(), new ShaderManager(), camera, viewport);
+		screenManager = new ScreenManager(this);
+		screenManager.addScreen(new MainMenuScreen(renderPipeline, camera, screenManager));
+		screenManager.addScreen(new GameScreen(renderPipeline, camera, screenManager));
+		screenManager.showScreen(MainMenuScreen.class);
 	}
 
 	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+	public void dispose() {
+		SYAssetManager.dispose();
 	}
-	
+
 	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
+	public void resize(int width, int height) {
+		viewport.update(width, height, true);
+		renderPipeline.updateBatchMatrix();
 	}
 }
