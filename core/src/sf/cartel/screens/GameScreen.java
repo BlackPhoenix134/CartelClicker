@@ -1,15 +1,20 @@
 package sf.cartel.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 import java.util.ArrayList;
 
+import sf.cartel.assets.AssetDescriptors;
+import sf.cartel.assets.SYAssetManager;
 import sf.cartel.gameObjects.GameObjectManager;
+import sf.cartel.gameObjects.MapObject;
 import sf.cartel.input.InputHandler;
 import sf.cartel.input.PanListener;
 import sf.cartel.input.TouchDownListener;
@@ -27,9 +32,8 @@ public class GameScreen extends AbstractScreen implements TouchDownListener, Tou
     private InputHandler inputHandler;
     private Vector2 dragValue = new Vector2();
     private Vector2 oldDragValue = new Vector2();
-    private float currentScale = 1;
-    private float zoomValue = 1;
-    private ArrayList<Vector2> nodelist;
+    private float currentScale = 0.25f;
+    private float zoomValue = 0.25f;
 
 
     public GameScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager) {
@@ -40,7 +44,8 @@ public class GameScreen extends AbstractScreen implements TouchDownListener, Tou
 
     @Override
     public void buildStage() {
-
+        MapObject mapObject = gameObjectManager.create(MapObject.class);
+        mapObject.setSprite(new Sprite(SYAssetManager.getAsset(AssetDescriptors.MAP)));
     }
 
 
