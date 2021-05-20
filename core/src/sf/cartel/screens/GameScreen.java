@@ -13,8 +13,11 @@ import java.util.ArrayList;
 
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.SYAssetManager;
+import sf.cartel.core.Consumer;
 import sf.cartel.gameObjects.GameObjectManager;
 import sf.cartel.gameObjects.MapObject;
+import sf.cartel.input.InputEvent;
+import sf.cartel.input.InputEventType;
 import sf.cartel.input.InputHandler;
 import sf.cartel.input.PanListener;
 import sf.cartel.input.TouchDownListener;
@@ -22,7 +25,7 @@ import sf.cartel.input.TouchUpListener;
 import sf.cartel.input.ZoomListener;
 import sf.cartel.rendering.RenderPipeline;
 
-public class GameScreen extends AbstractScreen implements TouchDownListener, TouchUpListener, ZoomListener, PanListener {
+public class GameScreen extends AbstractScreen {
     private final float TICKS = 1f / 60f;
     private float tickAccumulation = 0;
     private GameObjectManager gameObjectManager = new GameObjectManager();
@@ -33,13 +36,14 @@ public class GameScreen extends AbstractScreen implements TouchDownListener, Tou
     private Vector2 dragValue = new Vector2();
     private Vector2 oldDragValue = new Vector2();
     private float currentScale = 0.25f;
-    private float zoomValue = 0.25f;
+    private float zoomValue = 1f;
 
 
-    public GameScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager) {
+    public GameScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
         this.renderPipeline = renderPipeline;
         this.camera = camera;
         this.screenManager = screenManager;
+        this.inputHandler = inputHandler;
     }
 
     @Override
@@ -78,20 +82,31 @@ public class GameScreen extends AbstractScreen implements TouchDownListener, Tou
 
     @Override
     public void show() {
-        setUpInputHandler();
-    }
-
-    private void setUpInputHandler() {
-        this.inputHandler = new InputHandler();
-        this.inputHandler.setTouchUpListener(this);
-        this.inputHandler.setTouchDownListener(this);
-        this.inputHandler.setZoomListener(this);
-        this.inputHandler.setPanListener(this);
+        this.inputHandler.unsubscribeAll();
+        this.inputHandler.addListener(new Consumer<InputEvent>() {
+            @Override
+            public void call(InputEvent inputEvent) {
+                currentScale = zoomValue;
+            }
+        }, InputEventType.TOUCH_DOWN, 10);
+        this.inputHandler.addListener(new Consumer<InputEvent>() {
+            @Override
+            public void call(InputEvent inputEvent) {
+                float ratio = inputEvent.getX1() / inputEvent.getX2();
+                zoomValue = currentScale * ratio;
+            }
+        }, InputEventType.ZOOM, 10);
+        this.inputHandler.addListener(new Consumer<InputEvent>() {
+            @Override
+            public void call(InputEvent inputEvent) {
+                dragValue.x = inputEvent.getX1();
+                dragValue.y = inputEvent.getX2();
+            }
+        }, InputEventType.PAN, 10);
     }
 
     @Override
     public void pause() {
-
     }
 
     @Override
@@ -101,7 +116,7 @@ public class GameScreen extends AbstractScreen implements TouchDownListener, Tou
 
     @Override
     public void hide() {
-
+        this.inputHandler.unsubscribeAll();
     }
 
     private void updateCam() {
@@ -133,29 +148,6 @@ public class GameScreen extends AbstractScreen implements TouchDownListener, Tou
         renderPipeline.dispose();
     }
 
-    @Override
-    public void onTouchUp(int screenX, int screenY, int pointer, int button) {
-        Gdx.app.log("Game", "TOUCH ON " + screenX + ", " + screenY);
-        Vector3 vector3 = camera.unproject(new Vector3(screenX, screenY, 0));
-        Gdx.app.log("Koordinaten:", "new Vector2(" + vector3.x + "f," + vector3.y + "f);");
-        int range = 40;
-    }
 
-    @Override
-    public void onTouchDown(int screenX, int screenY, int pointer, int button) {
-        currentScale = zoomValue;
-    }
-
-    @Override
-    public void onZoom(float initialDistance, float distance) {
-        float ratio = initialDistance / distance;
-        this.zoomValue = this.currentScale * ratio;
-    }
-
-    @Override
-    public void onPan(float x, float y, float deltaX, float deltaY) {
-        dragValue.x = deltaX;
-        dragValue.y = deltaY;
-    }
 
 }

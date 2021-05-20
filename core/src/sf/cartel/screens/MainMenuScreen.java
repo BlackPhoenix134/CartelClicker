@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Scaling;
 
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.SYAssetManager;
+import sf.cartel.input.InputHandler;
 import sf.cartel.rendering.RenderPipeline;
 import sf.cartel.ui.AliveButton;
 
@@ -23,12 +24,15 @@ public class MainMenuScreen extends AbstractScreen {
     private OrthographicCamera camera;
     private ScreenManager      screenManager;
     private SpriteBatch        batch = new SpriteBatch();
+    private InputHandler inputHandler;
+
     Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonSound.mp3"));
 
-    public MainMenuScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager) {
+    public MainMenuScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
         this.renderPipeline = renderPipeline;
         this.camera = camera;
         this.screenManager = screenManager;
+        this.inputHandler = inputHandler;
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
     }

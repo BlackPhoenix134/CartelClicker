@@ -6,24 +6,53 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import sf.cartel.core.Consumer;
+
 public class InputHandler extends InputAdapter implements GestureDetector.GestureListener {
-
-    private TouchUpListener touchUpListener;
-    public void setTouchUpListener(TouchUpListener touchUpListener) { this.touchUpListener = touchUpListener; }
-
-    private TouchDownListener touchDownListener;
-    public void setTouchDownListener(TouchDownListener touchDownListener) { this.touchDownListener = touchDownListener; }
-
-    private ZoomListener zoomListener;
-    public void setZoomListener(ZoomListener zoomListener) { this.zoomListener = zoomListener; }
-
-    private PanListener panListener;
-    public void setPanListener(PanListener panListener) { this.panListener = panListener; }
-
+    private List<InputEventListener> touchUpListeners = new ArrayList<>();
+    private List<InputEventListener> touchDownListeners = new ArrayList<>();
+    private List<InputEventListener> zoomListeners = new ArrayList<>();
+    private List<InputEventListener> panListeners = new ArrayList<>();
+    private InputEventListenerComparator inputEventListenerComparator = new InputEventListenerComparator();
     private boolean ignoreTouchUp = false;
 
+    public void addListener(Consumer<InputEvent> callback, InputEventType eventType, int priority) {
+       InputEventListener listener = new InputEventListener(callback, priority);
+        switch (eventType) {
+            case TOUCH_UP:
+                addListener(touchUpListeners, listener);
+                break;
+            case TOUCH_DOWN:
+                addListener(touchDownListeners, listener);
+                break;
+            case ZOOM:
+                addListener(zoomListeners, listener);
+                break;
+            case PAN:
+                addListener(panListeners, listener);
+                break;
+        }
+    }
+
+    private void addListener(List<InputEventListener> listeners, InputEventListener inputEventListener) {
+        listeners.add(inputEventListener);
+        Collections.sort(listeners, inputEventListenerComparator);
+    }
+
+    private void invokeInputEvent(List<InputEventListener> listeners, InputEvent event) {
+        int idx = 0;
+        while (idx < listeners.size() && !event.isConsumed()) {
+            listeners.get(idx).invoke(event);
+            idx++;
+        }
+    }
+
     public InputHandler() {
-        //Set up the handler
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(this);
         multiplexer.addProcessor(new GestureDetector(this));
@@ -32,18 +61,16 @@ public class InputHandler extends InputAdapter implements GestureDetector.Gestur
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        if (touchDownListener != null) {
-            touchDownListener.onTouchDown(screenX, screenY, pointer, button);
-        }
+        invokeInputEvent(touchDownListeners, new InputEvent(screenX, screenY, pointer, button));
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        if (!ignoreTouchUp && pointer < 1 && touchUpListener != null) { //Fire event only when touchUp should not get ignored + only 1 finger on the screen
-            touchUpListener.onTouchUp(screenX, screenY, pointer, button);
+        if (!ignoreTouchUp && pointer < 1) {
+            invokeInputEvent(touchUpListeners, new InputEvent(screenX, screenY, pointer, button));
         }
-        ignoreTouchUp = false; //Reset ignoring state
+        ignoreTouchUp = false;
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
@@ -74,10 +101,8 @@ public class InputHandler extends InputAdapter implements GestureDetector.Gestur
 
     @Override
     public boolean pan(float x, float y, float deltaX, float deltaY) {
-        if (panListener != null) {
-            panListener.onPan(x, y, deltaX, deltaY);
-            ignoreTouchUp = true; //Ignore next touchUp call
-        }
+        invokeInputEvent(panListeners, new InputEvent(x, y, deltaX, deltaY));
+        ignoreTouchUp = true;
         return true;
     }
 
@@ -88,9 +113,9 @@ public class InputHandler extends InputAdapter implements GestureDetector.Gestur
 
     @Override
     public boolean zoom(float initialDistance, float distance) {
-        if (zoomListener != null) {
-            zoomListener.onZoom(initialDistance, distance);
-            ignoreTouchUp = true; //Ignore next touchUp call
+        if (zoomListeners != null) {
+            invokeInputEvent(zoomListeners, new InputEvent(initialDistance, distance, 0, 0));
+            ignoreTouchUp = true;
         }
         return true;
     }
@@ -105,10 +130,17 @@ public class InputHandler extends InputAdapter implements GestureDetector.Gestur
 
     }
 
-    public void removeAllEvents() {
-        setTouchUpListener(null);
-        setTouchDownListener(null);
-        setZoomListener(null);
-        setPanListener(null);
+    public void unsubscribeAll() {
+        touchUpListeners.clear();
+        touchDownListeners.clear();
+        zoomListeners.clear();
+        panListeners.clear();
+    }
+
+    private static class InputEventListenerComparator implements Comparator<InputEventListener>  {
+        @Override
+        public int compare(InputEventListener t1, InputEventListener t2) {
+            return Integer.compare(t1.getPriority(), t2.getPriority());
+        }
     }
 }
