@@ -27,10 +27,11 @@ public class GameScreen extends AbstractScreen {
     private ScreenManager screenManager;
     private InputHandler inputHandler;
 
-    public GameScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager) {
+    public GameScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
         this.renderPipeline = renderPipeline;
         this.screenManager = screenManager;
         this.cameraData = new CameraData(camera);
+        this.inputHandler = inputHandler;
     }
 
     @Override
@@ -69,7 +70,6 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void show() {
-        this.inputHandler = new InputHandler();
         this.inputHandler.addListener(new Consumer<InputEvent>() {
             @Override
             public void call(InputEvent inputEvent) {
@@ -103,7 +103,6 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void hide() {
         this.inputHandler.unsubscribeAll();
-        Gdx.input.setInputProcessor(null);
     }
 
 

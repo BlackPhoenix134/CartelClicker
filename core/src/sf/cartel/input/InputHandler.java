@@ -20,6 +20,8 @@ public class InputHandler extends InputAdapter implements GestureDetector.Gestur
     private List<InputEventListener> panListeners = new ArrayList<>();
     private InputEventListenerComparator inputEventListenerComparator = new InputEventListenerComparator();
     private boolean ignoreTouchUp = false;
+    private InputMultiplexer inputMultiplexer;
+
 
     public void addListener(Consumer<InputEvent> callback, InputEventType eventType, int priority) {
        InputEventListener listener = new InputEventListener(callback, priority);
@@ -53,10 +55,10 @@ public class InputHandler extends InputAdapter implements GestureDetector.Gestur
     }
 
     public InputHandler() {
-        InputMultiplexer multiplexer = new InputMultiplexer();
-        multiplexer.addProcessor(this);
-        multiplexer.addProcessor(new GestureDetector(this));
-        Gdx.input.setInputProcessor(multiplexer);
+        inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(this);
+        inputMultiplexer.addProcessor(new GestureDetector(this));
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Scaling;
 
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
+import sf.cartel.core.CameraData;
 import sf.cartel.input.InputHandler;
 import sf.cartel.rendering.RenderPipeline;
 import sf.cartel.ui.AliveButton;
@@ -21,30 +22,29 @@ public class MainMenuScreen extends AbstractScreen {
     private AliveButton        btnExitGame;
     private AliveButton btnOptions;
     private RenderPipeline renderPipeline;
-    private OrthographicCamera camera;
+    private CameraData cameraData;
     private ScreenManager      screenManager;
-    private SpriteBatch        batch = new SpriteBatch();
     private InputHandler inputHandler;
 
     Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonSound.mp3"));
 
-    public MainMenuScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager) {
+    public MainMenuScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
         this.renderPipeline = renderPipeline;
-        this.camera = camera;
+        this.cameraData = new CameraData(camera);
         this.screenManager = screenManager;
-        this.inputHandler = new InputHandler();
+        this.inputHandler = inputHandler;
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
     }
 
    @Override
     public void show() {
+       this.inputHandler.unsubscribeAll();
         Gdx.input.setInputProcessor(this);
     }
 
     @Override
     public void buildStage() {
-        //Gdx.input.setInputProcessor(this);
         float padding = screenHeight * 0.05f;
 
         Texture startGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_START);
@@ -104,7 +104,7 @@ public class MainMenuScreen extends AbstractScreen {
     }
 
     @Override
-    public void hide(){
-        Gdx.input.setInputProcessor(null);
+    public void hide() {
+        this.inputHandler.unsubscribeAll();
     }
 }
