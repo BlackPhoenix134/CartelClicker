@@ -3,6 +3,7 @@ package sf.cartel.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 
@@ -22,6 +23,9 @@ public class InputHandler extends InputAdapter implements GestureDetector.Gestur
     private boolean ignoreTouchUp = false;
     private InputMultiplexer inputMultiplexer;
 
+    public InputMultiplexer getInputMultiplexer() {
+        return inputMultiplexer;
+    }
 
     public void addListener(Consumer<InputEvent> callback, InputEventType eventType, int priority) {
        InputEventListener listener = new InputEventListener(callback, priority);
@@ -138,6 +142,8 @@ public class InputHandler extends InputAdapter implements GestureDetector.Gestur
         zoomListeners.clear();
         panListeners.clear();
     }
+
+
 
     private static class InputEventListenerComparator implements Comparator<InputEventListener>  {
         @Override

@@ -70,6 +70,7 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(inputHandler.getInputMultiplexer());
         this.inputHandler.addListener(new Consumer<InputEvent>() {
             @Override
             public void call(InputEvent inputEvent) {
