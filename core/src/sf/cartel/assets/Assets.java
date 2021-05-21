@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 import java.lang.reflect.Field;
 
-public final class SYAssetManager {
+public final class Assets {
     private static AssetManager assetManager = new AssetManager();
     public static Texture solid1x1;
 

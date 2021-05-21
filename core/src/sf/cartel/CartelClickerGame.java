@@ -1,12 +1,11 @@
 package sf.cartel;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
-import sf.cartel.assets.SYAssetManager;
+import sf.cartel.assets.Assets;
 import sf.cartel.assets.ShaderManager;
 import sf.cartel.input.InputHandler;
 import sf.cartel.rendering.RenderPipeline;
@@ -19,25 +18,23 @@ public class CartelClickerGame extends Game {
 	private RenderPipeline renderPipeline;
 	private ExtendViewport viewport;
 	private OrthographicCamera camera;
-	private InputHandler inputHandler;
 
 
 	@Override
 	public void create() {
-		SYAssetManager.loadAssets();
-		inputHandler = new InputHandler();
+		Assets.loadAssets();
 		camera = new OrthographicCamera();
 		viewport = new ExtendViewport(5000, 3000, camera);
 		renderPipeline = new RenderPipeline(new SpriteBatch(), new ShaderManager(), camera, viewport);
 		screenManager = new ScreenManager(this);
-		screenManager.addScreen(new MainMenuScreen(renderPipeline, camera, screenManager, inputHandler));
-		screenManager.addScreen(new GameScreen(renderPipeline, camera, screenManager, inputHandler));
+		screenManager.addScreen(new MainMenuScreen(renderPipeline, camera, screenManager));
+		screenManager.addScreen(new GameScreen(renderPipeline, camera, screenManager));
 		screenManager.showScreen(MainMenuScreen.class);
 	}
 
 	@Override
 	public void dispose() {
-		SYAssetManager.dispose();
+		Assets.dispose();
 	}
 
 	@Override

@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.Scaling;
 
 import sf.cartel.assets.AssetDescriptors;
-import sf.cartel.assets.SYAssetManager;
+import sf.cartel.assets.Assets;
 import sf.cartel.rendering.RenderPipeline;
 import sf.cartel.ui.AliveButton;
 
@@ -52,7 +52,7 @@ public class OptionsScreen extends AbstractScreen {
         //Gdx.input.setInputProcessor(this);
         float padding = screenHeight * 0.05f;
 
-        Texture optionsTexture = SYAssetManager.getAsset(AssetDescriptors.BUTTON_OPTIONS);
+        Texture optionsTexture = Assets.getAsset(AssetDescriptors.BUTTON_OPTIONS);
         btnJoin = new AliveButton(optionsTexture);
         Vector2 btnJoinSize = Scaling.fillX.apply(optionsTexture.getWidth(), optionsTexture.getHeight(), screenWidth*0.30f,0);
         btnJoin.setSize(btnJoinSize.x, btnJoinSize.y);

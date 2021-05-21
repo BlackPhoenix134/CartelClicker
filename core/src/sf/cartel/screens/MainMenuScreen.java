@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Scaling;
 
 import sf.cartel.assets.AssetDescriptors;
-import sf.cartel.assets.SYAssetManager;
+import sf.cartel.assets.Assets;
 import sf.cartel.input.InputHandler;
 import sf.cartel.rendering.RenderPipeline;
 import sf.cartel.ui.AliveButton;
@@ -28,11 +28,11 @@ public class MainMenuScreen extends AbstractScreen {
 
     Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonSound.mp3"));
 
-    public MainMenuScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
+    public MainMenuScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager) {
         this.renderPipeline = renderPipeline;
         this.camera = camera;
         this.screenManager = screenManager;
-        this.inputHandler = inputHandler;
+        this.inputHandler = new InputHandler();
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
     }
@@ -47,9 +47,9 @@ public class MainMenuScreen extends AbstractScreen {
         //Gdx.input.setInputProcessor(this);
         float padding = screenHeight * 0.05f;
 
-        Texture startGameTexture = SYAssetManager.getAsset(AssetDescriptors.BUTTON_START);
-        Texture exitGameTexture = SYAssetManager.getAsset(AssetDescriptors.BUTTON_EXIT);
-        Texture joinGameTexture = SYAssetManager.getAsset(AssetDescriptors.BUTTON_OPTIONS);
+        Texture startGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_START);
+        Texture exitGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_EXIT);
+        Texture joinGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_OPTIONS);
 
         btnStartGame = new AliveButton(startGameTexture);
         btnExitGame  = new AliveButton(exitGameTexture);

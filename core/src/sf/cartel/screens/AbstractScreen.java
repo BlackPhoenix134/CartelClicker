@@ -3,15 +3,12 @@ package sf.cartel.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 
-import sf.cartel.assets.SYAssetManager;
+import sf.cartel.assets.Assets;
 
 public abstract class AbstractScreen extends Stage implements Screen {
     private Image transitionImg;
@@ -19,7 +16,7 @@ public abstract class AbstractScreen extends Stage implements Screen {
 
     protected AbstractScreen() {
         // super( new StretchViewport(800, 600, new OrthographicCamera()) );
-        transitionImg = new Image(SYAssetManager.solid1x1);
+        transitionImg = new Image(Assets.solid1x1);
         transitionImg.setColor(Color.BLACK);
         transitionImg.setVisible(false);
 
