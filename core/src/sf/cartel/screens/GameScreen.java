@@ -94,7 +94,7 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(inputHandler.getInputMultiplexer());
-       // inputHandler.unsubscribeAll();
+        inputHandler.unsubscribeAll();
         objectClickHandler.subscribeEvents();
         this.inputHandler.addListener(InputEventType.TOUCH_DOWN, 100, new Consumer<InputEvent>() {
             @Override

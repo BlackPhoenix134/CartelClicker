@@ -56,6 +56,7 @@ public class ObjectClickHandler {
         int idx = 0;
         while(idx < clickables.size() && !inputEvent.isConsumed()) {
             clickables.get(idx).getClickable().onClicked(inputEvent);
+            idx++;
         }
     }
 
