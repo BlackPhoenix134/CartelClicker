@@ -33,4 +33,6 @@ public class InputEvent {
     public boolean isConsumed() {
         return isConsumed;
     }
+    public void setConsumed(boolean isConsumed) { this.isConsumed = isConsumed; }
+
 }

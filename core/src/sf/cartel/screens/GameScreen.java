@@ -4,8 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector3;
 
 
 import sf.cartel.assets.AssetDescriptors;
@@ -45,21 +43,21 @@ public class GameScreen extends AbstractScreen {
         objectClickHandler = new ObjectClickHandler(cameraData, inputHandler);
 
         DebugClickableObject obj = gameObjectManager.create(DebugClickableObject.class);
-        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_BLACK_40x40)));
+        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_40x40)));
         obj.getSprite().setPosition(100, 100);
-        objectClickHandler.addTouchDownClickable(obj, new Rectangle(-20, -20, 20, 20), 1000, false);
+        objectClickHandler.addTouchDownClickable(obj,  1000, false);
          obj = gameObjectManager.create(DebugClickableObject.class);
-        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_BLACK_40x40)));
+        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_40x40)));
         obj.getSprite().setPosition(-100, -100);
-        objectClickHandler.addTouchDownClickable(obj, new Rectangle(-20, -20, 20, 20), 1000, false);
+        objectClickHandler.addTouchDownClickable(obj, 1000, false);
          obj = gameObjectManager.create(DebugClickableObject.class);
-        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_BLACK_40x40)));
+        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_40x40)));
         obj.getSprite().setPosition(100, -100);
-        objectClickHandler.addTouchDownClickable(obj, new Rectangle(-20, -20, 20, 20), 1000, false);
+        objectClickHandler.addTouchDownClickable(obj,1000, false);
          obj = gameObjectManager.create(DebugClickableObject.class);
-        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_BLACK_40x40)));
+        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_40x40)));
         obj.getSprite().setPosition(-100, 100);
-        objectClickHandler.addTouchDownClickable(obj, new Rectangle(-20, -20, 20, 20), 1000, false);
+        objectClickHandler.addTouchDownClickable(obj, 1000, false);
 
     }
 

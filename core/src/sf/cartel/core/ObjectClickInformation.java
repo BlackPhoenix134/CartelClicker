@@ -8,13 +8,11 @@ import com.badlogic.gdx.math.Vector3;
 
 public class ObjectClickInformation {
     private Clickable clickable;
-    private Rectangle boundingBox;
     private int priority;
     private boolean isUiSpace;
 
-    public ObjectClickInformation(Clickable clickable, Rectangle boundingBox, int priority, boolean isUiSpace) {
+    public ObjectClickInformation(Clickable clickable, int priority, boolean isUiSpace) {
         this.clickable = clickable;
-        this.boundingBox = boundingBox;
         this.priority = priority;
         this.isUiSpace = isUiSpace;
     }
@@ -23,9 +21,6 @@ public class ObjectClickInformation {
         return clickable;
     }
 
-    public Rectangle getBoundingBox() {
-        return boundingBox;
-    }
 
     public int getPriority() {
         return priority;
@@ -35,13 +30,16 @@ public class ObjectClickInformation {
         return isUiSpace;
     }
 
-    private boolean contains(Vector2 position, OrthographicCamera camera) {
-        Vector2 clickedPos = new Vector2();
+    public boolean contains(float x, float y, OrthographicCamera camera) {
+        Vector2 clickedPos = new Vector2(x, y);
         if(!isUiSpace) {
-            Vector3 unprojectedPos = camera.unproject(new Vector3(position.x, position.y, 0));
+            Vector3 unprojectedPos = camera.unproject(new Vector3(x, y, 0));
             clickedPos.set(unprojectedPos.x, unprojectedPos.y);
         }
-        Vector2 rebasedPos = clickedPos.sub(clickable.getPosition());
-        return boundingBox.contains(rebasedPos.x, rebasedPos.y);
+        return clickable.getBoundingBox().contains(clickedPos.x, clickedPos.y);
+    }
+
+    public boolean contains(Vector2 position, OrthographicCamera camera) {
+        return contains(position.x, position.y, camera);
     }
 }

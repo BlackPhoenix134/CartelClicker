@@ -42,20 +42,22 @@ public class ObjectClickHandler {
         });
     }
 
-    public void addTouchDownClickable(Clickable clickable, Rectangle boundingBox, int priority, boolean isUiSpace) {
-        touchDownClickables.add(new ObjectClickInformation(clickable, boundingBox, priority, isUiSpace));
+    public void addTouchDownClickable(Clickable clickable, int priority, boolean isUiSpace) {
+        touchDownClickables.add(new ObjectClickInformation(clickable, priority, isUiSpace));
         Collections.sort(touchDownClickables, objectClickInformationComparator);
     }
 
-    public void addTouchUpClickable(Clickable clickable, Rectangle boundingBox, int priority, boolean isUiSpace) {
-        touchUpClickables.add(new ObjectClickInformation(clickable, boundingBox, priority, isUiSpace));
+    public void addTouchUpClickable(Clickable clickable, int priority, boolean isUiSpace) {
+        touchUpClickables.add(new ObjectClickInformation(clickable, priority, isUiSpace));
         Collections.sort(touchUpClickables, objectClickInformationComparator);
     }
 
-    private void invokeClicked(List<ObjectClickInformation> clickables, InputEvent inputEvent) {
+    private void invokeClicked(List<ObjectClickInformation> objectClickInfos, InputEvent inputEvent) {
         int idx = 0;
-        while(idx < clickables.size() && !inputEvent.isConsumed()) {
-            clickables.get(idx).getClickable().onClicked(inputEvent);
+        while(idx < objectClickInfos.size() && !inputEvent.isConsumed()) {
+            ObjectClickInformation currInfo = objectClickInfos.get(idx);
+            if(currInfo.contains(inputEvent.getX1(), inputEvent.getX2(), cameraData.getOrthographicCamera()))
+                 currInfo.getClickable().onClicked(inputEvent);
             idx++;
         }
     }
