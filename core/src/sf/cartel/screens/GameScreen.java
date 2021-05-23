@@ -7,10 +7,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
+
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
 import sf.cartel.core.CameraData;
 import sf.cartel.core.Consumer;
+import sf.cartel.core.ObjectClickHandler;
+import sf.cartel.gameObjects.DebugClickableObject;
 import sf.cartel.gameObjects.GameObjectManager;
 import sf.cartel.gameObjects.MapObject;
 import sf.cartel.input.InputEvent;
@@ -26,6 +29,7 @@ public class GameScreen extends AbstractScreen {
     private CameraData cameraData;
     private ScreenManager screenManager;
     private InputHandler inputHandler;
+    private ObjectClickHandler objectClickHandler;
 
     public GameScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
         this.renderPipeline = renderPipeline;
@@ -36,8 +40,27 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void buildStage() {
-            MapObject mapObject = gameObjectManager.create(MapObject.class);
-            mapObject.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.MAP)));
+        MapObject mapObject = gameObjectManager.create(MapObject.class);
+        mapObject.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.MAP)));
+        objectClickHandler = new ObjectClickHandler(cameraData, inputHandler);
+
+        DebugClickableObject obj = gameObjectManager.create(DebugClickableObject.class);
+        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_BLACK_40x40)));
+        obj.getSprite().setPosition(100, 100);
+        objectClickHandler.addTouchDownClickable(obj, new Rectangle(-20, -20, 20, 20), 1000, false);
+         obj = gameObjectManager.create(DebugClickableObject.class);
+        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_BLACK_40x40)));
+        obj.getSprite().setPosition(-100, -100);
+        objectClickHandler.addTouchDownClickable(obj, new Rectangle(-20, -20, 20, 20), 1000, false);
+         obj = gameObjectManager.create(DebugClickableObject.class);
+        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_BLACK_40x40)));
+        obj.getSprite().setPosition(100, -100);
+        objectClickHandler.addTouchDownClickable(obj, new Rectangle(-20, -20, 20, 20), 1000, false);
+         obj = gameObjectManager.create(DebugClickableObject.class);
+        obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_BLACK_40x40)));
+        obj.getSprite().setPosition(-100, 100);
+        objectClickHandler.addTouchDownClickable(obj, new Rectangle(-20, -20, 20, 20), 1000, false);
+
     }
 
 
@@ -71,25 +94,27 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void show() {
         Gdx.input.setInputProcessor(inputHandler.getInputMultiplexer());
-        this.inputHandler.addListener(new Consumer<InputEvent>() {
+       // inputHandler.unsubscribeAll();
+        objectClickHandler.subscribeEvents();
+        this.inputHandler.addListener(InputEventType.TOUCH_DOWN, 100, new Consumer<InputEvent>() {
             @Override
             public void call(InputEvent inputEvent) {
                 cameraData.setCurrentScale(cameraData.getZoomValue());
             }
-        }, InputEventType.TOUCH_DOWN, 10);
-        this.inputHandler.addListener(new Consumer<InputEvent>() {
+        });
+        this.inputHandler.addListener(InputEventType.ZOOM, 100, new Consumer<InputEvent>() {
             @Override
             public void call(InputEvent inputEvent) {
                 float ratio = inputEvent.getX1() / inputEvent.getX2();
                 cameraData.setZoomValue(cameraData.getCurrentScale() * ratio);
             }
-        }, InputEventType.ZOOM, 10);
-        this.inputHandler.addListener(new Consumer<InputEvent>() {
+        });
+        this.inputHandler.addListener( InputEventType.PAN, 100, new Consumer<InputEvent>() {
             @Override
             public void call(InputEvent inputEvent) {
                 cameraData.getDragValue().set(inputEvent.getX3(), inputEvent.getX4());
             }
-        }, InputEventType.PAN, 10);
+        });
     }
 
     @Override

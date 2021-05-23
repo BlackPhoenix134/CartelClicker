@@ -27,7 +27,7 @@ public class InputHandler extends InputAdapter implements GestureDetector.Gestur
         return inputMultiplexer;
     }
 
-    public void addListener(Consumer<InputEvent> callback, InputEventType eventType, int priority) {
+    public void addListener(InputEventType eventType, int priority, Consumer<InputEvent> callback) {
        InputEventListener listener = new InputEventListener(callback, priority);
         switch (eventType) {
             case TOUCH_UP:
