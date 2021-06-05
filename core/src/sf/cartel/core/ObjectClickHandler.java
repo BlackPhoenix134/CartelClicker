@@ -28,18 +28,10 @@ public class ObjectClickHandler {
     }
 
     public void subscribeEvents() {
-        this.inputHandler.addListener(InputEventType.TOUCH_DOWN, objectClickPriority, new Consumer<InputEvent>() {
-            @Override
-            public void call(InputEvent inputEvent) {
-                invokeClicked(touchDownClickables, inputEvent);
-            }
-        });
-        this.inputHandler.addListener(InputEventType.TOUCH_UP, objectClickPriority, new Consumer<InputEvent>() {
-            @Override
-            public void call(InputEvent inputEvent) {
-                invokeClicked(touchUpClickables, inputEvent);
-            }
-        });
+        this.inputHandler.addListener(InputEventType.TOUCH_DOWN, objectClickPriority,
+                inputEvent -> invokeClicked(touchDownClickables, inputEvent));
+        this.inputHandler.addListener(InputEventType.TOUCH_UP, objectClickPriority,
+                inputEvent -> invokeClicked(touchUpClickables, inputEvent));
     }
 
     public void addTouchDownClickable(Clickable clickable, int priority, boolean isUiSpace) {

@@ -36,7 +36,7 @@ public class ObjectClickInformation {
             Vector3 unprojectedPos = camera.unproject(new Vector3(x, y, 0));
             clickedPos.set(unprojectedPos.x, unprojectedPos.y);
         }
-        return clickable.getBoundingBox().contains(clickedPos.x, clickedPos.y);
+        return clickable.getArea2D().intersects(new Vector2(clickedPos.x, clickedPos.y));
     }
 
     public boolean contains(Vector2 position, OrthographicCamera camera) {
