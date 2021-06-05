@@ -2,16 +2,23 @@ package sf.cartel.core;
 
 import java.math.BigInteger;
 
-public class PlayerData {
-    private BigInteger Weed;
-    private BigInteger Meth;
-    private BigInteger Coke;
-    private BigInteger Emma;
-    private BigInteger Shrooms;
+import sf.cartel.gameObjects.PlayerUnlocks;
 
-    private boolean isWeedUnlocked;
-    private boolean isMethUnlocked;
-    private boolean isCokeUnlocked;
-    private boolean isEmmaUnlocked;
-    private boolean isShroomsUnlocked;
+public class PlayerData {
+    private PlayerUnlocks playerUnlocks = new PlayerUnlocks();
+
+    public PlayerUnlocks getPlayerUnlocks() {
+        return playerUnlocks;
+    }
+
+    public void setPlayerUnlocks(PlayerUnlocks playerUnlocks) {
+        this.playerUnlocks = playerUnlocks;
+    }
+
+    public BigInteger weed = BigInteger.ZERO;
+    public BigInteger meth = BigInteger.ZERO;
+    public BigInteger coke = BigInteger.ZERO;
+    public BigInteger emma = BigInteger.ZERO;
+    public BigInteger shrooms = BigInteger.ZERO;
+
 }

@@ -1,9 +1,12 @@
 package sf.cartel.core;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+
+import java.math.BigInteger;
 
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
@@ -11,6 +14,7 @@ import sf.cartel.core.Physics.Polygon;
 import sf.cartel.gameObjects.ClickerObject;
 import sf.cartel.gameObjects.GameObjectManager;
 import sf.cartel.gameObjects.SpriteRenderObject;
+import sf.cartel.input.InputEvent;
 
 public class Gameplay {
     private GameObjectManager gameObjectManager;
@@ -23,13 +27,21 @@ public class Gameplay {
         this.playerData = playerData;
     }
 
-
     public void initialize() {
         SpriteRenderObject mapObj = gameObjectManager.create(SpriteRenderObject.class);
         mapObj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.MAP)));
         mapObj.setDrawLayer(5);
-        createClickerObject(createJamaycaPolygon(), AssetDescriptors.MAP_PART2);
-        createClickerObject(createQuakamolePolygon(), AssetDescriptors.MAP_PART5);
+        ClickerObject obj = createClickerObject(createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> {
+                addPlayerWeed();
+        });
+        obj.setUnlocked(playerData.getPlayerUnlocks().isMap1Unlocked());
+
+        obj = createClickerObject(createQuakamolePolygon(), AssetDescriptors.MAP_PART2, (clickerObj) -> {
+            addPlayerMeth();
+        });
+        obj.setUnlocked(playerData.getPlayerUnlocks().isMap2Unlocked());
+
+
        // createClickerObject(-266.06906f,119.20669f);
       //  createClickerObject(-104.98304f,97.85793f);
       //  createClickerObject(-211.07986f,42.86872f);
@@ -39,20 +51,26 @@ public class Gameplay {
       //  createClickerObject(354.33862f,253.76854f);
     }
 
+    public void addPlayerWeed() {
+        playerData.weed = playerData.weed.add(new BigInteger("1"));
+    }
+
+    public void addPlayerMeth() {
+        playerData.meth = playerData.meth.add(new BigInteger("1"));
+    }
+
     private Polygon createJamaycaPolygon() {
         return new Polygon(    new Vector2(388.87363f, 235.94214f),
-
-
-      new Vector2(355.67294f, 225.1507f),
-       new Vector2(297.9081f, 257.81918f),
-       new Vector2(304.29037f, 268.63657f),
-       new Vector2(339.87955f, 269.93466f),
-       new Vector2(374.17065f, 262.90338f),
-       new Vector2(395.69724f, 251.76146f),
-       new Vector2(396.34628f, 240.40321f),
-       new Vector2(387.47604f, 233.69643f),
-       new Vector2(371.24997f, 237.48251f)
-);
+          new Vector2(355.67294f, 225.1507f),
+           new Vector2(297.9081f, 257.81918f),
+           new Vector2(304.29037f, 268.63657f),
+           new Vector2(339.87955f, 269.93466f),
+           new Vector2(374.17065f, 262.90338f),
+           new Vector2(395.69724f, 251.76146f),
+           new Vector2(396.34628f, 240.40321f),
+           new Vector2(387.47604f, 233.69643f),
+           new Vector2(371.24997f, 237.48251f)
+        );
 
     }
 
@@ -80,9 +98,9 @@ public class Gameplay {
 
     }
 
-    private ClickerObject createClickerObject(Polygon polygon, AssetDescriptor<Texture> assetDescriptor) {
+    private ClickerObject createClickerObject(Polygon polygon, AssetDescriptor<Texture> assetDescriptor, Consumer<ClickerObject> onClicked) {
         ClickerObject obj = gameObjectManager.create(ClickerObject.class);
-        obj.setPlayerData(playerData);
+        obj.setOnClicked(onClicked);
         obj.setArea2D(polygon);
         obj.setSprite(new Sprite(Assets.getAsset(assetDescriptor)));
         objectClickHandler.addTouchDownClickable(obj, 10, false);

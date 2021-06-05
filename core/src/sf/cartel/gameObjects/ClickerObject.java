@@ -1,7 +1,11 @@
 package sf.cartel.gameObjects;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+
+import sf.cartel.core.Consumer;
+import sf.cartel.core.Consumer2;
 import sf.cartel.core.Physics.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -15,7 +19,7 @@ import sf.cartel.rendering.RenderPipeline;
 public class ClickerObject extends GameObject implements Clickable {
     private Sprite sprite;
     private boolean isUnlocked;
-    private PlayerData playerData;
+    private Consumer<ClickerObject> onClicked;
     private Area2D area2D;
 
     ClickerObject(String uuid) {
@@ -38,21 +42,17 @@ public class ClickerObject extends GameObject implements Clickable {
         isUnlocked = unlocked;
     }
 
-    public PlayerData getPlayerData() {
-        return playerData;
+    public void setOnClicked(Consumer<ClickerObject> onClicked) {
+        this.onClicked = onClicked;
     }
 
-    public void setPlayerData(PlayerData playerData) {
-        this.playerData = playerData;
-    }
 
     @Override
     public void onClicked(InputEvent inputEvent) {
-        //if(isUnlocked)  {
+        if(isUnlocked)  {
             inputEvent.setConsumed(true);
-            sprite.setColor(new Color(Globals.getRandomFloat(0, 1), Globals.getRandomFloat(0, 1), Globals.getRandomFloat(0, 1), 255));
-
-        //}
+            onClicked.call(this);
+        }
     }
 
     @Override
