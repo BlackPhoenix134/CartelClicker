@@ -1,7 +1,6 @@
 package sf.cartel.core;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
@@ -14,7 +13,6 @@ import sf.cartel.core.Physics.Polygon;
 import sf.cartel.gameObjects.ClickerObject;
 import sf.cartel.gameObjects.GameObjectManager;
 import sf.cartel.gameObjects.SpriteRenderObject;
-import sf.cartel.input.InputEvent;
 
 public class Gameplay {
     private GameObjectManager gameObjectManager;
@@ -34,12 +32,12 @@ public class Gameplay {
         ClickerObject obj = createClickerObject(createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> {
                 addPlayerWeed();
         });
-        obj.setUnlocked(playerData.getPlayerUnlocks().isMap1Unlocked());
+        obj.setUnlocked(playerData.getUnlocks().isMap1Unlocked());
 
         obj = createClickerObject(createQuakamolePolygon(), AssetDescriptors.MAP_PART2, (clickerObj) -> {
             addPlayerMeth();
         });
-        obj.setUnlocked(playerData.getPlayerUnlocks().isMap2Unlocked());
+        obj.setUnlocked(playerData.getUnlocks().isMap2Unlocked());
 
 
        // createClickerObject(-266.06906f,119.20669f);
@@ -52,11 +50,13 @@ public class Gameplay {
     }
 
     public void addPlayerWeed() {
-        playerData.weed = playerData.weed.add(new BigInteger("1"));
+        int valueToAdd = (int)(1 * playerData.getUpgrades().getWeedMultiplier());
+        playerData.weed = playerData.weed.add(new BigInteger(String.valueOf(valueToAdd)));
     }
 
     public void addPlayerMeth() {
-        playerData.meth = playerData.meth.add(new BigInteger("1"));
+        int valueToAdd = (int)(1 * playerData.getUpgrades().getMethMultiplier());
+        playerData.meth = playerData.meth.add(new BigInteger(String.valueOf(valueToAdd)));
     }
 
     private Polygon createJamaycaPolygon() {
