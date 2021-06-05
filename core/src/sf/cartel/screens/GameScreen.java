@@ -48,8 +48,8 @@ public class GameScreen extends AbstractScreen {
         objectClickHandler.addTouchDownClickable(obj,  1000, false);
          obj = gameObjectManager.create(DebugClickableObject.class);
         obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_40x40)));
-        obj.getSprite().setPosition(-100, -100);
-        objectClickHandler.addTouchDownClickable(obj, 1000, false);
+        obj.getSprite().setPosition(120, 120);
+        objectClickHandler.addTouchDownClickable(obj, 999, false);
          obj = gameObjectManager.create(DebugClickableObject.class);
         obj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_40x40)));
         obj.getSprite().setPosition(100, -100);
