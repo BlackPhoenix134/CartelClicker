@@ -29,6 +29,7 @@ public class Gameplay {
         mapObj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.MAP)));
         mapObj.setDrawLayer(5);
         createClickerObject(createJamaycaPolygon(), AssetDescriptors.MAP_PART2);
+        createClickerObject(createQuakamolePolygon(), AssetDescriptors.MAP_PART5);
        // createClickerObject(-266.06906f,119.20669f);
       //  createClickerObject(-104.98304f,97.85793f);
       //  createClickerObject(-211.07986f,42.86872f);
@@ -52,6 +53,30 @@ public class Gameplay {
        new Vector2(387.47604f, 233.69643f),
        new Vector2(371.24997f, 237.48251f)
 );
+
+    }
+
+    private Polygon createQuakamolePolygon() {
+        return new Polygon(    new Vector2(-220.76593f, 179.62904f),
+
+
+       new Vector2(-259.7599f, 50.36963f),
+      new Vector2(-358.58014f, 92.07549f),
+ new Vector2(-350.77313f, 122.68718f),
+ new Vector2(-357.9638f, 134.19225f),
+ new Vector2(-333.31012f, 173.43274f),
+ new Vector2(-270.03226f, 170.96736f),
+ new Vector2(-316.4634f, 228.9036f),
+ new Vector2(-292.83694f, 230.54715f),
+ new Vector2(-289.34433f, 258.89893f),
+ new Vector2(-202.44f, 249.85922f),
+ new Vector2(-209.01433f, 156.58603f),
+ new Vector2(-190.3186f, 151.65529f),
+ new Vector2(-159.09058f, 143.84828f),
+ new Vector2(-210.86336f, 111.18211f),
+ new Vector2(-209.63066f, 87.761086f),
+ new Vector2(-260.99255f, 47.90426f)
+        );
 
     }
 
