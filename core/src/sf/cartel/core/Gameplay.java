@@ -43,17 +43,17 @@ public class Gameplay {
         obj = createClickerObject(createBelizePolygon(), AssetDescriptors.MAP_PART3, (clickerObj) -> {
 
         });
-        obj.setUnlocked(playerData.getPlayerUnlocks().isMap3Unlocked());
+        obj.setUnlocked(playerData.getUnlocks().isMap3Unlocked());
 
         obj = createClickerObject(createElSalvadorPolygon(), AssetDescriptors.MAP_PART4, (clickerObj) -> {
 
         });
-        obj.setUnlocked(playerData.getPlayerUnlocks().isMap4Unlocked());
+        obj.setUnlocked(playerData.getUnlocks().isMap4Unlocked());
 
         obj = createClickerObject(createHondurasPolygon(), AssetDescriptors.MAP_PART5, (clickerObj) -> {
 
         });
-        obj.setUnlocked(playerData.getPlayerUnlocks().isMap5Unlocked());
+        obj.setUnlocked(playerData.getUnlocks().isMap5Unlocked());
 
        // createClickerObject(-266.06906f,119.20669f);
       //  createClickerObject(-104.98304f,97.85793f);

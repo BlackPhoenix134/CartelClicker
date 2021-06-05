@@ -21,9 +21,9 @@ public final class AssetDescriptors {
     public static final AssetDescriptor<Texture> MAP_PART3 = new AssetDescriptor<>(ENVIRONMENT + "/map_part3.png", Texture.class);
     public static final AssetDescriptor<Texture> MAP_PART4 = new AssetDescriptor<>(ENVIRONMENT + "/map_part4.png", Texture.class);
     public static final AssetDescriptor<Texture> MAP_PART5 = new AssetDescriptor<>(ENVIRONMENT + "/map_part5.png", Texture.class);
-    public static final AssetDescriptor<Texture> MAP_PART6 = new AssetDescriptor<>(ENVIRONMENT + "/map_part6.png", Texture.class);
-    public static final AssetDescriptor<Texture> MAP_PART7 = new AssetDescriptor<>(ENVIRONMENT + "/map_part7.png", Texture.class);
-    public static final AssetDescriptor<Texture> MAP_PART8 = new AssetDescriptor<>(ENVIRONMENT + "/map_part8.png", Texture.class);
-    public static final AssetDescriptor<Texture> MAP_PART9 = new AssetDescriptor<>(ENVIRONMENT + "/map_part9.png", Texture.class);
+//    public static final AssetDescriptor<Texture> MAP_PART6 = new AssetDescriptor<>(ENVIRONMENT + "/map_part6.png", Texture.class);
+//    public static final AssetDescriptor<Texture> MAP_PART7 = new AssetDescriptor<>(ENVIRONMENT + "/map_part7.png", Texture.class);
+//    public static final AssetDescriptor<Texture> MAP_PART8 = new AssetDescriptor<>(ENVIRONMENT + "/map_part8.png", Texture.class);
+//    public static final AssetDescriptor<Texture> MAP_PART9 = new AssetDescriptor<>(ENVIRONMENT + "/map_part9.png", Texture.class);
 
 }
