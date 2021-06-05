@@ -81,3 +81,15 @@ project(":ios") {
         api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     }
 }
+
+project(":desktop") {
+    apply plugin: "java"
+
+
+    dependencies {
+        implementation project(":core")
+        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+
+    }
+}
