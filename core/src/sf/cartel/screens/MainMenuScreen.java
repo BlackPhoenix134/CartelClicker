@@ -1,6 +1,7 @@
 package sf.cartel.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -8,6 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Scaling;
+
+import java.awt.Image;
 
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
@@ -25,8 +28,14 @@ public class MainMenuScreen extends AbstractScreen {
     private CameraData cameraData;
     private ScreenManager      screenManager;
     private InputHandler inputHandler;
+    private SpriteBatch batch;
 
+
+    Texture background = new Texture(Gdx.files.internal("ui/titleScreen.png"));
     Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonSound.mp3"));
+
+    Sound sound2 = Gdx.audio.newSound(Gdx.files.internal("sounds/elevator2.0.mp3"));
+
 
     public MainMenuScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
         this.renderPipeline = renderPipeline;
@@ -35,6 +44,8 @@ public class MainMenuScreen extends AbstractScreen {
         this.inputHandler = inputHandler;
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
+        batch = new SpriteBatch();
+
     }
 
    @Override
@@ -44,16 +55,35 @@ public class MainMenuScreen extends AbstractScreen {
     }
 
     @Override
+    public void render(float delta) {
+
+        sound2.play(0.5f);
+
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        batch.begin();
+        batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.end();
+
+        super.render(delta); //this render the stage, which is responsible for the screen transitions
+    }
+
+    @Override
     public void buildStage() {
+        // TODO change padding to 0.25f and fix click boxes
         float padding = screenHeight * 0.05f;
 
         Texture startGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_START);
         Texture exitGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_EXIT);
         Texture joinGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_OPTIONS);
 
+
+
         btnStartGame = new AliveButton(startGameTexture);
         btnExitGame  = new AliveButton(exitGameTexture);
         btnOptions = new AliveButton(joinGameTexture);
+
 
         Vector2 btnStartGameSize = Scaling.fillX.apply(startGameTexture.getWidth(), startGameTexture.getHeight(), screenWidth * 0.30f, 0);
         Vector2 btnJoinGameSize = Scaling.fillX.apply(joinGameTexture.getWidth(), joinGameTexture.getHeight(), screenWidth * 0.30f, 0);
@@ -94,14 +124,11 @@ public class MainMenuScreen extends AbstractScreen {
                 Gdx.app.exit();
             }
         });
+
+
     }
 
-    @Override
-    public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        super.render(delta); //this render the stage, which is responsible for the screen transitions
-    }
+
 
     @Override
     public void hide() {
