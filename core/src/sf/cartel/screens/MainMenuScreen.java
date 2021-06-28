@@ -30,7 +30,6 @@ public class MainMenuScreen extends AbstractScreen {
     private InputHandler inputHandler;
     private SpriteBatch batch;
 
-
     Texture background = new Texture(Gdx.files.internal("ui/titleScreen.png"));
     Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonSound.mp3"));
 
