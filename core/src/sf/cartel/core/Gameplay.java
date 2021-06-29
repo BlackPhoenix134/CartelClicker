@@ -1,9 +1,11 @@
 package sf.cartel.core;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import java.math.BigInteger;
 
@@ -19,10 +21,13 @@ public class Gameplay {
     private ObjectClickHandler objectClickHandler;
     private PlayerData playerData;
 
+
     public Gameplay(GameObjectManager gameObjectManager, ObjectClickHandler objectClickHandler, PlayerData playerData) {
         this.gameObjectManager = gameObjectManager;
         this.objectClickHandler = objectClickHandler;
         this.playerData = playerData;
+
+
     }
 
     public void initialize() {
@@ -30,29 +35,20 @@ public class Gameplay {
         mapObj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.MAP)));
         mapObj.setDrawLayer(5);
 
-        ClickerObject obj = createClickerObject(createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> {
-                addPlayerWeed();
-        });
+
+        ClickerObject obj = createClickerObject(createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> { addPlayerWeed(); });
         obj.setUnlocked(playerData.getUnlocks().isMap1Unlocked());
 
-        obj = createClickerObject(createQuakamolePolygon(), AssetDescriptors.MAP_PART2, (clickerObj) -> {
-            addPlayerMeth();
-        });
+        obj = createClickerObject(createQuakamolePolygon(), AssetDescriptors.MAP_PART2, (clickerObj) -> { addPlayerMeth(); });
         obj.setUnlocked(playerData.getUnlocks().isMap2Unlocked());
 
-        obj = createClickerObject(createBelizePolygon(), AssetDescriptors.MAP_PART3, (clickerObj) -> {
-
-        });
+        obj = createClickerObject(createBelizePolygon(), AssetDescriptors.MAP_PART3, (clickerObj) -> { });
         obj.setUnlocked(playerData.getUnlocks().isMap3Unlocked());
 
-        obj = createClickerObject(createElSalvadorPolygon(), AssetDescriptors.MAP_PART4, (clickerObj) -> {
-
-        });
+        obj = createClickerObject(createElSalvadorPolygon(), AssetDescriptors.MAP_PART4, (clickerObj) -> { });
         obj.setUnlocked(playerData.getUnlocks().isMap4Unlocked());
 
-        obj = createClickerObject(createHondurasPolygon(), AssetDescriptors.MAP_PART5, (clickerObj) -> {
-
-        });
+        obj = createClickerObject(createHondurasPolygon(), AssetDescriptors.MAP_PART5, (clickerObj) -> { });
         obj.setUnlocked(playerData.getUnlocks().isMap5Unlocked());
 
        // createClickerObject(-266.06906f,119.20669f);

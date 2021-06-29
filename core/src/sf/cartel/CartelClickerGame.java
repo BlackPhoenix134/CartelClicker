@@ -11,7 +11,9 @@ import sf.cartel.input.InputHandler;
 import sf.cartel.rendering.RenderPipeline;
 import sf.cartel.screens.GameScreen;
 import sf.cartel.screens.MainMenuScreen;
+import sf.cartel.screens.OptionsScreen;
 import sf.cartel.screens.ScreenManager;
+import sf.cartel.screens.UpgradeScreen;
 
 public class CartelClickerGame extends Game {
 	private ScreenManager screenManager;
@@ -31,6 +33,12 @@ public class CartelClickerGame extends Game {
 		screenManager = new ScreenManager(this);
 		screenManager.addScreen(new MainMenuScreen(renderPipeline, camera, screenManager, inputHandler));
 		screenManager.addScreen(new GameScreen(renderPipeline, camera, screenManager, inputHandler));
+
+		screenManager.addScreen(new OptionsScreen(renderPipeline, camera, screenManager));
+
+
+		//TODO Upgrade Screen has values and images of clicked on land
+		screenManager.addScreen(new UpgradeScreen(renderPipeline, camera, screenManager, inputHandler));
 		screenManager.showScreen(MainMenuScreen.class);
 	}
 

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.Shader;
@@ -18,6 +19,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import sf.cartel.assets.AssetDescriptors;
+import sf.cartel.assets.Assets;
 import sf.cartel.assets.ShaderManager;
 
 
@@ -80,6 +83,22 @@ public class RenderPipeline implements Disposable {
                 defaultRenderer.add(drawable.getTexture(), drawable.getPosition());
         }
         defaultRenderer.end();
+
+        SpriteBatch hudElements = new SpriteBatch();
+        DefaultRenderer hud = new DefaultRenderer(hudElements);
+
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
+
+
+
+        hud.begin();
+
+        Texture topBar = new Texture(Gdx.files.internal("ui/TopBar.png"));
+
+        hudElements.draw(topBar, 0, 0, screenWidth, screenHeight);
+
+        hud.end();
     }
 
     public void drawCircle(Vector2 position, int radius, Color color, boolean isFilled, int drawLayer) {
