@@ -1,4 +1,4 @@
-package sf.cartel.gameObjects;
+package sf.cartel.core;
 
 public class PlayerUnlocks {
     private boolean isMap1Unlocked = true;
