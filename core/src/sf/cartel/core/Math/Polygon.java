@@ -1,21 +1,14 @@
-package sf.cartel.core.Physics;
-
-
+package sf.cartel.core.Math;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class Polygon implements Area2D {
+public class Polygon {
     private List<Vector2> points;
 
     public List<Vector2> getPoints() {
         return points;
-    }
-
-    public Polygon(Vector2 ... points) {
-        this.points = Arrays.asList(points);
     }
 
     public Polygon(List<Vector2> points) {
@@ -124,11 +117,6 @@ public class Polygon implements Area2D {
             newY = newY + point.y;
         }
         return new Vector2(newX / points.size(), newY / points.size());
-    }
-
-    @Override
-    public boolean intersects(Vector2 position) {
-        return isInsidePoly(position);
     }
 }
 

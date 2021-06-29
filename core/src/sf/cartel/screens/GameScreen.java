@@ -1,33 +1,17 @@
 package sf.cartel.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
 
-import sf.cartel.assets.AssetDescriptors;
-import sf.cartel.assets.Assets;
 import sf.cartel.core.CameraData;
-import sf.cartel.core.Consumer;
 import sf.cartel.core.Gameplay;
-import sf.cartel.core.ObjectClickHandler;
 import sf.cartel.core.PlayerData;
 import sf.cartel.core.SaveGame;
+import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.gameObjects.GameObjectManager;
-import sf.cartel.gameObjects.MapObject;
-import sf.cartel.gameObjects.SpriteRenderObject;
-import sf.cartel.input.InputEvent;
 import sf.cartel.input.InputEventType;
 import sf.cartel.input.InputHandler;
 import sf.cartel.rendering.RenderPipeline;

@@ -1,12 +1,9 @@
 package sf.cartel.core.Math;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import sf.cartel.core.Globals;
 

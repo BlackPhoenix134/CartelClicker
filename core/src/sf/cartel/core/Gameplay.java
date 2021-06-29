@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import java.math.BigInteger;
 
+import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
 import sf.cartel.core.Physics.Polygon;
@@ -26,8 +27,6 @@ public class Gameplay {
         this.gameObjectManager = gameObjectManager;
         this.objectClickHandler = objectClickHandler;
         this.playerData = playerData;
-
-
     }
 
     public void initialize() {
