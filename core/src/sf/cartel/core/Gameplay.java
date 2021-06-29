@@ -1,11 +1,9 @@
 package sf.cartel.core;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
 import java.math.BigInteger;
 
@@ -65,8 +63,8 @@ public class Gameplay {
     }
 
     public void addPlayerMeth() {
-        int valueToAdd = (int)(1 * playerData.getUpgrades().getMethMultiplier());
-        playerData.meth = playerData.meth.add(new BigInteger(String.valueOf(valueToAdd)));
+        int valueToAdd = (int)(1 * playerData.getUpgrades().getOxyMultiplier());
+        playerData.heroin = playerData.heroin.add(new BigInteger(String.valueOf(valueToAdd)));
     }
 
     private Polygon createJamaycaPolygon() {

@@ -33,7 +33,7 @@ public class DrawableItemText extends DrawableItem {
 
     @Override
     public void render(SpriteBatch batch) {
-        font.getData().scale(scale);
+        font.getData().setScale(scale);
         font.draw(batch, text, position.x, position.y);
     }
 }

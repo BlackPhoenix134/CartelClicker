@@ -4,10 +4,10 @@ import java.math.BigInteger;
 
 public class PlayerData {
     public BigInteger weed = BigInteger.ZERO;
-    public BigInteger meth = BigInteger.ZERO;
+    public BigInteger pills = BigInteger.ZERO;
     public BigInteger coke = BigInteger.ZERO;
-    public BigInteger emma = BigInteger.ZERO;
-    public BigInteger shrooms = BigInteger.ZERO;
+    public BigInteger oxy = BigInteger.ZERO;
+    public BigInteger heroin = BigInteger.ZERO;
 
     private PlayerUnlocks unlocks = new PlayerUnlocks();
     private PlayerUpgrades upgrades = new PlayerUpgrades();

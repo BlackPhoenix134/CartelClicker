@@ -4,10 +4,10 @@ import java.math.BigInteger;
 
 public class PlayerUpgrades {
     private float weedMultiplier = 1f;
-    private float methMultiplier = 1f;
+    private float pillsMultiplier = 1f;
     private float cokeMultiplier = 1f;
-    private float emmaMultiplier = 1f;
-    private float shroomsMultiplier =  1f;
+    private float oxyMultiplier = 1f;
+    private float heroinMultiplier =  1f;
 
     public float getWeedMultiplier() {
         return weedMultiplier;
@@ -17,12 +17,12 @@ public class PlayerUpgrades {
         this.weedMultiplier = weedMultiplier;
     }
 
-    public float getMethMultiplier() {
-        return methMultiplier;
+    public float getOxyMultiplier() {
+        return oxyMultiplier;
     }
 
-    public void setMethMultiplier(float methMultiplier) {
-        this.methMultiplier = methMultiplier;
+    public void setOxyMultiplier(float oxyMultiplier) {
+        this.oxyMultiplier = oxyMultiplier;
     }
 
     public float getCokeMultiplier() {
@@ -33,19 +33,19 @@ public class PlayerUpgrades {
         this.cokeMultiplier = cokeMultiplier;
     }
 
-    public float getEmmaMultiplier() {
-        return emmaMultiplier;
+    public float getPillsMultiplier() {
+        return pillsMultiplier;
     }
 
-    public void setEmmaMultiplier(float emmaMultiplier) {
-        this.emmaMultiplier = emmaMultiplier;
+    public void setPillsMultiplier(float pillsMultiplier) {
+        this.pillsMultiplier = pillsMultiplier;
     }
 
-    public float getShroomsMultiplier() {
-        return shroomsMultiplier;
+    public float getHeroinMultiplier() {
+        return heroinMultiplier;
     }
 
-    public void setShroomsMultiplier(float shroomsMultiplier) {
-        this.shroomsMultiplier = shroomsMultiplier;
+    public void setHeroinMultiplier(float heroinMultiplier) {
+        this.heroinMultiplier = heroinMultiplier;
     }
 }

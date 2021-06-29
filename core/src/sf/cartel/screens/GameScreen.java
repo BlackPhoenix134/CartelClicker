@@ -3,6 +3,7 @@ package sf.cartel.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 
@@ -12,6 +13,7 @@ import sf.cartel.core.PlayerData;
 import sf.cartel.core.SaveGame;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.gameObjects.GameObjectManager;
+import sf.cartel.gameObjects.IngameUi;
 import sf.cartel.input.InputEventType;
 import sf.cartel.input.InputHandler;
 import sf.cartel.rendering.RenderPipeline;
@@ -25,6 +27,7 @@ public class GameScreen extends AbstractScreen {
     private ScreenManager screenManager;
     private InputHandler inputHandler;
     private ObjectClickHandler objectClickHandler;
+    private IngameUi ingameUi;
 
     private PlayerData playerData;
     private Gameplay gameplay;
@@ -41,6 +44,7 @@ public class GameScreen extends AbstractScreen {
         playerData = SaveGame.loadPlayerData();
         this.gameplay = new Gameplay(gameObjectManager, objectClickHandler, playerData);
 
+        this.ingameUi = new IngameUi(playerData);
     }
 
     @Override
@@ -78,13 +82,18 @@ public class GameScreen extends AbstractScreen {
 
     private void stepTick(float delta) {
         gameObjectManager.update(delta);
+        ingameUi.update(delta);
         gameObjectManager.postUpdate();
     }
 
     private void stepFastUpdate(float delta) {
         renderPipeline.begin();
         gameObjectManager.draw(delta, renderPipeline);
+        ingameUi.draw(delta, renderPipeline);
+
         renderPipeline.end();
+
+
         cameraData.update(null);
         renderPipeline.updateBatchMatrix();
     }
