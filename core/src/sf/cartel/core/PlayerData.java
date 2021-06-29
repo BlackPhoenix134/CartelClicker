@@ -2,8 +2,6 @@ package sf.cartel.core;
 
 import java.math.BigInteger;
 
-import sf.cartel.gameObjects.PlayerUnlocks;
-
 public class PlayerData {
     public BigInteger weed = BigInteger.ZERO;
     public BigInteger meth = BigInteger.ZERO;
