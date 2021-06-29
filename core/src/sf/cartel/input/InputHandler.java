@@ -28,7 +28,7 @@ public class InputHandler extends InputAdapter implements GestureDetector.Gestur
     }
 
     public void addListener(InputEventType eventType, int priority, Consumer<InputEvent> callback) {
-       InputEventListener listener = new InputEventListener(callback, priority);
+        InputEventListener listener = new InputEventListener(callback, priority);
         switch (eventType) {
             case TOUCH_UP:
                 addListener(touchUpListeners, listener);
@@ -145,7 +145,7 @@ public class InputHandler extends InputAdapter implements GestureDetector.Gestur
 
 
 
-    private static class InputEventListenerComparator implements Comparator<InputEventListener>  {
+    private static class InputEventListenerComparator implements Comparator<InputEventListener> {
         @Override
         public int compare(InputEventListener t1, InputEventListener t2) {
             return Integer.compare(t1.getPriority(), t2.getPriority());
