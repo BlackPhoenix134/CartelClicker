@@ -52,7 +52,7 @@ public class OptionsScreen extends AbstractScreen {
         //Gdx.input.setInputProcessor(this);
         float padding = screenHeight * 0.05f;
 
-        Texture optionsTexture = Assets.getAsset(AssetDescriptors.BUTTON_OPTIONS);
+        Texture optionsTexture = Assets.getAsset(AssetDescriptors.BUTTON_BACK);
         btnJoin = new AliveButton(optionsTexture);
         Vector2 btnJoinSize = Scaling.fillX.apply(optionsTexture.getWidth(), optionsTexture.getHeight(), screenWidth*0.30f,0);
         btnJoin.setSize(btnJoinSize.x, btnJoinSize.y);
@@ -62,7 +62,7 @@ public class OptionsScreen extends AbstractScreen {
             @Override
             public void onClick() {
                 sound.play();
-                screenManager.showScreen(GameScreen.class);
+                screenManager.showScreen(MainMenuScreen.class);
             }
         });
 

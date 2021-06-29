@@ -1,7 +1,6 @@
 package sf.cartel.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -10,8 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Scaling;
 
-import java.awt.Image;
-
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
 import sf.cartel.core.CameraData;
@@ -19,7 +16,7 @@ import sf.cartel.input.InputHandler;
 import sf.cartel.rendering.RenderPipeline;
 import sf.cartel.ui.AliveButton;
 
-public class MainMenuScreen extends AbstractScreen {
+public class UpgradeScreen extends AbstractScreen {
     private float              screenWidth, screenHeight;
     private AliveButton btnStartGame;
     private AliveButton        btnExitGame;
@@ -33,10 +30,10 @@ public class MainMenuScreen extends AbstractScreen {
     Texture background = new Texture(Gdx.files.internal("ui/titleScreen.png"));
     Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonSound.mp3"));
 
-//    Sound sound2 = Gdx.audio.newSound(Gdx.files.internal("sounds/elevator.mp3"));
+    Sound sound2 = Gdx.audio.newSound(Gdx.files.internal("sounds/elevator2.0.mp3"));
 
 
-    public MainMenuScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
+    public UpgradeScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
         this.renderPipeline = renderPipeline;
         this.cameraData = new CameraData(camera);
         this.screenManager = screenManager;
@@ -47,16 +44,16 @@ public class MainMenuScreen extends AbstractScreen {
 
     }
 
-   @Override
+    @Override
     public void show() {
-       this.inputHandler.unsubscribeAll();
+        this.inputHandler.unsubscribeAll();
         Gdx.input.setInputProcessor(this);
     }
 
     @Override
     public void render(float delta) {
 
-//        sound2.play(0.5f);
+        sound2.play(0.5f);
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -107,7 +104,7 @@ public class MainMenuScreen extends AbstractScreen {
 
         btnOptions.addListener(new AliveButton.AliveButtonListener(){
             @Override
-                    public void onClick(){
+            public void onClick(){
                 sound.play();
                 screenManager.showScreen(OptionsScreen.class);
             }
