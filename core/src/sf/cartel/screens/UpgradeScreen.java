@@ -18,19 +18,15 @@ import sf.cartel.ui.AliveButton;
 
 public class UpgradeScreen extends AbstractScreen {
     private float              screenWidth, screenHeight;
-    private AliveButton btnStartGame;
-    private AliveButton        btnExitGame;
-    private AliveButton btnOptions;
+    private AliveButton backButton;
     private RenderPipeline renderPipeline;
     private CameraData cameraData;
     private ScreenManager      screenManager;
     private InputHandler inputHandler;
     private SpriteBatch batch;
 
-    Texture background = new Texture(Gdx.files.internal("ui/titleScreen.png"));
+    Texture background = new Texture(Gdx.files.internal("ui/InGameMenu.png"));
     Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonSound.mp3"));
-
-    Sound sound2 = Gdx.audio.newSound(Gdx.files.internal("sounds/elevator2.0.mp3"));
 
 
     public UpgradeScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
@@ -53,8 +49,6 @@ public class UpgradeScreen extends AbstractScreen {
     @Override
     public void render(float delta) {
 
-        sound2.play(0.5f);
-
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -62,64 +56,53 @@ public class UpgradeScreen extends AbstractScreen {
         batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
 
-        super.render(delta); //this render the stage, which is responsible for the screen transitions
+        super.render(delta);
     }
 
     @Override
     public void buildStage() {
-        // TODO change padding to 0.25f and fix click boxes
-        float padding = screenHeight * 0.05f;
+//        // TODO change padding to 0.25f and fix click boxes
+//        float padding = screenHeight * 0.05f;
+//
+        Texture backButtonTexture = Assets.getAsset(AssetDescriptors.BUTTON_BACK);
+//
+//
+//
+        backButton = new AliveButton(backButtonTexture);
+//
+//
+        Vector2 backButtonSize = Scaling.fillX.apply(backButtonTexture.getWidth(), backButtonTexture.getHeight(), screenWidth * 0.30f, 0);//
+//
+        backButton.setSize(backButtonSize.x, backButtonSize.y);
+//
+        backButton.setPosition( -screenWidth*0.075f, screenHeight*.8f);
 
-        Texture startGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_START);
-        Texture exitGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_EXIT);
-        Texture joinGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_OPTIONS);
-
-
-
-        btnStartGame = new AliveButton(startGameTexture);
-        btnExitGame  = new AliveButton(exitGameTexture);
-        btnOptions = new AliveButton(joinGameTexture);
-
-
-        Vector2 btnStartGameSize = Scaling.fillX.apply(startGameTexture.getWidth(), startGameTexture.getHeight(), screenWidth * 0.30f, 0);
-        Vector2 btnJoinGameSize = Scaling.fillX.apply(joinGameTexture.getWidth(), joinGameTexture.getHeight(), screenWidth * 0.30f, 0);
-        Vector2 btnExitSize      = Scaling.fillX.apply(exitGameTexture.getWidth(), exitGameTexture.getHeight(), screenWidth * 0.30f, 0);
-
-
-        btnStartGame.setSize(btnStartGameSize.x, btnStartGameSize.y);
-        btnOptions.setSize (btnJoinGameSize.x, btnJoinGameSize.y);
-        btnExitGame.setSize(btnExitSize.x, btnExitSize.y);
-
-        btnStartGame.setPosition( screenWidth/2 - btnStartGame.getWidth()/2, screenHeight - padding - btnStartGame.getHeight());
-        btnOptions.setPosition( screenWidth/2 - btnOptions.getWidth()/2, screenHeight  * 0.5f - btnOptions.getHeight() * 0.5f);
-        btnExitGame.setPosition(screenWidth/2 - btnExitGame.getWidth()/2, padding);
-
-        btnStartGame.addListener(new AliveButton.AliveButtonListener() {
+        backButton.addListener(new AliveButton.AliveButtonListener() {
             @Override
             public void onClick() {
                 sound.play();
-                screenManager.showScreen(GameScreen.class);
+                screenManager.showScreen(MainMenuScreen.class);
             }
         });
-
-        btnOptions.addListener(new AliveButton.AliveButtonListener(){
-            @Override
-            public void onClick(){
-                sound.play();
-                screenManager.showScreen(OptionsScreen.class);
-            }
-
-        });
-
-        addActorsToStage(btnStartGame, btnOptions, btnExitGame);
-
-        btnExitGame.addListener(new AliveButton.AliveButtonListener(){
-            @Override
-            public void onClick(){
-                sound.play();
-                Gdx.app.exit();
-            }
-        });
+//
+//        btnOptions.addListener(new AliveButton.AliveButtonListener(){
+//            @Override
+//            public void onClick(){
+//                sound.play();
+//                screenManager.showScreen(OptionsScreen.class);
+//            }
+//
+//        });
+//
+        addActorsToStage(backButton);
+//
+//        btnExitGame.addListener(new AliveButton.AliveButtonListener(){
+//            @Override
+//            public void onClick(){
+//                sound.play();
+//                Gdx.app.exit();
+//            }
+//        });
 
 
     }

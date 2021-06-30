@@ -1,13 +1,19 @@
 package sf.cartel.gameObjects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Scaling;
 
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
 import sf.cartel.core.PlayerData;
+import sf.cartel.input.InputHandler;
 import sf.cartel.rendering.RenderPipeline;
+import sf.cartel.screens.AbstractScreen;
+import sf.cartel.screens.MainMenuScreen;
+import sf.cartel.ui.AliveButton;
 
 public class IngameUi  {
     private GameObjectManager gameObjectManager = new GameObjectManager();
@@ -16,8 +22,10 @@ public class IngameUi  {
     private SpriteDrawableObject upgradeButtonUi;
     private SpriteDrawableObject menuButtonUi;
 
+
     public IngameUi(PlayerData playerData) {
         this.playerData = playerData;
+
 
         topBarUi = gameObjectManager.create(SpriteDrawableObject.class);
         Sprite sprite = new Sprite(Assets.getAsset(AssetDescriptors.TOP_BAR));

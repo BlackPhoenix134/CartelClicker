@@ -5,6 +5,8 @@ import com.badlogic.gdx.Game;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO SAVE PREVIOUS SCREEN IN ORDER TO GO BACK EASILY
+
 public class ScreenManager {
     private Game game;
     private Map<Class, AbstractScreen> screens = new HashMap<>();
@@ -26,20 +28,22 @@ public class ScreenManager {
         final AbstractScreen newScreen = screens.get(screenClass);
         newScreen.buildStage();
 
-        if(currentScreen != null){
-            currentScreen.transitionOut(new Runnable(){
-                @Override
-                public void run() {
-                    game.setScreen(newScreen);
-                    newScreen.transitionIn();
-                    currentScreen.dispose();
-                }
-            });
-        }
-        else{
-            game.setScreen(newScreen);
-            newScreen.transitionIn();
-        }
+        game.setScreen(newScreen);
+
+//        if(currentScreen != null){
+//            currentScreen.transitionOut(new Runnable(){
+//                @Override
+//                public void run() {
+//                    game.setScreen(newScreen);
+//                    newScreen.transitionIn();
+//                    currentScreen.dispose();
+//                }
+//            });
+//        }
+//        else{
+//            game.setScreen(newScreen);
+//            newScreen.transitionIn();
+//        }
     }
 
 

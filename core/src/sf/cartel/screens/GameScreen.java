@@ -53,16 +53,6 @@ public class GameScreen extends AbstractScreen {
         cameraData.getOrthographicCamera().position.set(0, 0, 0);
         cameraData.setZoomValue(0.15f);
 
-
-//        float screenWidth = Gdx.graphics.getWidth();
-//        float screenHeight = Gdx.graphics.getHeight();
-//
-//        Table table = new Table();
-//        table.setBounds(0, screenHeight * .9f, screenWidth, screenHeight *.1f);
-//        table.defaults().padRight(10); // All cells have a padding of 10px to the right
-//
-//        addActorsToStage(table);
-
     }
 
 

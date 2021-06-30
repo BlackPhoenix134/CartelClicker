@@ -30,14 +30,12 @@ public class CartelClickerGame extends Game {
 		viewport = new ExtendViewport(5000, 3000, camera);
 		renderPipeline = new RenderPipeline(new ShaderManager(), camera, viewport);
 		screenManager = new ScreenManager(this);
+
 		screenManager.addScreen(new MainMenuScreen(renderPipeline, camera, screenManager, inputHandler));
 		screenManager.addScreen(new GameScreen(renderPipeline, camera, screenManager, inputHandler));
-
 		screenManager.addScreen(new OptionsScreen(renderPipeline, camera, screenManager));
-
-
-		//TODO Upgrade Screen has values and images of clicked on land
 		screenManager.addScreen(new UpgradeScreen(renderPipeline, camera, screenManager, inputHandler));
+
 		screenManager.showScreen(MainMenuScreen.class);
 	}
 

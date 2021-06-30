@@ -20,7 +20,7 @@ import sf.cartel.rendering.RenderPipeline;
 import sf.cartel.ui.AliveButton;
 
 public class MainMenuScreen extends AbstractScreen {
-    private float              screenWidth, screenHeight;
+    private float screenWidth, screenHeight;
     private AliveButton btnStartGame;
     private AliveButton        btnExitGame;
     private AliveButton btnOptions;
@@ -120,7 +120,9 @@ public class MainMenuScreen extends AbstractScreen {
             @Override
             public void onClick(){
                 sound.play();
-                Gdx.app.exit();
+//                Gdx.app.exit();
+
+                screenManager.showScreen(UpgradeScreen.class);
             }
         });
 
