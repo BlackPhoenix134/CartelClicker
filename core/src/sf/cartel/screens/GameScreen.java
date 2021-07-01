@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector3;
 
 import sf.cartel.core.CameraData;
 import sf.cartel.core.Gameplay;
+import sf.cartel.core.Globals;
 import sf.cartel.core.PlayerData;
 import sf.cartel.core.SaveGame;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
@@ -29,7 +30,6 @@ public class GameScreen extends AbstractScreen {
     private ObjectClickHandler objectClickHandler;
     private IngameUi ingameUi;
 
-    private PlayerData playerData;
     private Gameplay gameplay;
 
     public GameScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
@@ -41,24 +41,19 @@ public class GameScreen extends AbstractScreen {
         this.inputHandler = inputHandler;
         this.objectClickHandler = new ObjectClickHandler(cameraData, inputHandler);
 
-        playerData = SaveGame.loadPlayerData();
-        this.gameplay = new Gameplay(gameObjectManager, objectClickHandler, playerData);
-
-        this.ingameUi = new IngameUi(playerData);
+        this.gameplay = new Gameplay(gameObjectManager, objectClickHandler, Globals.getPlayerData());
+        this.ingameUi = new IngameUi(Globals.getPlayerData(), objectClickHandler);
     }
 
     @Override
     public void buildStage() {
-
         cameraData.getOrthographicCamera().position.set(0, 0, 0);
         cameraData.setZoomValue(0.15f);
-
     }
 
 
     @Override
     public void render(float delta) {
-
         delta = Gdx.graphics.getDeltaTime();
         Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -83,7 +78,6 @@ public class GameScreen extends AbstractScreen {
 
         renderPipeline.end();
 
-
         cameraData.update(null);
         renderPipeline.updateBatchMatrix();
     }
@@ -95,8 +89,6 @@ public class GameScreen extends AbstractScreen {
         inputHandler.unsubscribeAll();
         objectClickHandler.subscribeEvents();
         gameplay.initialize();
-
-
 
 
         this.inputHandler.addListener(InputEventType.TOUCH_DOWN, 100, inputEvent -> {

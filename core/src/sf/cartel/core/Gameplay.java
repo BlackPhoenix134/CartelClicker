@@ -60,18 +60,6 @@ public class Gameplay {
     public void addPlayerWeed() {
         int valueToAdd = (int)(1 * playerData.getUpgrades().getWeedMultiplier());
         playerData.weed = playerData.weed.add(new BigInteger(String.valueOf(valueToAdd)));
-
-
-        SpriteRenderObject mapObj = gameObjectManager.create(SpriteRenderObject.class);
-        Sprite box = new Sprite(Assets.getAsset(AssetDescriptors.POP_UP));
-
-        box.setPosition(createJamaycaPolygon().getCenter().x, createJamaycaPolygon().getCenter().y+box.getHeight()/2);
-
-        mapObj.setSprite(box);
-        mapObj.setDrawLayer(6);
-
-
-
     }
 
     public void addPlayerMeth() {
