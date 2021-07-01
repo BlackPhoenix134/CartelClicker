@@ -63,27 +63,8 @@ public class UpgradeScreen extends AbstractScreen {
     public void buildStage() {
 //        // TODO change padding to 0.25f and fix click boxes
 //        float padding = screenHeight * 0.05f;
-//
-        Texture backButtonTexture = Assets.getAsset(AssetDescriptors.BUTTON_BACK);
-//
-//
-//
-        backButton = new AliveButton(backButtonTexture);
-//
-//
-        Vector2 backButtonSize = Scaling.fillX.apply(backButtonTexture.getWidth(), backButtonTexture.getHeight(), screenWidth * 0.30f, 0);//
-//
-        backButton.setSize(backButtonSize.x, backButtonSize.y);
-//
-        backButton.setPosition( -screenWidth*0.075f, screenHeight*.8f);
 
-        backButton.addListener(new AliveButton.AliveButtonListener() {
-            @Override
-            public void onClick() {
-                sound.play();
-                screenManager.showScreen(MainMenuScreen.class);
-            }
-        });
+
 //
 //        btnOptions.addListener(new AliveButton.AliveButtonListener(){
 //            @Override

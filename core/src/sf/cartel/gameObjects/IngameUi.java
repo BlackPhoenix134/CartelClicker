@@ -1,6 +1,7 @@
 package sf.cartel.gameObjects;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
@@ -24,6 +25,9 @@ public class IngameUi  {
     private GameObjectManager gameObjectManager = new GameObjectManager();
     private PlayerData playerData;
     private ObjectClickHandler objectClickHandler;
+
+    private Sound soundButton = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
+
 
     public IngameUi(PlayerData playerData, ObjectClickHandler objectClickHandler) {
         this.playerData = playerData;
@@ -58,6 +62,7 @@ public class IngameUi  {
         objectClickHandler.addTouchUpClickable(upgradeButtonUi, 1000000, true);
 
         upgradeButtonUi.setOnClicked(obj -> {
+            soundButton.play();
             new UpgradeDialog(gameObjectManager, objectClickHandler, playerData);
         });
     }

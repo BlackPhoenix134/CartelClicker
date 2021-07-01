@@ -3,8 +3,10 @@ package sf.cartel.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Scaling;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +44,8 @@ public class UpgradeDialog {
         createClickBlocker();
         SpriteDrawableObject drawableObject = createBackground();
         createUpgradeButtons(drawableObject);
+
+        createBackButton(drawableObject);
     }
 
     private void createClickBlocker() {
@@ -63,6 +67,7 @@ public class UpgradeDialog {
         }, dialogClickPriority, true));
     }
 
+
     private SpriteDrawableObject createBackground() {
         SpriteDrawableObject dialogBackground = gameObjectManager.create(SpriteDrawableObject.class);
         objects.add(dialogBackground);
@@ -76,6 +81,33 @@ public class UpgradeDialog {
         sprite.setScale(GoodMath.ratio(sprite.getWidth(), windowSize.x), GoodMath.ratio(sprite.getHeight(), windowSize.y));
         dialogBackground.setSprite(sprite);
         return dialogBackground;
+    }
+
+    private void createBackButton(SpriteDrawableObject backgroundDrawable) {
+
+        ClickableSpriteDrawableObject backBtnDrawable = gameObjectManager.create(ClickableSpriteDrawableObject.class);
+        objects.add(backBtnDrawable);
+        backBtnDrawable.setDrawOrder(dialogDrawOrder + 1);
+        backBtnDrawable.setUiObject(true);
+
+        Sprite btnTexture = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_BACK));
+        btnTexture.setScale(2);
+
+        backBtnDrawable.setSprite(btnTexture);
+
+        Sprite backgroundSprite = backgroundDrawable.getSprite();
+
+        Sprite backBtn = backBtnDrawable.getSprite();
+        backBtn.setPosition(Sprites.getScaledWidth(backgroundSprite)*0.075f, Sprites.getScaledHeight(backgroundSprite)  *.95f);
+
+//        backBtn.addListener(new AliveButton.AliveButtonListener() {
+//            @Override
+//            public void onClick() {
+//                sound.play();
+////                screenManager.showScreen(MainMenuScreen.class);
+//            }
+//        });
+
     }
 
     private void createUpgradeButtons(SpriteDrawableObject backgroundDrawable) {

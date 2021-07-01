@@ -31,7 +31,7 @@ public class MainMenuScreen extends AbstractScreen {
     private SpriteBatch batch;
 
     Texture background = new Texture(Gdx.files.internal("ui/titleScreen.png"));
-    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonSound.mp3"));
+//    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonSound.mp3"));
 
 //    Sound sound2 = Gdx.audio.newSound(Gdx.files.internal("sounds/elevator.mp3"));
 
@@ -71,6 +71,8 @@ public class MainMenuScreen extends AbstractScreen {
     @Override
     public void buildStage() {
         // TODO change padding to 0.25f and fix click boxes
+
+        Sound sound = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
         float padding = screenHeight * 0.05f;
 
         Texture startGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_START);
