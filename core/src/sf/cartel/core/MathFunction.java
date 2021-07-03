@@ -6,6 +6,8 @@ import java.math.MathContext;
 
 public interface MathFunction {
 
-    public BigInteger calcCostForNext();
+    public BigDecimal calc(int owned);
+
+    public float getBaseValue();
 
 }

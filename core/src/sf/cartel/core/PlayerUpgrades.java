@@ -1,5 +1,6 @@
 package sf.cartel.core;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,23 +11,27 @@ public class PlayerUpgrades {
 
     public PlayerUpgrades() {
 
-        productionUpgrades.put(DrugType.Weed, new Upgrade(new MathFunction(0.5f, 1.5f, 1), new MathFunction(0.6f, 1.5f, 10)));
-//        productionUpgrades.put(DrugType.Pills, new Upgrade(new MathFunction(0.6f, 1.5f, 1), new MathFunction(0.7f, 1.5f, 150)));
-//        productionUpgrades.put(DrugType.Coke, new Upgrade(new MathFunction(0.7f, 1.5f, 1), new MathFunction(0.8f, 1.5f, 225)));
-//        productionUpgrades.put(DrugType.Oxy, new Upgrade(new MathFunction(0.8f, 1.5f, 1), new MathFunction(0.9f, 1.5f, 300)));
-//        productionUpgrades.put(DrugType.Heroin, new Upgrade(new MathFunction(0.9f, 1.5f, 1), new MathFunction(1f, 1.5f, 500)));
+        // TODO IMPLEMENT FITTING VALUES FOR DISTRIBUTION
 
-        distributionUpgrades.put(DrugType.Weed, new Upgrade(new MathFunction(0.5f, 1.5f, 1), new MathFunction(0.6f, 1.5f, 100)));
-//        distributionUpgrades.put(DrugType.Pills, new Upgrade(new MathFunction(0.6f, 1.5f, 1), new MathFunction(0.7f, 1.5f, 150)));
-//        distributionUpgrades.put(DrugType.Coke, new Upgrade(new MathFunction(0.7f, 1.5f, 1), new MathFunction(0.8f, 1.5f, 225)));
-//        distributionUpgrades.put(DrugType.Oxy, new Upgrade(new MathFunction(0.8f, 1.5f, 1), new MathFunction(0.9f, 1.5f, 300)));
-//        distributionUpgrades.put(DrugType.Heroin, new Upgrade(new MathFunction(0.9f, 1.5f, 1), new MathFunction(1f, 1.5f, 500)));
+        productionUpgrades.put(DrugType.Weed, new Upgrade(new ProductionFunction(new BigDecimal(1.67)), new CostFunction(new BigDecimal(3.738), new BigDecimal(1.07))));
+        distributionUpgrades.put(DrugType.Weed, new Upgrade(new ProductionFunction(BigDecimal.ONE), new CostFunction(new BigDecimal(3.738), new BigDecimal(1.07))));
+        sellUpgrade.put(DrugType.Weed, new Upgrade(new SellFunction(0.05f, 1), new CostFunction(new BigDecimal(3.738), new BigDecimal(1.07))));
 
-        sellUpgrade.put(DrugType.Weed, new Upgrade(new MathFunction(1.05f, 1.5f, 1), new MathFunction(1.06f, 1.5f, 10)));
-//        sellUpgrade.put(DrugType.Pills, new Upgrade(new MathFunction(1.06f, 1.5f, 1), new MathFunction(1.07f, 1.5f, 150)));
-//        sellUpgrade.put(DrugType.Coke, new Upgrade(new MathFunction(1.07f, 1.5f, 1), new MathFunction(1.08f, 1.5f, 225)));
-//        sellUpgrade.put(DrugType.Oxy, new Upgrade(new MathFunction(1.08f, 1.5f, 1), new MathFunction(1.09f, 1.5f, 300)));
-//        sellUpgrade.put(DrugType.Heroin, new Upgrade(new MathFunction(1.09f, 1.5f, 1), new MathFunction(1.1f, 1.5f, 500)));
+        productionUpgrades.put(DrugType.Pills, new Upgrade(new ProductionFunction(new BigDecimal(20)), new CostFunction(new BigDecimal(60), new BigDecimal(1.15))));
+        distributionUpgrades.put(DrugType.Pills, new Upgrade(new ProductionFunction(BigDecimal.ONE), new CostFunction(new BigDecimal(60), new BigDecimal(1.15))));
+        sellUpgrade.put(DrugType.Pills, new Upgrade(new SellFunction(0.05f, 3), new CostFunction(new BigDecimal(60), new BigDecimal(1.15))));
+
+        productionUpgrades.put(DrugType.Coke, new Upgrade(new ProductionFunction(new BigDecimal(90)), new CostFunction(new BigDecimal(720), new BigDecimal(1.14))));
+        distributionUpgrades.put(DrugType.Coke, new Upgrade(new ProductionFunction(BigDecimal.ONE), new CostFunction(new BigDecimal(720), new BigDecimal(1.14))));
+        sellUpgrade.put(DrugType.Coke, new Upgrade(new SellFunction(0.05f, 6), new CostFunction(new BigDecimal(720), new BigDecimal(1.14))));
+
+        productionUpgrades.put(DrugType.Oxy, new Upgrade(new ProductionFunction(new BigDecimal(360)), new CostFunction(new BigDecimal(8640), new BigDecimal(1.13))));
+        distributionUpgrades.put(DrugType.Oxy, new Upgrade(new ProductionFunction(BigDecimal.ONE), new CostFunction(new BigDecimal(8640), new BigDecimal(1.13))));
+        sellUpgrade.put(DrugType.Oxy, new Upgrade(new SellFunction(0.05f,12), new CostFunction(new BigDecimal(8640), new BigDecimal(1.13))));
+
+        productionUpgrades.put(DrugType.Heroin, new Upgrade(new ProductionFunction(new BigDecimal(2160)), new CostFunction(new BigDecimal(130680), new BigDecimal(1.12))));
+        distributionUpgrades.put(DrugType.Heroin, new Upgrade(new ProductionFunction(BigDecimal.ONE), new CostFunction(new BigDecimal(130680), new BigDecimal(1.12))));
+        sellUpgrade.put(DrugType.Heroin,new Upgrade(new SellFunction(0.05f,24), new CostFunction(new BigDecimal(130680), new BigDecimal(1.12))));
 
     }
 

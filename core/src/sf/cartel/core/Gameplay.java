@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import sf.cartel.core.Math.GoodMath;
@@ -61,13 +62,18 @@ public class Gameplay {
     }
 
     public void addDrug(DrugType drugType) {
-        playerData.addDrug(drugType, (int)(1f * playerData.getUpgrades().getProductionUpgrade(drugType).getCurrentOutput()));
+        playerData.addDrug(drugType, (playerData.getUpgrades().getProductionUpgrade(drugType).getProductionAmount()));
     }
 
     public void sellAllDrugs() {
         playerData.getDrugs().forEach((drugType, amount) -> {
-            BigInteger money = GoodMath.mul(amount, playerData.getUpgrades().getSellUpgrade(drugType).getCurrentOutput());
-            playerData.addMoney(money);
+
+            // Todo clean up and make all values in top bar decimals
+            BigDecimal saleMultiplier = playerData.getUpgrades().getSellUpgrade(drugType).getSaleMultiplier();
+            BigDecimal basePrice = new BigDecimal(playerData.getUpgrades().getSellUpgrade(drugType).getBasePrice());
+            BigDecimal totalValue = saleMultiplier.multiply(new BigDecimal(amount).multiply(basePrice));
+
+            playerData.addMoney(totalValue.toBigInteger());
             playerData.setDrug(drugType, 0);
         });
     }

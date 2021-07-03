@@ -1,18 +1,15 @@
 package sf.cartel.core;
 
+import java.math.BigDecimal;
+
 public class Upgrade {
     private int nr;
-    private MathFunction outputFunction;
+    private MathFunction outFunction;
     private MathFunction priceFunction;
 
-    public Upgrade(MathFunction outputFunction, MathFunction priceFunction) {
-        this.outputFunction = outputFunction;
+    public Upgrade(MathFunction outFunction, MathFunction priceFunction) {
+        this.outFunction = outFunction;
         this.priceFunction = priceFunction;
-    }
-
-    public Upgrade(MathFunction outputFunction, MathFunction priceFunction, int nr) {
-        this(outputFunction, priceFunction);
-        this.nr = nr;
     }
 
     public int getNr() {
@@ -23,21 +20,28 @@ public class Upgrade {
         this.nr = nr;
     }
 
-
     public int getNextUpgradePrice() {
-        return getUpgradePrice(nr + 1);
+        return getUpgradePrice();
     }
 
-    public int getUpgradePrice(int nr) {
-        return (int)priceFunction.calc(nr);
+    //get upgrade price for next upgrade
+    public int getUpgradePrice() {
+        return (int)priceFunction.calc(nr).intValue();
     }
 
-    public int getOutputFor(int nr) {
-        return (int)outputFunction.calc(nr);
+    //get production
+    public int getProductionAmount() {
+        return (int) outFunction.calc(nr).intValue();
     }
 
-    public int getCurrentOutput() {
-        return (int)outputFunction.calc(nr);
+    //get getSaleMultiplier
+    public BigDecimal getSaleMultiplier() {
+        return outFunction.calc(nr);
+    }
+
+    //get getSaleMultiplier
+    public float getBasePrice() {
+        return outFunction.getBaseValue();
     }
 
     public void incrementNr() {
