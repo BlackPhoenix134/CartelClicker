@@ -1,5 +1,7 @@
 package sf.cartel.core;
 
+import java.math.BigInteger;
+
 public class Upgrade {
     private int nr;
     private MathFunction outputFunction;

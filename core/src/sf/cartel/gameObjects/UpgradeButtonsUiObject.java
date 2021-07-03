@@ -1,6 +1,7 @@
 package sf.cartel.gameObjects;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,9 @@ import sf.cartel.assets.Assets;
 import sf.cartel.core.DrugType;
 import sf.cartel.core.Extensions.Sprites;
 import sf.cartel.core.Gameplay;
+import sf.cartel.core.Globals;
 import sf.cartel.core.PlayerData;
+import sf.cartel.core.Upgrade;
 import sf.cartel.core.clickHandler.ObjectClickBinding;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.rendering.RenderPipeline;
@@ -20,99 +23,67 @@ public class UpgradeButtonsUiObject extends GameObject {
     private GameObjectManager gameObjectManager = new GameObjectManager();
     private int drawOrder;
     private List<ObjectClickBinding> objectClickBindings = new ArrayList<>();
-    private ClickableSpriteDrawableObject[][] spriteDrawableObjects = new ClickableSpriteDrawableObject[5][3];
     private ObjectClickHandler objectClickHandler;
     private Gameplay gameplay;
+    private Upgrade productionUpgrade;
+    private Upgrade distributionUpgrade;
+    private Upgrade sellUpgrade;
+    private ClickableSpriteDrawableObject button1;
+    private ClickableSpriteDrawableObject button2;
+    private ClickableSpriteDrawableObject button3;
+    private DrugType drugType;
 
     UpgradeButtonsUiObject(String uuid) {
         super(uuid);
     }
 
-    public void init(PlayerData playerData, ObjectClickHandler objectClickHandler, Gameplay gameplay, Sprite backgroundSprite, int drawOrder) {
+    public void init(PlayerData playerData, ObjectClickHandler objectClickHandler, Gameplay gameplay,
+                     Sprite backgroundSprite, int drawOrder, DrugType drugType) {
         this.playerData = playerData;
         this.objectClickHandler = objectClickHandler;
         this.drawOrder = drawOrder;
         this.gameplay = gameplay;
 
-        ClickableSpriteDrawableObject btn = createUpgradeButton(0, 0);
-        Sprite sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.80f);
-        btn = createUpgradeButton(1, 0);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.65f);
-        btn = createUpgradeButton(2, 0);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.50f);
-        btn = createUpgradeButton(3, 0);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.34f);
-        btn = createUpgradeButton(4, 0);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.21f);
+        this.drugType = drugType;
 
-        btn = createUpgradeButton(0, 1);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.58f, Sprites.getScaledHeight(backgroundSprite)  * 0.80f);
-        btn = createUpgradeButton(1, 1);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.58f, Sprites.getScaledHeight(backgroundSprite)  * 0.65f);
-        btn = createUpgradeButton(2, 1);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.58f, Sprites.getScaledHeight(backgroundSprite)  * 0.50f);
-        btn = createUpgradeButton(3, 1);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.58f,  Sprites.getScaledHeight(backgroundSprite)  * 0.34f);
-        btn = createUpgradeButton(4, 1);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.58f,  Sprites.getScaledHeight(backgroundSprite)  * 0.21f);
+        this.productionUpgrade = playerData.getUpgrades().getProductionUpgrade(drugType);
+                this.distributionUpgrade     = playerData.getUpgrades().getDistributionUpgrade(drugType);
+                this.sellUpgrade   =      playerData.getUpgrades().getSellUpgrade(drugType);
 
-        btn = createUpgradeButton(0, 2);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.86f, Sprites.getScaledHeight(backgroundSprite)  * 0.80f);
-        btn = createUpgradeButton(1, 2);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.86f, Sprites.getScaledHeight(backgroundSprite)  * 0.65f);
-        btn = createUpgradeButton(2, 2);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.86f, Sprites.getScaledHeight(backgroundSprite)  * 0.50f);
-        btn = createUpgradeButton(3, 2);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.86f,  Sprites.getScaledHeight(backgroundSprite)  * 0.34f);
-        btn = createUpgradeButton(4, 2);
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.86f,  Sprites.getScaledHeight(backgroundSprite)  * 0.21f);
+         button1 = createUpgradeButton();
+        Sprite sprite = button1.getSprite();
+        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.5f);
+
+        button2 = createUpgradeButton();
+        sprite = button2.getSprite();
+        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.56f, Sprites.getScaledHeight(backgroundSprite)  * 0.5f);
+
+        button3 = createUpgradeButton();
+        sprite = button3.getSprite();
+        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.80f, Sprites.getScaledHeight(backgroundSprite)  * 0.5f);
 
         createUpgradeClicks();
-        registerClickHandler();
     }
 
 
     private void createUpgradeClicks() {
-        spriteDrawableObjects[0][0].setOnClicked(obj -> {
-            gameplay.buyProductionUpgrade(DrugType.Weed);
+        button1.setOnClicked(obj -> {
+            gameplay.buyProductionUpgrade(drugType);
         });
-        spriteDrawableObjects[0][1].setOnClicked(obj -> {
-            gameplay.buyDistributionUpgrade(DrugType.Weed);
+        button2.setOnClicked(obj -> {
+            gameplay.buyDistributionUpgrade(drugType);
         });
-        spriteDrawableObjects[0][2].setOnClicked(obj -> {
-            gameplay.buySellUpgrade(DrugType.Weed);
+       button3.setOnClicked(obj -> {
+            gameplay.buySellUpgrade(drugType);
         });
 
     }
 
-    private void registerClickHandler() {
-        for (int i = 0; i < spriteDrawableObjects.length; i++) {
-            for (int j = 0; j < spriteDrawableObjects[0].length; j++) {
-                    objectClickBindings.add(objectClickHandler
-                            .addTouchUpClickable(spriteDrawableObjects[i][j], 100000, true));
-            }
-        }
-    }
 
-
-    private ClickableSpriteDrawableObject createUpgradeButton(int x, int y) {
+    private ClickableSpriteDrawableObject createUpgradeButton() {
         ClickableSpriteDrawableObject upgradeBtn = gameObjectManager.create(ClickableSpriteDrawableObject.class);
-        spriteDrawableObjects[x][y] = upgradeBtn;
+        objectClickBindings.add(objectClickHandler
+                .addTouchUpClickable(upgradeBtn, Globals.CLICK_ORDER_UI_DIALOG + 100, true));
         upgradeBtn.setCenterTextSize(4);
         upgradeBtn.setDrawOrder(drawOrder + 1);
         upgradeBtn.setUiObject(true);
@@ -130,11 +101,13 @@ public class UpgradeButtonsUiObject extends GameObject {
     @Override
     public void draw(float delta, RenderPipeline pipeline) {
         gameObjectManager.draw(delta, pipeline);
-            //0
-            //1
-        spriteDrawableObjects[0][0].setCenterText(playerData.getUpgrades().getProductionUpgrade(DrugType.Weed).getNr() + "");
-        spriteDrawableObjects[0][1].setCenterText(playerData.getUpgrades().getDistributionUpgrade(DrugType.Weed).getNr() + "");
-        spriteDrawableObjects[0][2].setCenterText(playerData.getUpgrades().getSellUpgrade(DrugType.Weed).getNr() + "");
+        button1.setCenterText(productionUpgrade.getNr() + "");
+        button2.setCenterText(distributionUpgrade.getNr() + "");
+        button3.setCenterText(sellUpgrade.getNr() + "");
+
+        pipeline.addUi("Cost " + productionUpgrade.getNextUpgradePrice(), new Vector2(button1.getPosition().x , button1.getPosition().y + 50), drawOrder + 2);
+        pipeline.addUi("Cost " + distributionUpgrade.getNextUpgradePrice(), new Vector2(button2.getPosition().x , button1.getPosition().y + 50), drawOrder + 2);
+        pipeline.addUi("Cost " + sellUpgrade.getNextUpgradePrice(), new Vector2(button3.getPosition().x , button1.getPosition().y + 50), drawOrder + 2);
     }
 
     @Override
