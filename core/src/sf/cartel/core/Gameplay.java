@@ -61,6 +61,13 @@ public class Gameplay {
       //  createClickerObject(354.33862f,253.76854f);
     }
 
+    public void addDistributionDrugs() {
+        for(DrugType drugType : playerData.getDrugs().keySet()) {
+            Upgrade upgrade = playerData.getUpgrades().getDistributionUpgrade(drugType);
+            playerData.addDrug(drugType, upgrade.getProductionAmount());
+        }
+    }
+
     public void addDrug(DrugType drugType) {
         playerData.addDrug(drugType, (playerData.getUpgrades().getProductionUpgrade(drugType).getProductionAmount()));
     }

@@ -105,9 +105,9 @@ public class UpgradeButtonsUiObject extends GameObject {
         button2.setCenterText(distributionUpgrade.getNr() + "");
         button3.setCenterText(sellUpgrade.getNr() + "");
 
-        pipeline.addUi("Cost " + productionUpgrade.getNextUpgradePrice(), new Vector2(button1.getPosition().x , button1.getPosition().y + 50), drawOrder + 2);
-        pipeline.addUi("Cost " + distributionUpgrade.getNextUpgradePrice(), new Vector2(button2.getPosition().x , button1.getPosition().y + 50), drawOrder + 2);
-        pipeline.addUi("Cost " + sellUpgrade.getNextUpgradePrice(), new Vector2(button3.getPosition().x , button1.getPosition().y + 50), drawOrder + 2);
+        pipeline.addUi("Cost " + productionUpgrade.getNextUpgradePrice(), new Vector2(button1.getPosition().x , button1.getPosition().y + 200), 4, drawOrder + 2);
+        pipeline.addUi("Cost " + distributionUpgrade.getNextUpgradePrice(), new Vector2(button2.getPosition().x , button1.getPosition().y + 200), 4,  drawOrder + 2);
+        pipeline.addUi("Cost " + sellUpgrade.getNextUpgradePrice(), new Vector2(button3.getPosition().x , button1.getPosition().y + 200), 4,  drawOrder + 2);
     }
 
     @Override
