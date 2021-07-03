@@ -16,7 +16,7 @@ public class MathFunction {
     }
 
 
-    public long calc(float x) {
-        return (long)(a * Math.pow(x, pow) + d);
+    public float calc(float x) {
+        return a * (float)Math.pow(x, pow) + d;
     }
 }
