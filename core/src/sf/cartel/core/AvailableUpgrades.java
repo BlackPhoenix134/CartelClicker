@@ -22,22 +22,22 @@ public class AvailableUpgrades {
     }
 
     public static int getWeedUpgradePrice(int upgradeNr) {
-        return (int)(0.2f * upgradeNr + 5);
+        return (int)(0.2f * Math.pow(upgradeNr, 2) + 5);
     }
 
     public static int getPillsUpgradePrice(int upgradeNr) {
-        return (int)(0.3f * upgradeNr + 10);
+        return (int)(0.3f * Math.pow(upgradeNr, 2) + 10);
     }
 
     public static int getCokeUpgradePrice(int upgradeNr) {
-        return (int)(0.4f * upgradeNr + 20);
+        return (int)(0.4f * Math.pow(upgradeNr, 2) + 20);
     }
 
     public static int getOxyUpgradePrice(int upgradeNr) {
-        return (int)(0.5f * upgradeNr + 30);
+        return (int)(0.5f * Math.pow(upgradeNr, 2) + 30);
     }
 
     public static int getHeroinUpgradePrice(int upgradeNr) {
-        return (int)(0.2f * upgradeNr + 40);
+        return (int)(0.2f * Math.pow(upgradeNr, 2) + 40);
     }
 }

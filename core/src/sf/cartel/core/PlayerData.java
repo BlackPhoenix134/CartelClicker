@@ -3,7 +3,7 @@ package sf.cartel.core;
 import java.math.BigInteger;
 
 public class PlayerData {
-    public BigInteger money = BigInteger.ZERO;
+    public BigInteger money =BigInteger.ZERO;
     public BigInteger weed = BigInteger.ZERO;
     public BigInteger pills = BigInteger.ZERO;
     public BigInteger coke = BigInteger.ZERO;

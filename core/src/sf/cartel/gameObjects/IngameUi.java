@@ -67,7 +67,7 @@ public class IngameUi  {
 
         upgradeButtonUi.setOnClicked(obj -> {
             soundButton.play();
-            new UpgradeDialog(gameObjectManager, objectClickHandler, playerData);
+            new UpgradeDialog(gameObjectManager, gameplay, objectClickHandler, playerData);
         });
 
         sellAllButtonUi.setOnClicked(obj -> {

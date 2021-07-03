@@ -35,7 +35,7 @@ public class Gameplay {
         ClickerObject obj = createClickerObject(createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> { addPlayerWeed(); });
         obj.setUnlocked(playerData.getUnlocks().isMap1Unlocked());
 
-        obj = createClickerObject(createQuakamolePolygon(), AssetDescriptors.MAP_PART2, (clickerObj) -> { addPlayerMeth(); });
+        obj = createClickerObject(createQuakamolePolygon(), AssetDescriptors.MAP_PART2, (clickerObj) -> { addPlayerPills(); });
         obj.setUnlocked(playerData.getUnlocks().isMap2Unlocked());
 
         obj = createClickerObject(createBelizePolygon(), AssetDescriptors.MAP_PART3, (clickerObj) -> { });
@@ -61,9 +61,9 @@ public class Gameplay {
         playerData.weed = playerData.weed.add(new BigInteger(String.valueOf(valueToAdd)));
     }
 
-    public void addPlayerMeth() {
+    public void addPlayerPills() {
         int valueToAdd = (int)(1);
-        playerData.heroin = playerData.heroin.add(new BigInteger(String.valueOf(valueToAdd)));
+        playerData.pills = playerData.pills.add(new BigInteger(String.valueOf(valueToAdd)));
     }
 
     public void sellAllDrugs() {
@@ -354,5 +354,37 @@ public class Gameplay {
         obj.setSprite(new Sprite(Assets.getAsset(assetDescriptor)));
         objectClickHandler.addTouchDownClickable(obj, 10, false);
         return obj;
+    }
+
+    public boolean canAffort(int price) {
+        return playerData.money.longValue() > price;
+    }
+
+    public void buyWeedSellUpgrade() {
+        int price = AvailableUpgrades.getWeedUpgradePrice(playerData.getUpgrades().getWeedNr() + 1);
+        if(canAffort(price)) {
+            playerData.money = playerData.money.subtract(new BigInteger(String.valueOf(price)));
+            playerData.getUpgrades().setWeedNr(playerData.getUpgrades().getWeedNr()+1);
+        }
+    }
+
+    public void buyPillsSellUpgrade() {
+        int price = AvailableUpgrades.getPillsUpgradePrice(playerData.getUpgrades().getPillsNr() + 1);
+        if(canAffort(price)) {
+            playerData.money = playerData.money.subtract(new BigInteger(String.valueOf(price)));
+            playerData.getUpgrades().setPillsNr(playerData.getUpgrades().getPillsNr()+1);
+        }
+    }
+
+    public void buyCokeSellUpgrade() {
+
+    }
+
+    public void buyOxySellUpgrade() {
+
+    }
+
+    public void buyHeroinSellUpgrade() {
+
     }
 }

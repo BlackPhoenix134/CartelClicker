@@ -16,6 +16,7 @@ import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
 import sf.cartel.core.Clickable;
 import sf.cartel.core.Extensions.Sprites;
+import sf.cartel.core.Gameplay;
 import sf.cartel.core.Globals;
 import sf.cartel.core.Math.GoodMath;
 import sf.cartel.core.Physics.Area2D;
@@ -37,13 +38,15 @@ public class UpgradeDialog {
     private List<GameObject> objects = new ArrayList<>();
     private GameObjectManager gameObjectManager;
     private ObjectClickHandler objectClickHandler;
-    private int dialogDrawOrder = 100000;
-    private int dialogClickPriority = 100000;
+    private int dialogDrawOrder = 10000;
+    private int dialogClickPriority = 10000;
+    private Gameplay gameplay;
 
     private Sound soundButton = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
 
-    public UpgradeDialog(GameObjectManager gameObjectManager, ObjectClickHandler objectClickHandler, PlayerData playerData) {
+    public UpgradeDialog(GameObjectManager gameObjectManager, Gameplay gameplay, ObjectClickHandler objectClickHandler, PlayerData playerData) {
         this.gameObjectManager = gameObjectManager;
+        this.gameplay = gameplay;
         this.objectClickHandler = objectClickHandler;
         this.playerData = playerData;
         createClickBlocker();
@@ -119,7 +122,7 @@ public class UpgradeDialog {
         Sprite backgroundSprite = backgroundDrawable.getSprite();
 
         UpgradeButtonsUiObject upgradeButtons = gameObjectManager.create(UpgradeButtonsUiObject.class);
-        upgradeButtons.init(Globals.getPlayerData(), backgroundSprite, dialogDrawOrder + 1);
+        upgradeButtons.init(Globals.getPlayerData(), objectClickHandler, gameplay, backgroundSprite, dialogDrawOrder + 1);
         objects.add(upgradeButtons);
     }
 
