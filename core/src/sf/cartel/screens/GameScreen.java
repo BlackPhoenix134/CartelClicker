@@ -42,7 +42,7 @@ public class GameScreen extends AbstractScreen {
         this.objectClickHandler = new ObjectClickHandler(cameraData, inputHandler);
 
         this.gameplay = new Gameplay(gameObjectManager, objectClickHandler, Globals.getPlayerData());
-        this.ingameUi = new IngameUi(Globals.getPlayerData(), objectClickHandler);
+        this.ingameUi = new IngameUi(Globals.getPlayerData(), objectClickHandler, gameplay);
     }
 
     @Override
@@ -68,7 +68,6 @@ public class GameScreen extends AbstractScreen {
     private void stepTick(float delta) {
         gameObjectManager.update(delta);
         ingameUi.update(delta);
-        gameObjectManager.postUpdate();
     }
 
     private void stepFastUpdate(float delta) {

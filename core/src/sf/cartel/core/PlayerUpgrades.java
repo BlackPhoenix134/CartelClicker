@@ -1,51 +1,49 @@
 package sf.cartel.core;
 
-import java.math.BigInteger;
-
 public class PlayerUpgrades {
-    private float weedMultiplier = 1f;
-    private float pillsMultiplier = 1f;
-    private float cokeMultiplier = 1f;
-    private float oxyMultiplier = 1f;
-    private float heroinMultiplier =  1f;
+    private int weedNr = 1;
+    private int pillsNr = 1;
+    private int cokeNr = 1;
+    private int oxyNr = 1;
+    private int heroinNr =  1;
 
-    public float getWeedMultiplier() {
-        return weedMultiplier;
+    public int getWeedNr() {
+        return weedNr;
     }
 
-    public void setWeedMultiplier(float weedMultiplier) {
-        this.weedMultiplier = weedMultiplier;
+    public void setWeedNr(int weedNr) {
+        this.weedNr = weedNr;
     }
 
-    public float getOxyMultiplier() {
-        return oxyMultiplier;
+    public int getOxyNr() {
+        return oxyNr;
     }
 
-    public void setOxyMultiplier(float oxyMultiplier) {
-        this.oxyMultiplier = oxyMultiplier;
+    public void setOxyNr(int oxyNr) {
+        this.oxyNr = oxyNr;
     }
 
-    public float getCokeMultiplier() {
-        return cokeMultiplier;
+    public int getCokeNr() {
+        return cokeNr;
     }
 
-    public void setCokeMultiplier(float cokeMultiplier) {
-        this.cokeMultiplier = cokeMultiplier;
+    public void setCokeNr(int cokeNr) {
+        this.cokeNr = cokeNr;
     }
 
-    public float getPillsMultiplier() {
-        return pillsMultiplier;
+    public int getPillsNr() {
+        return pillsNr;
     }
 
-    public void setPillsMultiplier(float pillsMultiplier) {
-        this.pillsMultiplier = pillsMultiplier;
+    public void setPillsNr(int pillsNr) {
+        this.pillsNr = pillsNr;
     }
 
-    public float getHeroinMultiplier() {
-        return heroinMultiplier;
+    public int getHeroinNr() {
+        return heroinNr;
     }
 
-    public void setHeroinMultiplier(float heroinMultiplier) {
-        this.heroinMultiplier = heroinMultiplier;
+    public void setHeroinNr(int heroinNr) {
+        this.heroinNr = heroinNr;
     }
 }

@@ -2,26 +2,18 @@ package sf.cartel.gameObjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Scaling;
 
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
-import sf.cartel.core.Clickable;
-import sf.cartel.core.Physics.Area2D;
+import sf.cartel.core.Gameplay;
 import sf.cartel.core.PlayerData;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
-import sf.cartel.input.InputEvent;
-import sf.cartel.input.InputHandler;
 import sf.cartel.rendering.RenderPipeline;
-import sf.cartel.screens.AbstractScreen;
-import sf.cartel.screens.MainMenuScreen;
-import sf.cartel.ui.AliveButton;
 import sf.cartel.ui.UpgradeDialog;
 
 public class IngameUi  {
+    private  Gameplay gameplay;
     private GameObjectManager gameObjectManager = new GameObjectManager();
     private PlayerData playerData;
     private ObjectClickHandler objectClickHandler;
@@ -29,9 +21,10 @@ public class IngameUi  {
     private Sound soundButton = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
 
 
-    public IngameUi(PlayerData playerData, ObjectClickHandler objectClickHandler) {
+    public IngameUi(PlayerData playerData, ObjectClickHandler objectClickHandler, Gameplay gameplay) {
         this.playerData = playerData;
         this.objectClickHandler = objectClickHandler;
+        this.gameplay = gameplay;
         createUi();
     }
 
@@ -59,11 +52,26 @@ public class IngameUi  {
         menuButtonUi.setSprite(menuSprite);
         menuButtonUi.setUiObject(true);
 
+        ClickableSpriteDrawableObject sellAllButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
+        Sprite sellAllButtonSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_MENU));
+
+        sellAllButtonSprite.setScale(Gdx.graphics.getWidth() / sellAllButtonSprite.getWidth() * 0.4f,
+                Gdx.graphics.getHeight() / sellAllButtonSprite.getHeight() * 0.4f);
+        sellAllButtonSprite.setPosition(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() *.06f);
+        sellAllButtonUi.setSprite(sellAllButtonSprite);
+        sellAllButtonUi.setUiObject(true);
+
         objectClickHandler.addTouchUpClickable(upgradeButtonUi, 1000000, true);
+        objectClickHandler.addTouchUpClickable(sellAllButtonUi, 1000000, true);
 
         upgradeButtonUi.setOnClicked(obj -> {
             soundButton.play();
             new UpgradeDialog(gameObjectManager, objectClickHandler, playerData);
+        });
+
+        sellAllButtonUi.setOnClicked(obj -> {
+            soundButton.play();
+            gameplay.sellAllDrugs();
         });
     }
 

@@ -20,7 +20,6 @@ public class Gameplay {
     private ObjectClickHandler objectClickHandler;
     private PlayerData playerData;
 
-
     public Gameplay(GameObjectManager gameObjectManager, ObjectClickHandler objectClickHandler, PlayerData playerData) {
         this.gameObjectManager = gameObjectManager;
         this.objectClickHandler = objectClickHandler;
@@ -58,13 +57,34 @@ public class Gameplay {
     }
 
     public void addPlayerWeed() {
-        int valueToAdd = (int)(1 * playerData.getUpgrades().getWeedMultiplier());
+        int valueToAdd = (int)(1);
         playerData.weed = playerData.weed.add(new BigInteger(String.valueOf(valueToAdd)));
     }
 
     public void addPlayerMeth() {
-        int valueToAdd = (int)(1 * playerData.getUpgrades().getOxyMultiplier());
+        int valueToAdd = (int)(1);
         playerData.heroin = playerData.heroin.add(new BigInteger(String.valueOf(valueToAdd)));
+    }
+
+    public void sellAllDrugs() {
+        int weedPrice = AvailableUpgrades.getWeedPrice(playerData.getUpgrades().getWeedNr());
+        int pillsPrice = AvailableUpgrades.getWeedPrice(playerData.getUpgrades().getPillsNr());
+        int cokePrice = AvailableUpgrades.getWeedPrice(playerData.getUpgrades().getCokeNr());
+        int oxyPrice = AvailableUpgrades.getWeedPrice(playerData.getUpgrades().getOxyNr());
+        int heroinPrice = AvailableUpgrades.getWeedPrice(playerData.getUpgrades().getHeroinNr());
+
+        playerData.money = playerData.money
+        .add(playerData.weed.multiply(new BigInteger(String.valueOf(weedPrice))))
+        .add(playerData.pills.multiply(new BigInteger(String.valueOf(pillsPrice))))
+                .add(playerData.coke.multiply(new BigInteger(String.valueOf(cokePrice))))
+                        .add(playerData.oxy.multiply(new BigInteger(String.valueOf(oxyPrice))))
+                                .add(playerData.heroin.multiply(new BigInteger(String.valueOf(heroinPrice))));
+
+        playerData.weed = BigInteger.ZERO;
+        playerData.pills = BigInteger.ZERO;
+        playerData.coke = BigInteger.ZERO;
+        playerData.oxy = BigInteger.ZERO;
+        playerData.heroin = BigInteger.ZERO;
     }
 
     private Polygon createJamaycaPolygon() {

@@ -37,6 +37,7 @@ public class TopBarUiObject extends GameObject {
         pipeline.addUi(sprite, 1000);
         float spriteWidth = sprite.getWidth() * sprite.getScaleX();
         float height = Gdx.graphics.getHeight() - (sprite.getHeight() * sprite.getScaleY() * 0.02f);
+        pipeline.addUi(playerData.money.toString(), new Vector2(spriteWidth * 0.155f, height), 3.5f,10000);
         pipeline.addUi(playerData.weed.toString(), new Vector2(spriteWidth * 0.32f, height), 3.5f,10000);
         pipeline.addUi(playerData.pills.toString(), new Vector2(spriteWidth * 0.46f, height), 3.5f,10000);
         pipeline.addUi(playerData.coke.toString(), new Vector2(spriteWidth * 0.61f, height), 3.5f,10000);

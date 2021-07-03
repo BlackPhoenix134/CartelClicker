@@ -44,7 +44,6 @@ public class UpgradeDialog {
         createClickBlocker();
         SpriteDrawableObject drawableObject = createBackground();
         createUpgradeButtons(drawableObject);
-
         createBackButton(drawableObject);
     }
 
@@ -84,7 +83,6 @@ public class UpgradeDialog {
     }
 
     private void createBackButton(SpriteDrawableObject backgroundDrawable) {
-
         ClickableSpriteDrawableObject backBtnDrawable = gameObjectManager.create(ClickableSpriteDrawableObject.class);
         objects.add(backBtnDrawable);
         backBtnDrawable.setDrawOrder(dialogDrawOrder + 1);
@@ -100,14 +98,11 @@ public class UpgradeDialog {
         Sprite backBtn = backBtnDrawable.getSprite();
         backBtn.setPosition(Sprites.getScaledWidth(backgroundSprite)*0.075f, Sprites.getScaledHeight(backgroundSprite)  *.95f);
 
-//        backBtn.addListener(new AliveButton.AliveButtonListener() {
-//            @Override
-//            public void onClick() {
-//                sound.play();
-////                screenManager.showScreen(MainMenuScreen.class);
-//            }
-//        });
+        backBtnDrawable.setOnClicked((item) -> {
+            hide();
+        });
 
+        bindings.add(objectClickHandler.addTouchUpClickable(backBtnDrawable, dialogClickPriority + 1, true));
     }
 
     private void createUpgradeButtons(SpriteDrawableObject backgroundDrawable) {
@@ -173,32 +168,6 @@ public class UpgradeDialog {
         sprite.setScale(2);
         upgradeBtn.setSprite(sprite);
         return upgradeBtn;
-    }
-/*
-    private void addButtonClickHandler(Sprite sprite, TicketType ticketType) {
-        bindings.add(objectClickHandler.addTouchUpClickable(new Clickable() {
-            @Override
-            public void onClicked(InputEvent inputEvent) {
-                inputEvent.setConsumed(true);
-                invokeClicked(ticketType);
-            }
-
-            @Override
-            public Vector2 getPosition() {
-                return new Vector2(sprite.getX(), sprite.getY());
-            }
-
-            @Override
-            public Area2D getArea2D() {
-                float scaledWidth = sprite.getWidth() * sprite.getScaleX();
-                float scaledHeight = sprite.getHeight() * sprite.getScaleY();
-                return new BoundingBox(getPosition().x, getPosition().y, scaledWidth, scaledHeight);
-            }
-        }, dialogClickPriority+2, true));
-    }
-*/
-    private void invokeClicked() {
-        hide();
     }
 
     private void hide() {
