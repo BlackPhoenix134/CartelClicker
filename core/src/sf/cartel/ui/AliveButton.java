@@ -24,14 +24,14 @@ public class AliveButton extends Button {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 clearActions();
-                addAction(Actions.scaleTo(1.25f,1.25f,0.2f));
+//                addAction(Actions.scaleTo(2f,2f,0.2f));
                 return true;
             }
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 addAction(Actions.sequence(
-                        Actions.scaleTo(1f,1f,0.2f),
+//                        Actions.scaleTo(1f,1f,0.2f),
                         Actions.run(new Runnable() {
                             @Override
                             public void run() {

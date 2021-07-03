@@ -19,7 +19,7 @@ import sf.cartel.ui.AliveButton;
 
 public class OptionsScreen extends AbstractScreen {
     private float screenWidth, screenHeight;
-    private AliveButton btnJoin;
+    private AliveButton btnBack;
     private RenderPipeline renderPipeline;
     private OrthographicCamera camera;
     private ScreenManager screenManager;
@@ -49,16 +49,14 @@ public class OptionsScreen extends AbstractScreen {
 
     @Override
     public void buildStage() {
-        //Gdx.input.setInputProcessor(this);
         float padding = screenHeight * 0.05f;
 
         Texture optionsTexture = Assets.getAsset(AssetDescriptors.BUTTON_BACK);
-        btnJoin = new AliveButton(optionsTexture);
-        Vector2 btnJoinSize = Scaling.fillX.apply(optionsTexture.getWidth(), optionsTexture.getHeight(), screenWidth*0.30f,0);
-        btnJoin.setSize(btnJoinSize.x, btnJoinSize.y);
-        btnJoin.setPosition(screenWidth/2 - btnJoin.getWidth()/2, padding);
+        btnBack = new AliveButton(optionsTexture);
+        btnBack.setScale(3);
+        btnBack.setPosition(screenWidth/2 - btnBack.getWidth()/2, padding);
 
-        btnJoin.addListener(new AliveButton.AliveButtonListener() {
+        btnBack.addListener(new AliveButton.AliveButtonListener() {
             @Override
             public void onClick() {
                 sound.play();
@@ -66,19 +64,10 @@ public class OptionsScreen extends AbstractScreen {
             }
         });
 
-        addActorsToStage(btnJoin);
+        addActorsToStage(btnBack);
 
-        hostIP = new TextField("",textfieldSkin);
-        hostIP.setMessageText("Enter your IP");
-        hostIP.setSize(screenWidth*0.3f, screenHeight*0.1f);
-        hostIP.setPosition(screenWidth/2 - hostIP.getWidth()/2, screenHeight/2 + (hostIP.getHeight()*2));
-        addActorsToStage(hostIP);
+        // TODO FINISH
 
-        playerName = new TextField("",textfieldSkin);
-        playerName.setMessageText("Enter your name..");
-        playerName.setSize(screenWidth *0.3f, screenHeight*0.1f);
-        playerName.setPosition(screenWidth/2 - playerName.getWidth()/2, screenHeight/2);
-        addActorsToStage(playerName);
 
 
     }

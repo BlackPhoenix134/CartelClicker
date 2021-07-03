@@ -14,9 +14,9 @@ public final class AssetDescriptors {
     private static final String SOUNDS = "sounds";
 
 
-    public static final AssetDescriptor<Texture> BUTTON_START = new AssetDescriptor<>(UI + "/ButtonStartNEW.png", Texture.class);
-    public static final AssetDescriptor<Texture> BUTTON_OPTIONS = new AssetDescriptor<>(UI + "/ButtonOptionsNEW.png", Texture.class);
-    public static final AssetDescriptor<Texture> BUTTON_EXIT = new AssetDescriptor<>(UI + "/ButtonExitNEW.png", Texture.class);
+    public static final AssetDescriptor<Texture> BUTTON_START = new AssetDescriptor<>(UI + "/ButtonStart.png", Texture.class);
+    public static final AssetDescriptor<Texture> BUTTON_OPTIONS = new AssetDescriptor<>(UI + "/ButtonOptions.png", Texture.class);
+    public static final AssetDescriptor<Texture> BUTTON_EXIT = new AssetDescriptor<>(UI + "/ButtonExit.png", Texture.class);
     public static final AssetDescriptor<Texture> BUTTON_BACK = new AssetDescriptor<>(UI + "/ButtonBack.png", Texture.class);
 
     public static final AssetDescriptor<Texture> SQUARE_40x40 = new AssetDescriptor<>(ENVIRONMENT + "/Square40x40.png", Texture.class);
@@ -32,15 +32,13 @@ public final class AssetDescriptors {
     public static final AssetDescriptor<Texture> BUTTON_UPGRADE = new AssetDescriptor<>(UI + "/ButtonUpgrade.png", Texture.class);
     public static final AssetDescriptor<Texture> UI_UPGRADE_BACKGROUND = new AssetDescriptor<>(UI + "/InGameMenu.png", Texture.class);
 
+    public static final AssetDescriptor<Texture> BUTTON_SELL = new AssetDescriptor<>(UI + "/ButtonSell.png", Texture.class);
+
+
     public static final AssetDescriptor<Sound> SOUND_BUTTON = new AssetDescriptor<>(SOUNDS + "/buttonSound.mp3", Sound.class);
 
 
 
 
-
-//    public static final AssetDescriptor<Texture> MAP_PART6 = new AssetDescriptor<>(ENVIRONMENT + "/map_part6.png", Texture.class);
-//    public static final AssetDescriptor<Texture> MAP_PART7 = new AssetDescriptor<>(ENVIRONMENT + "/map_part7.png", Texture.class);
-//    public static final AssetDescriptor<Texture> MAP_PART8 = new AssetDescriptor<>(ENVIRONMENT + "/map_part8.png", Texture.class);
-//    public static final AssetDescriptor<Texture> MAP_PART9 = new AssetDescriptor<>(ENVIRONMENT + "/map_part9.png", Texture.class);
 
 }
