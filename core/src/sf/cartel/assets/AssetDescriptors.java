@@ -34,7 +34,11 @@ public final class AssetDescriptors {
     public static final AssetDescriptor<Texture> UI_UPGRADE_BACKGROUND = new AssetDescriptor<>(UI + "/InGameMenu.png", Texture.class);
     public static final AssetDescriptor<Texture> UI_UPGRADE_SELECTOR_BACKGROUND = new AssetDescriptor<>(UI + "/SelectorBackground.png", Texture.class);
 
-
+    public static final AssetDescriptor<Texture> ICON_WEED = new AssetDescriptor<>(ICONS + "/WeedLeaf.png", Texture.class);
+    public static final AssetDescriptor<Texture> ICON_PILLS = new AssetDescriptor<>(ICONS + "/WeedLeaf.png", Texture.class);
+    public static final AssetDescriptor<Texture> ICON_COKE = new AssetDescriptor<>(ICONS + "/WeedLeaf.png",Texture.class);
+    public static final AssetDescriptor<Texture> ICON_OXY = new AssetDescriptor<>(ICONS + "/WeedLeaf.png",Texture.class);
+    public static final AssetDescriptor<Texture> ICON_HEROIN = new AssetDescriptor<>(ICONS + "/WeedLeaf.png",Texture.class);
 
     public static final AssetDescriptor<Texture> BUTTON_SELL = new AssetDescriptor<>(UI + "/ButtonSell.png", Texture.class);
 

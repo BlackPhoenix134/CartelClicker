@@ -3,11 +3,8 @@ package sf.cartel.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Scaling;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +12,12 @@ import java.util.List;
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
 import sf.cartel.core.Clickable;
+import sf.cartel.core.DrugType;
 import sf.cartel.core.Extensions.Sprites;
 import sf.cartel.core.Gameplay;
 import sf.cartel.core.Globals;
 import sf.cartel.core.Math.GoodMath;
 import sf.cartel.core.Physics.Area2D;
-import sf.cartel.core.Physics.BoundingBox;
 import sf.cartel.core.Physics.Rectangle;
 import sf.cartel.core.PlayerData;
 import sf.cartel.core.clickHandler.ObjectClickBinding;
@@ -42,6 +39,8 @@ public class UpgradeDialog {
     private int dialogDrawOrder = Globals.DRAW_ORDER_DIALOG;
     private int dialogClickPriority = Globals.CLICK_ORDER_UI_DIALOG;
     private Gameplay gameplay;
+    private UpgradeButtonsUiObject currentDrugSelectionButtons;
+    private SpriteDrawableObject backgroundObject;
 
     private Sound soundButton = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
 
@@ -50,11 +49,12 @@ public class UpgradeDialog {
         this.gameplay = gameplay;
         this.objectClickHandler = objectClickHandler;
         this.playerData = playerData;
+
         createClickBlocker();
-        SpriteDrawableObject drawableObject = createBackground();
-        createDrugSelector(drawableObject);
-        createUpgradeButtons(drawableObject);
-        createBackButton(drawableObject);
+        backgroundObject = createBackground();
+        createDrugSelector(backgroundObject);
+        createBackButton(backgroundObject);
+        switchDrugSelection(DrugType.Weed);
     }
 
     private void createClickBlocker() {
@@ -122,18 +122,21 @@ public class UpgradeDialog {
         Sprite backgroundSprite = backgroundDrawable.getSprite();
 
         DrugSelectorUiObject selector = gameObjectManager.create(DrugSelectorUiObject.class);
-        selector.init(Globals.getPlayerData(), objectClickHandler, gameplay, backgroundSprite, dialogDrawOrder + 1);
+        selector.init(Globals.getPlayerData(), objectClickHandler, gameplay, backgroundSprite, dialogDrawOrder + 1, (drugType -> switchDrugSelection(drugType)));
         objects.add(selector);
     }
 
-    private void createUpgradeButtons(SpriteDrawableObject backgroundDrawable) {
-        //32 58 86
-        //21 34 50 65 80
-        Sprite backgroundSprite = backgroundDrawable.getSprite();
+    private void switchDrugSelection(DrugType drugType) {
+        if(currentDrugSelectionButtons != null)
+            currentDrugSelectionButtons.setAlive(false);
+        currentDrugSelectionButtons = createUpgradeButtons(backgroundObject, drugType);
+    }
 
+    private UpgradeButtonsUiObject createUpgradeButtons(SpriteDrawableObject backgroundDrawable, DrugType drugType) {
         UpgradeButtonsUiObject upgradeButtons = gameObjectManager.create(UpgradeButtonsUiObject.class);
-        upgradeButtons.init(Globals.getPlayerData(), objectClickHandler, gameplay, backgroundSprite, dialogDrawOrder + 1);
+        currentDrugSelectionButtons.init(Globals.getPlayerData(), objectClickHandler, gameplay, backgroundDrawable.getSprite(), dialogDrawOrder + 1, drugType);
         objects.add(upgradeButtons);
+        return upgradeButtons;
     }
 
 
