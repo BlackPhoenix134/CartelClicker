@@ -3,4 +3,8 @@ sourceCompatibility = 1.8
 
 sourceSets.main.java.srcDirs = [ "src/" ]
 
+dependencies {
+    implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+}
+
 eclipse.project.name = appName + "-core"

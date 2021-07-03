@@ -1,11 +1,13 @@
 package sf.cartel.rendering;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
@@ -21,6 +23,7 @@ public class RenderPipeline implements Disposable {
     private ShaderManager shaderManager;
     private BitmapFont bitmapFont = new BitmapFont();
 
+
     private OrthographicCamera camera;
     private Viewport viewport;
 
@@ -31,6 +34,15 @@ public class RenderPipeline implements Disposable {
         this.worldRenderer = new DefaultRenderer(new SpriteBatch());
         this.uiRenderer = new DefaultRenderer(new SpriteBatch());
         this.primitiveRenderer = new PrimitiveRenderer(worldRenderer);
+
+         String fileName = "fonts/Seagram tfb.ttf";
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(fileName));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 20;
+        parameter.borderColor = new Color(0,0,0, 1);
+        parameter.borderWidth = 1;
+        bitmapFont = generator.generateFont(parameter);
+        generator.dispose();
     }
 
     public void begin() {
