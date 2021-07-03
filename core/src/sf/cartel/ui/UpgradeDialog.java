@@ -26,6 +26,7 @@ import sf.cartel.core.PlayerData;
 import sf.cartel.core.clickHandler.ObjectClickBinding;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.gameObjects.ClickableSpriteDrawableObject;
+import sf.cartel.gameObjects.DrugSelectorUiObject;
 import sf.cartel.gameObjects.GameObject;
 import sf.cartel.gameObjects.GameObjectManager;
 import sf.cartel.gameObjects.SpriteDrawableObject;
@@ -38,8 +39,8 @@ public class UpgradeDialog {
     private List<GameObject> objects = new ArrayList<>();
     private GameObjectManager gameObjectManager;
     private ObjectClickHandler objectClickHandler;
-    private int dialogDrawOrder = 10000;
-    private int dialogClickPriority = 10000;
+    private int dialogDrawOrder = Globals.DRAW_ORDER_DIALOG;
+    private int dialogClickPriority = Globals.CLICK_ORDER_UI_DIALOG;
     private Gameplay gameplay;
 
     private Sound soundButton = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
@@ -51,6 +52,7 @@ public class UpgradeDialog {
         this.playerData = playerData;
         createClickBlocker();
         SpriteDrawableObject drawableObject = createBackground();
+        createDrugSelector(drawableObject);
         createUpgradeButtons(drawableObject);
         createBackButton(drawableObject);
     }
@@ -114,6 +116,14 @@ public class UpgradeDialog {
         });
 
         bindings.add(objectClickHandler.addTouchUpClickable(backBtnDrawable, dialogClickPriority + 1, true));
+    }
+
+    private void createDrugSelector(SpriteDrawableObject backgroundDrawable) {
+        Sprite backgroundSprite = backgroundDrawable.getSprite();
+
+        DrugSelectorUiObject selector = gameObjectManager.create(DrugSelectorUiObject.class);
+        selector.init(Globals.getPlayerData(), objectClickHandler, gameplay, backgroundSprite, dialogDrawOrder + 1);
+        objects.add(selector);
     }
 
     private void createUpgradeButtons(SpriteDrawableObject backgroundDrawable) {

@@ -42,7 +42,7 @@ public class GameScreen extends AbstractScreen {
         this.objectClickHandler = new ObjectClickHandler(cameraData, inputHandler);
 
         this.gameplay = new Gameplay(gameObjectManager, objectClickHandler, Globals.getPlayerData());
-        this.ingameUi = new IngameUi(Globals.getPlayerData(), objectClickHandler, gameplay);
+        this.ingameUi = new IngameUi(Globals.getPlayerData(), objectClickHandler, gameplay, screenManager);
     }
 
     @Override

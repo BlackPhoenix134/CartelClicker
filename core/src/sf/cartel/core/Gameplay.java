@@ -20,6 +20,9 @@ public class Gameplay {
     private ObjectClickHandler objectClickHandler;
     private PlayerData playerData;
 
+    private int DRAW_ORDER_WORLD = Globals.DRAW_ORDER_WORLD;
+
+
     public Gameplay(GameObjectManager gameObjectManager, ObjectClickHandler objectClickHandler, PlayerData playerData) {
         this.gameObjectManager = gameObjectManager;
         this.objectClickHandler = objectClickHandler;
@@ -29,7 +32,7 @@ public class Gameplay {
     public void initialize() {
         SpriteRenderObject mapObj = gameObjectManager.create(SpriteRenderObject.class);
         mapObj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.MAP)));
-        mapObj.setDrawLayer(5);
+        mapObj.setDrawLayer(DRAW_ORDER_WORLD);
 
 
         ClickerObject obj = createClickerObject(createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> { addPlayerWeed(); });

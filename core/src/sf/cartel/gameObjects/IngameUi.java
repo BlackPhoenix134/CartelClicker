@@ -7,9 +7,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
 import sf.cartel.core.Gameplay;
+import sf.cartel.core.Globals;
 import sf.cartel.core.PlayerData;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.rendering.RenderPipeline;
+import sf.cartel.screens.MainMenuScreen;
+import sf.cartel.screens.ScreenManager;
+import sf.cartel.screens.UpgradeScreen;
 import sf.cartel.ui.UpgradeDialog;
 
 public class IngameUi  {
@@ -17,14 +21,18 @@ public class IngameUi  {
     private GameObjectManager gameObjectManager = new GameObjectManager();
     private PlayerData playerData;
     private ObjectClickHandler objectClickHandler;
+    private ScreenManager screenManager;
+
+    private int CLICK_ORDER_UI_WORLD = Globals.CLICK_ORDER_UI_WORLD;
 
     private Sound soundButton = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
 
 
-    public IngameUi(PlayerData playerData, ObjectClickHandler objectClickHandler, Gameplay gameplay) {
+    public IngameUi(PlayerData playerData, ObjectClickHandler objectClickHandler, Gameplay gameplay, ScreenManager screenManager) {
         this.playerData = playerData;
         this.objectClickHandler = objectClickHandler;
         this.gameplay = gameplay;
+        this.screenManager = screenManager;
         createUi();
     }
 
@@ -37,14 +45,6 @@ public class IngameUi  {
         topBarSprite.setPosition(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
         topBarUi.setSprite(topBarSprite);
 
-        ClickableSpriteDrawableObject upgradeButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
-        Sprite upgradeSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_UPGRADE));
-        upgradeSprite.setScale(Gdx.graphics.getWidth() / upgradeSprite.getWidth() * 0.15f, Gdx.graphics.getHeight() / upgradeSprite.getHeight() * 0.1f);
-        upgradeSprite.setPosition(Gdx.graphics.getWidth() *.90f, Gdx.graphics.getHeight() *.06f);
-        upgradeButtonUi.setSprite(upgradeSprite);
-        upgradeButtonUi.setUiObject(true);
-
-
         ClickableSpriteDrawableObject menuButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
         Sprite menuSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_MENU));
         menuSprite.setScale(Gdx.graphics.getWidth() / menuSprite.getWidth() * 0.15f, Gdx.graphics.getHeight() / menuSprite.getHeight() * 0.1f);
@@ -53,15 +53,28 @@ public class IngameUi  {
         menuButtonUi.setUiObject(true);
 
         ClickableSpriteDrawableObject sellAllButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
-        Sprite sellAllButtonSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_SELL));
+        Sprite sellAllButtonSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_SELL_ALL));
         sellAllButtonSprite.setScale(Gdx.graphics.getWidth() / sellAllButtonSprite.getWidth() * 0.15f, Gdx.graphics.getHeight() / sellAllButtonSprite.getHeight() * 0.1f);
         sellAllButtonSprite.setPosition(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() *.06f);
         sellAllButtonUi.setSprite(sellAllButtonSprite);
         sellAllButtonUi.setUiObject(true);
 
+        ClickableSpriteDrawableObject upgradeButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
+        Sprite upgradeSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_UPGRADE));
+        upgradeSprite.setScale(Gdx.graphics.getWidth() / upgradeSprite.getWidth() * 0.15f, Gdx.graphics.getHeight() / upgradeSprite.getHeight() * 0.1f);
+        upgradeSprite.setPosition(Gdx.graphics.getWidth() *.90f, Gdx.graphics.getHeight() *.06f);
+        upgradeButtonUi.setSprite(upgradeSprite);
+        upgradeButtonUi.setUiObject(true);
 
-        objectClickHandler.addTouchUpClickable(upgradeButtonUi, 1000000, true);
-        objectClickHandler.addTouchUpClickable(sellAllButtonUi, 1000000, true);
+
+        objectClickHandler.addTouchUpClickable(menuButtonUi, CLICK_ORDER_UI_WORLD+1, true);
+        objectClickHandler.addTouchUpClickable(sellAllButtonUi, CLICK_ORDER_UI_WORLD+1, true);
+        objectClickHandler.addTouchUpClickable(upgradeButtonUi, CLICK_ORDER_UI_WORLD+1, true);
+
+        menuButtonUi.setOnClicked(obj -> {
+            soundButton.play();
+            screenManager.showScreen(MainMenuScreen.class);
+        });
 
         upgradeButtonUi.setOnClicked(obj -> {
             soundButton.play();
