@@ -129,17 +129,10 @@ public class UpgradeDialog {
     private void switchDrugSelection(DrugType drugType) {
         if(currentDrugSelectionButtons != null)
             currentDrugSelectionButtons.setAlive(false);
-        currentDrugSelectionButtons = createUpgradeButtons(backgroundObject, drugType);
+        currentDrugSelectionButtons = gameObjectManager.create(UpgradeButtonsUiObject.class);
+        currentDrugSelectionButtons.init(Globals.getPlayerData(), objectClickHandler, gameplay, backgroundObject.getSprite(), dialogDrawOrder + 1, drugType);
+        objects.add(currentDrugSelectionButtons);
     }
-
-    private UpgradeButtonsUiObject createUpgradeButtons(SpriteDrawableObject backgroundDrawable, DrugType drugType) {
-        UpgradeButtonsUiObject upgradeButtons = gameObjectManager.create(UpgradeButtonsUiObject.class);
-        currentDrugSelectionButtons.init(Globals.getPlayerData(), objectClickHandler, gameplay, backgroundDrawable.getSprite(), dialogDrawOrder + 1, drugType);
-        objects.add(upgradeButtons);
-        return upgradeButtons;
-    }
-
-
 
     private void hide() {
         for (ObjectClickBinding binding : bindings)

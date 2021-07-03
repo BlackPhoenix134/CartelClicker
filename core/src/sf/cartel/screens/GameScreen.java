@@ -31,6 +31,7 @@ public class GameScreen extends AbstractScreen {
     private IngameUi ingameUi;
 
     private Gameplay gameplay;
+    private float passiveDrugsTime;
 
     public GameScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
         this.renderPipeline = renderPipeline;
@@ -71,6 +72,12 @@ public class GameScreen extends AbstractScreen {
     }
 
     private void stepFastUpdate(float delta) {
+        passiveDrugsTime += delta;
+        if(passiveDrugsTime >= 1f) {
+            passiveDrugsTime = 0;
+            gameplay.addDistributionDrugs();
+        }
+
         renderPipeline.begin();
         gameObjectManager.draw(delta, renderPipeline);
         ingameUi.draw(delta, renderPipeline);
