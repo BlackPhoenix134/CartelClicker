@@ -3,9 +3,9 @@ package sf.cartel.core;
 public class PlayerUnlocks {
     private boolean isMap1Unlocked = true;
     private boolean isMap2Unlocked = true;
-    private boolean isMap3Unlocked;
-    private boolean isMap4Unlocked;
-    private boolean isMap5Unlocked;
+    private boolean isMap3Unlocked = true;
+    private boolean isMap4Unlocked = true;
+    private boolean isMap5Unlocked = true;
 
     public boolean isMap1Unlocked() {
         return isMap1Unlocked;

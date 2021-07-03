@@ -49,7 +49,7 @@ public class Gameplay {
         obj = createClickerObject(createElSalvadorPolygon(), AssetDescriptors.MAP_PART4, (clickerObj) -> { });
         obj.setUnlocked(playerData.getUnlocks().isMap4Unlocked());
 
-        obj = createClickerObject(createHondurasPolygon(), AssetDescriptors.MAP_PART5, (clickerObj) -> { });
+        obj = createClickerObject(createHondurasPolygon(), AssetDescriptors.MAP_PART5, (clickerObj) -> addDrug(DrugType.Heroin));
         obj.setUnlocked(playerData.getUnlocks().isMap5Unlocked());
 
        // createClickerObject(-266.06906f,119.20669f);
