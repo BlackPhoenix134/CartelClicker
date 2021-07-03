@@ -1,6 +1,7 @@
 package sf.cartel.rendering;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
@@ -34,6 +35,7 @@ public class DrawableItemText extends DrawableItem {
     @Override
     public void render(SpriteBatch batch) {
         font.getData().setScale(scale);
-        font.draw(batch, text, position.x, position.y);
+        GlyphLayout glyphLayout = new GlyphLayout(font, text);
+        font.draw(batch, glyphLayout, position.x - glyphLayout.width/2, position.y + glyphLayout.height/2);
     }
 }
