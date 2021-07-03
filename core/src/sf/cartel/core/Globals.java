@@ -5,6 +5,15 @@ import java.util.Random;
 public abstract class Globals {
     private static PlayerData playerData;
 
+    public static final int CLICK_ORDER_WORLD = 10;
+    public static final int CLICK_ORDER_UI_WORLD = 100;
+    public static final int CLICK_ORDER_UI_DIALOG = 1000;
+
+    public static final int DRAW_ORDER_WORLD = 10;
+    public static final int DRAW_ORDER_UI = 100;
+    public static final int DRAW_ORDER_DIALOG = 1000;
+
+
     public static final Random RANDOM = new Random();
 
     public static PlayerData getPlayerData() {
