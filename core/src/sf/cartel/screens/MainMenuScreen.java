@@ -73,27 +73,21 @@ public class MainMenuScreen extends AbstractScreen {
         // TODO change padding to 0.25f and fix click boxes
 
         Sound sound = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
-        float padding = screenHeight * 0.05f;
+        float padding = screenHeight * 0.35f;
 
         Texture startGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_START);
         Texture exitGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_EXIT);
         Texture joinGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_OPTIONS);
 
 
-
         btnStartGame = new AliveButton(startGameTexture);
         btnExitGame  = new AliveButton(exitGameTexture);
         btnOptions = new AliveButton(joinGameTexture);
 
+        btnStartGame.setScale(3);
+        btnExitGame.setScale(3);
+        btnOptions.setScale(3);
 
-        Vector2 btnStartGameSize = Scaling.fillX.apply(startGameTexture.getWidth(), startGameTexture.getHeight(), screenWidth * 0.30f, 0);
-        Vector2 btnJoinGameSize = Scaling.fillX.apply(joinGameTexture.getWidth(), joinGameTexture.getHeight(), screenWidth * 0.30f, 0);
-        Vector2 btnExitSize      = Scaling.fillX.apply(exitGameTexture.getWidth(), exitGameTexture.getHeight(), screenWidth * 0.30f, 0);
-
-
-        btnStartGame.setSize(btnStartGameSize.x, btnStartGameSize.y);
-        btnOptions.setSize (btnJoinGameSize.x, btnJoinGameSize.y);
-        btnExitGame.setSize(btnExitSize.x, btnExitSize.y);
 
         btnStartGame.setPosition( screenWidth/2 - btnStartGame.getWidth()/2, screenHeight - padding - btnStartGame.getHeight());
         btnOptions.setPosition( screenWidth/2 - btnOptions.getWidth()/2, screenHeight  * 0.5f - btnOptions.getHeight() * 0.5f);
@@ -109,7 +103,7 @@ public class MainMenuScreen extends AbstractScreen {
 
         btnOptions.addListener(new AliveButton.AliveButtonListener(){
             @Override
-                    public void onClick(){
+            public void onClick(){
                 sound.play();
                 screenManager.showScreen(OptionsScreen.class);
             }

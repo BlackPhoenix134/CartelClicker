@@ -2,6 +2,7 @@ package sf.cartel.ui;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -38,6 +39,8 @@ public class UpgradeDialog {
     private ObjectClickHandler objectClickHandler;
     private int dialogDrawOrder = 100000;
     private int dialogClickPriority = 100000;
+
+    private Sound soundButton = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
 
     public UpgradeDialog(GameObjectManager gameObjectManager, ObjectClickHandler objectClickHandler, PlayerData playerData) {
         this.gameObjectManager = gameObjectManager;
@@ -91,7 +94,9 @@ public class UpgradeDialog {
         backBtnDrawable.setUiObject(true);
 
         Sprite btnTexture = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_BACK));
-        btnTexture.setScale(2);
+
+
+        btnTexture.setScale(Gdx.graphics.getWidth() / btnTexture.getWidth() * 0.15f, Gdx.graphics.getHeight() / btnTexture.getHeight() * 0.1f);
 
         backBtnDrawable.setSprite(btnTexture);
 
@@ -101,6 +106,7 @@ public class UpgradeDialog {
         backBtn.setPosition(Sprites.getScaledWidth(backgroundSprite)*0.075f, Sprites.getScaledHeight(backgroundSprite)  *.95f);
 
         backBtnDrawable.setOnClicked((item) -> {
+            soundButton.play();
             hide();
         });
 

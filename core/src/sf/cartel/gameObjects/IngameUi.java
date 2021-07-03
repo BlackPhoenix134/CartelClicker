@@ -39,24 +39,25 @@ public class IngameUi  {
         ClickableSpriteDrawableObject upgradeButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
         Sprite upgradeSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_UPGRADE));
 
-        upgradeSprite.setScale(Gdx.graphics.getWidth() / upgradeSprite.getWidth() * 0.4f, Gdx.graphics.getHeight() / upgradeSprite.getHeight() * 0.4f);
-        upgradeSprite.setPosition(Gdx.graphics.getWidth() *.92f, Gdx.graphics.getHeight() *.06f);
+        upgradeSprite.setScale(Gdx.graphics.getWidth() / upgradeSprite.getWidth() * 0.15f, Gdx.graphics.getHeight() / upgradeSprite.getHeight() * 0.1f);
+
+        upgradeSprite.setPosition(Gdx.graphics.getWidth() *.90f, Gdx.graphics.getHeight() *.06f);
         upgradeButtonUi.setSprite(upgradeSprite);
         upgradeButtonUi.setUiObject(true);
 
         ClickableSpriteDrawableObject menuButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
         Sprite menuSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_MENU));
 
-        menuSprite.setScale(Gdx.graphics.getWidth() / menuSprite.getWidth() * 0.4f, Gdx.graphics.getHeight() / menuSprite.getHeight() * 0.4f);
+        menuSprite.setScale(Gdx.graphics.getWidth() / menuSprite.getWidth() * 0.15f, Gdx.graphics.getHeight() / menuSprite.getHeight() * 0.1f);
         menuSprite.setPosition(Gdx.graphics.getWidth() *.1f, Gdx.graphics.getHeight() *.06f);
         menuButtonUi.setSprite(menuSprite);
         menuButtonUi.setUiObject(true);
 
         ClickableSpriteDrawableObject sellAllButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
-        Sprite sellAllButtonSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_MENU));
+        Sprite sellAllButtonSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_SELL));
 
-        sellAllButtonSprite.setScale(Gdx.graphics.getWidth() / sellAllButtonSprite.getWidth() * 0.4f,
-                Gdx.graphics.getHeight() / sellAllButtonSprite.getHeight() * 0.4f);
+        sellAllButtonSprite.setScale(Gdx.graphics.getWidth() / sellAllButtonSprite.getWidth() * 0.15f, Gdx.graphics.getHeight() / sellAllButtonSprite.getHeight() * 0.1f);
+
         sellAllButtonSprite.setPosition(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() *.06f);
         sellAllButtonUi.setSprite(sellAllButtonSprite);
         sellAllButtonUi.setUiObject(true);
