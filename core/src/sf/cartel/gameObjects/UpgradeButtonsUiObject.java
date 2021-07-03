@@ -88,8 +88,11 @@ public class UpgradeButtonsUiObject extends GameObject {
 
 
     private void createUpgradeClicks() {
-        spriteDrawableObjects[0][1].setOnClicked(obj -> {
+        spriteDrawableObjects[0][0].setOnClicked(obj -> {
             gameplay.buyProductionUpgrade(DrugType.Weed);
+        });
+        spriteDrawableObjects[0][1].setOnClicked(obj -> {
+            gameplay.buyDistributionUpgrade(DrugType.Weed);
         });
         spriteDrawableObjects[0][2].setOnClicked(obj -> {
             gameplay.buySellUpgrade(DrugType.Weed);
@@ -129,7 +132,8 @@ public class UpgradeButtonsUiObject extends GameObject {
         gameObjectManager.draw(delta, pipeline);
             //0
             //1
-        spriteDrawableObjects[0][1].setCenterText(playerData.getUpgrades().getProductionUpgrade(DrugType.Weed).getNr() + "");
+        spriteDrawableObjects[0][0].setCenterText(playerData.getUpgrades().getProductionUpgrade(DrugType.Weed).getNr() + "");
+        spriteDrawableObjects[0][1].setCenterText(playerData.getUpgrades().getDistributionUpgrade(DrugType.Weed).getNr() + "");
         spriteDrawableObjects[0][2].setCenterText(playerData.getUpgrades().getSellUpgrade(DrugType.Weed).getNr() + "");
     }
 

@@ -355,6 +355,13 @@ public class Gameplay {
         buyUpgrade(upgrade);
     }
 
+    public void buyDistributionUpgrade(DrugType drugType) {
+        Upgrade upgrade = playerData.getUpgrades().getDistributionUpgrade(drugType);
+        buyUpgrade(upgrade);
+    }
+
+
+
     private void buyUpgrade(Upgrade upgrade) {
         int price = upgrade.getNextUpgradePrice();
         if(canAfford(price)) {
