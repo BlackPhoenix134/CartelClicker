@@ -29,6 +29,7 @@ public class IngameUi  {
     }
 
     private void createUi() {
+
         TopBarUiObject topBarUi = gameObjectManager.create(TopBarUiObject.class);
         topBarUi.setPlayerData(playerData);
         Sprite topBarSprite = new Sprite(Assets.getAsset(AssetDescriptors.TOP_BAR));
@@ -38,16 +39,14 @@ public class IngameUi  {
 
         ClickableSpriteDrawableObject upgradeButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
         Sprite upgradeSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_UPGRADE));
-
         upgradeSprite.setScale(Gdx.graphics.getWidth() / upgradeSprite.getWidth() * 0.15f, Gdx.graphics.getHeight() / upgradeSprite.getHeight() * 0.1f);
-
         upgradeSprite.setPosition(Gdx.graphics.getWidth() *.90f, Gdx.graphics.getHeight() *.06f);
         upgradeButtonUi.setSprite(upgradeSprite);
         upgradeButtonUi.setUiObject(true);
 
+
         ClickableSpriteDrawableObject menuButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
         Sprite menuSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_MENU));
-
         menuSprite.setScale(Gdx.graphics.getWidth() / menuSprite.getWidth() * 0.15f, Gdx.graphics.getHeight() / menuSprite.getHeight() * 0.1f);
         menuSprite.setPosition(Gdx.graphics.getWidth() *.1f, Gdx.graphics.getHeight() *.06f);
         menuButtonUi.setSprite(menuSprite);
@@ -55,12 +54,11 @@ public class IngameUi  {
 
         ClickableSpriteDrawableObject sellAllButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
         Sprite sellAllButtonSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_SELL));
-
         sellAllButtonSprite.setScale(Gdx.graphics.getWidth() / sellAllButtonSprite.getWidth() * 0.15f, Gdx.graphics.getHeight() / sellAllButtonSprite.getHeight() * 0.1f);
-
         sellAllButtonSprite.setPosition(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() *.06f);
         sellAllButtonUi.setSprite(sellAllButtonSprite);
         sellAllButtonUi.setUiObject(true);
+
 
         objectClickHandler.addTouchUpClickable(upgradeButtonUi, 1000000, true);
         objectClickHandler.addTouchUpClickable(sellAllButtonUi, 1000000, true);
@@ -74,6 +72,7 @@ public class IngameUi  {
             soundButton.play();
             gameplay.sellAllDrugs();
         });
+
     }
 
     public void update(float delta) {

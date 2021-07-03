@@ -70,10 +70,10 @@ public class MainMenuScreen extends AbstractScreen {
 
     @Override
     public void buildStage() {
-        // TODO change padding to 0.25f and fix click boxes
 
         Sound sound = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
-        float padding = screenHeight * 0.35f;
+        float topOffset = screenHeight * 0.1f;
+        float padding = screenHeight * 0.15f;
 
         Texture startGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_START);
         Texture exitGameTexture = Assets.getAsset(AssetDescriptors.BUTTON_EXIT);
@@ -84,14 +84,14 @@ public class MainMenuScreen extends AbstractScreen {
         btnExitGame  = new AliveButton(exitGameTexture);
         btnOptions = new AliveButton(joinGameTexture);
 
-        btnStartGame.setScale(3);
-        btnExitGame.setScale(3);
-        btnOptions.setScale(3);
+        btnStartGame.setScale(Gdx.graphics.getWidth() / btnStartGame.getWidth() * 0.15f, Gdx.graphics.getHeight() / btnStartGame.getHeight() * 0.1f);
+        btnExitGame.setScale(Gdx.graphics.getWidth() / btnExitGame.getWidth() * 0.15f, Gdx.graphics.getHeight() / btnExitGame.getHeight() * 0.1f);
+        btnOptions.setScale(Gdx.graphics.getWidth() / btnOptions.getWidth() * 0.15f, Gdx.graphics.getHeight() / btnOptions.getHeight() * 0.1f);
 
 
-        btnStartGame.setPosition( screenWidth/2 - btnStartGame.getWidth()/2, screenHeight - padding - btnStartGame.getHeight());
-        btnOptions.setPosition( screenWidth/2 - btnOptions.getWidth()/2, screenHeight  * 0.5f - btnOptions.getHeight() * 0.5f);
-        btnExitGame.setPosition(screenWidth/2 - btnExitGame.getWidth()/2, padding);
+        btnStartGame.setPosition( screenWidth/2 - btnStartGame.getWidth()/2, (screenHeight/2 + padding) - topOffset);
+        btnOptions.setPosition( screenWidth/2 - btnOptions.getWidth()/2, (screenHeight /2) - topOffset );
+        btnExitGame.setPosition(screenWidth/2 - btnExitGame.getWidth()/2, (screenHeight/2 - padding) - topOffset);
 
         btnStartGame.addListener(new AliveButton.AliveButtonListener() {
             @Override
