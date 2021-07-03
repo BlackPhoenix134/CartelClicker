@@ -53,4 +53,10 @@ public class GameObjectManager {
     private <T extends GameObject> T get(String uuid) {
         return (T)gameObjects.get(uuid);
     }
+
+    public void killAll() {
+        for (GameObject obj: gameObjects.values()) {
+            obj.setAlive(false);
+        }
+    }
 }

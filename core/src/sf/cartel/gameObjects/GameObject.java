@@ -30,5 +30,4 @@ public abstract class GameObject {
 
     protected void onObjectDestroyed() {
     }
-
 }

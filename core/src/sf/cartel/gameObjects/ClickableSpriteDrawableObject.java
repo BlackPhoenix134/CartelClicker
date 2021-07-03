@@ -15,6 +15,8 @@ public class ClickableSpriteDrawableObject extends GameObject implements Clickab
     private int drawOrder;
     private boolean isUiObject;
     private boolean consumeClickedInput = true;
+    private String centerText;
+    private float centerTextSize = 1f;
     private Consumer<ClickableSpriteDrawableObject> onClicked;
 
     ClickableSpriteDrawableObject(String uuid) {
@@ -45,6 +47,22 @@ public class ClickableSpriteDrawableObject extends GameObject implements Clickab
         return isUiObject;
     }
 
+    public float getCenterTextSize() {
+        return centerTextSize;
+    }
+
+    public void setCenterTextSize(float centerTextSize) {
+        this.centerTextSize = centerTextSize;
+    }
+
+    public String getCenterText() {
+        return centerText;
+    }
+
+    public void setCenterText(String centerText) {
+        this.centerText = centerText;
+    }
+
     public void setOnClicked(Consumer<ClickableSpriteDrawableObject> onClicked) {
         this.onClicked = onClicked;
     }
@@ -64,10 +82,16 @@ public class ClickableSpriteDrawableObject extends GameObject implements Clickab
 
     @Override
     public void draw(float delta, RenderPipeline pipeline) {
-        if(isUiObject)
+        if(isUiObject) {
             pipeline.addUi(sprite, drawOrder);
-        else
+            if(centerText != null)
+                pipeline.addUi(centerText, new Vector2(sprite.getX(), sprite.getY()), centerTextSize, drawOrder+1);
+        }
+        else {
             pipeline.add(sprite, drawOrder);
+            if(centerText != null)
+                pipeline.add(centerText, new Vector2(sprite.getX(), sprite.getY()), centerTextSize,drawOrder+1);
+        }
     }
 
     @Override

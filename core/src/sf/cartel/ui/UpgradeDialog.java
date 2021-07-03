@@ -15,6 +15,7 @@ import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
 import sf.cartel.core.Clickable;
 import sf.cartel.core.Extensions.Sprites;
+import sf.cartel.core.Globals;
 import sf.cartel.core.Math.GoodMath;
 import sf.cartel.core.Physics.Area2D;
 import sf.cartel.core.Physics.BoundingBox;
@@ -26,6 +27,7 @@ import sf.cartel.gameObjects.ClickableSpriteDrawableObject;
 import sf.cartel.gameObjects.GameObject;
 import sf.cartel.gameObjects.GameObjectManager;
 import sf.cartel.gameObjects.SpriteDrawableObject;
+import sf.cartel.gameObjects.UpgradeButtonsUiObject;
 import sf.cartel.input.InputEvent;
 
 public class UpgradeDialog {
@@ -110,65 +112,12 @@ public class UpgradeDialog {
         //21 34 50 65 80
         Sprite backgroundSprite = backgroundDrawable.getSprite();
 
-        ClickableSpriteDrawableObject btn = createUpgradeButton();
-        Sprite sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.21f);
-         btn = createUpgradeButton();
-         sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.34f);
-         btn = createUpgradeButton();
-         sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.50f);
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.65f);
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.80f);
-
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.58f, Sprites.getScaledHeight(backgroundSprite)  * 0.21f);
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.58f, Sprites.getScaledHeight(backgroundSprite)  * 0.34f);
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.58f, Sprites.getScaledHeight(backgroundSprite)  * 0.50f);
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.58f, Sprites.getScaledHeight(backgroundSprite) * 0.65f);
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.58f, Sprites.getScaledHeight(backgroundSprite)  * 0.80f);
-
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.86f, Sprites.getScaledHeight(backgroundSprite)  * 0.21f);
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.86f, Sprites.getScaledHeight(backgroundSprite)  * 0.34f);
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.86f, Sprites.getScaledHeight(backgroundSprite)  * 0.50f);
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.86f, Sprites.getScaledHeight(backgroundSprite)  * 0.65f);
-        btn = createUpgradeButton();
-        sprite = btn.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite)  * 0.86f, Sprites.getScaledHeight(backgroundSprite)  * 0.80f);
+        UpgradeButtonsUiObject upgradeButtons = gameObjectManager.create(UpgradeButtonsUiObject.class);
+        upgradeButtons.init(Globals.getPlayerData(), backgroundSprite, dialogDrawOrder + 1);
+        objects.add(upgradeButtons);
     }
 
-    private ClickableSpriteDrawableObject createUpgradeButton() {
-        ClickableSpriteDrawableObject upgradeBtn = gameObjectManager.create(ClickableSpriteDrawableObject.class);
-        objects.add(upgradeBtn);
-        upgradeBtn.setDrawOrder(dialogDrawOrder + 1);
-        upgradeBtn.setUiObject(true);
-        Sprite sprite = new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_40x40));
-        sprite.setScale(2);
-        upgradeBtn.setSprite(sprite);
-        return upgradeBtn;
-    }
+
 
     private void hide() {
         for (ObjectClickBinding binding : bindings)
