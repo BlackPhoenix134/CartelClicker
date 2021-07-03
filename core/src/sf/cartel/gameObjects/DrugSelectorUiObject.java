@@ -1,6 +1,5 @@
 package sf.cartel.gameObjects;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -9,7 +8,6 @@ import java.util.List;
 
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
-import sf.cartel.core.AvailableUpgrades;
 import sf.cartel.core.Extensions.Sprites;
 import sf.cartel.core.Gameplay;
 import sf.cartel.core.PlayerData;

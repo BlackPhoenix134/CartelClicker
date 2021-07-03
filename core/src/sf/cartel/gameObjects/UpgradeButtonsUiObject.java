@@ -1,6 +1,5 @@
 package sf.cartel.gameObjects;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.List;
 
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
-import sf.cartel.core.AvailableUpgrades;
+import sf.cartel.core.DrugType;
 import sf.cartel.core.Extensions.Sprites;
 import sf.cartel.core.Gameplay;
 import sf.cartel.core.PlayerData;
@@ -89,21 +88,13 @@ public class UpgradeButtonsUiObject extends GameObject {
 
 
     private void createUpgradeClicks() {
+        spriteDrawableObjects[0][1].setOnClicked(obj -> {
+            gameplay.buyProductionUpgrade(DrugType.Weed);
+        });
         spriteDrawableObjects[0][2].setOnClicked(obj -> {
-            gameplay.buyWeedSellUpgrade();
+            gameplay.buySellUpgrade(DrugType.Weed);
         });
-        spriteDrawableObjects[1][2].setOnClicked(obj -> {
-            gameplay.buyPillsSellUpgrade();
-        });
-        spriteDrawableObjects[2][2].setOnClicked(obj -> {
-            gameplay.buyCokeSellUpgrade();
-        });
-        spriteDrawableObjects[3][2].setOnClicked(obj -> {
-            gameplay.buyOxySellUpgrade();
-        });
-        spriteDrawableObjects[4][2].setOnClicked(obj -> {
-            gameplay.buyHeroinSellUpgrade();
-        });
+
     }
 
     private void registerClickHandler() {
@@ -138,11 +129,8 @@ public class UpgradeButtonsUiObject extends GameObject {
         gameObjectManager.draw(delta, pipeline);
             //0
             //1
-        spriteDrawableObjects[0][2].setCenterText(playerData.getUpgrades().getWeedNr() + "");
-        spriteDrawableObjects[1][2].setCenterText(playerData.getUpgrades().getPillsNr() + "");
-        spriteDrawableObjects[2][2].setCenterText(playerData.getUpgrades().getCokeNr() + "");
-        spriteDrawableObjects[3][2].setCenterText(playerData.getUpgrades().getOxyNr() + "");
-        spriteDrawableObjects[4][2].setCenterText(playerData.getUpgrades().getHeroinNr() + "");
+        spriteDrawableObjects[0][1].setCenterText(playerData.getUpgrades().getProductionUpgrade(DrugType.Weed).getNr() + "");
+        spriteDrawableObjects[0][2].setCenterText(playerData.getUpgrades().getSellUpgrade(DrugType.Weed).getNr() + "");
     }
 
     @Override

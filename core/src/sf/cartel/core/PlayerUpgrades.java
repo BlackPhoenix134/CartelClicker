@@ -1,49 +1,39 @@
 package sf.cartel.core;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PlayerUpgrades {
-    private int weedNr = 1;
-    private int pillsNr = 1;
-    private int cokeNr = 1;
-    private int oxyNr = 1;
-    private int heroinNr =  1;
+    private Map<DrugType, Upgrade> sellUpgrade = new HashMap<>();
+    private Map<DrugType, Upgrade> productionUpgrades = new HashMap<>();
+    private Map<DrugType, Upgrade> distributionUpgrades = new HashMap<>();
 
-    public int getWeedNr() {
-        return weedNr;
+    public PlayerUpgrades() {
+        sellUpgrade.put(DrugType.Weed, new Upgrade(new MathFunction(0.5f, 1, 1), new MathFunction(0.5f, 1, 10)));
+        sellUpgrade.put(DrugType.Pills, new Upgrade(new MathFunction(0.5f, 1, 1), new MathFunction(0.5f, 1, 10)));
+        sellUpgrade.put(DrugType.Coke, new Upgrade(new MathFunction(0.5f, 1, 1), new MathFunction(0.5f, 1, 10)));
+        sellUpgrade.put(DrugType.Oxy, new Upgrade(new MathFunction(0.5f, 1, 1), new MathFunction(0.5f, 1, 10)));
+        sellUpgrade.put(DrugType.Heroin, new Upgrade(new MathFunction(0.5f, 1, 1), new MathFunction(0.5f, 1, 10)));
+
+        productionUpgrades.put(DrugType.Weed, new Upgrade(new MathFunction(0.5f, 1, 1), new MathFunction(0.5f, 1, 10)));
+        productionUpgrades.put(DrugType.Pills, new Upgrade(new MathFunction(0.5f, 1, 1), new MathFunction(0.5f, 1, 10)));
+        productionUpgrades.put(DrugType.Coke, new Upgrade(new MathFunction(0.5f, 1, 1), new MathFunction(0.5f, 1, 10)));
+        productionUpgrades.put(DrugType.Oxy, new Upgrade(new MathFunction(0.5f, 1, 1), new MathFunction(0.5f, 1, 10)));
+        productionUpgrades.put(DrugType.Heroin, new Upgrade(new MathFunction(0.5f, 1, 1), new MathFunction(0.5f, 1, 10)));
     }
 
-    public void setWeedNr(int weedNr) {
-        this.weedNr = weedNr;
+    public void incrementSellUpgrade(DrugType drugType) {
+        sellUpgrade.get(drugType).incrementNr();
     }
 
-    public int getOxyNr() {
-        return oxyNr;
+    public void incrementProductionUpgrade(DrugType drugType) {
+        productionUpgrades.get(drugType).incrementNr();
     }
 
-    public void setOxyNr(int oxyNr) {
-        this.oxyNr = oxyNr;
+    public Upgrade getSellUpgrade(DrugType drugType) {
+        return sellUpgrade.get(drugType);
     }
-
-    public int getCokeNr() {
-        return cokeNr;
-    }
-
-    public void setCokeNr(int cokeNr) {
-        this.cokeNr = cokeNr;
-    }
-
-    public int getPillsNr() {
-        return pillsNr;
-    }
-
-    public void setPillsNr(int pillsNr) {
-        this.pillsNr = pillsNr;
-    }
-
-    public int getHeroinNr() {
-        return heroinNr;
-    }
-
-    public void setHeroinNr(int heroinNr) {
-        this.heroinNr = heroinNr;
+    public Upgrade getProductionUpgrade(DrugType drugType) {
+        return productionUpgrades.get(drugType);
     }
 }

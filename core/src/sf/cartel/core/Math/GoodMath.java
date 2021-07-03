@@ -2,6 +2,8 @@ package sf.cartel.core.Math;
 
 import com.badlogic.gdx.math.Vector2;
 
+import java.math.BigInteger;
+
 public abstract class GoodMath {
     public static Vector2 add(Vector2 a, Vector2 b) {
         return new Vector2(a.x + b.x, a.y + b.y);
@@ -55,5 +57,17 @@ public abstract class GoodMath {
 
     public static float ratio(float a, float b) {
         return b/a;
+    }
+
+    public static BigInteger add(BigInteger a, int b) {
+        return a.add(new BigInteger(String.valueOf(b)));
+    }
+
+    public static BigInteger sub(BigInteger a, int b) {
+        return a.subtract(new BigInteger(String.valueOf(b)));
+    }
+
+    public static BigInteger mul(BigInteger a, int b) {
+        return a.multiply(new BigInteger(String.valueOf(b)));
     }
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import java.math.BigInteger;
 
+import sf.cartel.core.Math.GoodMath;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
@@ -20,7 +21,7 @@ public class Gameplay {
     private ObjectClickHandler objectClickHandler;
     private PlayerData playerData;
 
-    private int DRAW_ORDER_WORLD = Globals.DRAW_ORDER_WORLD;
+    private static final int DRAW_ORDER_WORLD = Globals.DRAW_ORDER_WORLD;
 
 
     public Gameplay(GameObjectManager gameObjectManager, ObjectClickHandler objectClickHandler, PlayerData playerData) {
@@ -35,10 +36,10 @@ public class Gameplay {
         mapObj.setDrawLayer(DRAW_ORDER_WORLD);
 
 
-        ClickerObject obj = createClickerObject(createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> { addPlayerWeed(); });
+        ClickerObject obj = createClickerObject(createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> addDrug(DrugType.Weed));
         obj.setUnlocked(playerData.getUnlocks().isMap1Unlocked());
 
-        obj = createClickerObject(createQuakamolePolygon(), AssetDescriptors.MAP_PART2, (clickerObj) -> { addPlayerPills(); });
+        obj = createClickerObject(createQuakamolePolygon(), AssetDescriptors.MAP_PART2, (clickerObj) -> addDrug(DrugType.Pills));
         obj.setUnlocked(playerData.getUnlocks().isMap2Unlocked());
 
         obj = createClickerObject(createBelizePolygon(), AssetDescriptors.MAP_PART3, (clickerObj) -> { });
@@ -59,35 +60,16 @@ public class Gameplay {
       //  createClickerObject(354.33862f,253.76854f);
     }
 
-    public void addPlayerWeed() {
-        int valueToAdd = (int)(1);
-        playerData.weed = playerData.weed.add(new BigInteger(String.valueOf(valueToAdd)));
-    }
-
-    public void addPlayerPills() {
-        int valueToAdd = (int)(1);
-        playerData.pills = playerData.pills.add(new BigInteger(String.valueOf(valueToAdd)));
+    public void addDrug(DrugType drugType) {
+        playerData.addDrug(drugType, (int)(1f * playerData.getUpgrades().getProductionUpgrade(drugType).getCurrentOutput()));
     }
 
     public void sellAllDrugs() {
-        int weedPrice = AvailableUpgrades.getWeedPrice(playerData.getUpgrades().getWeedNr());
-        int pillsPrice = AvailableUpgrades.getWeedPrice(playerData.getUpgrades().getPillsNr());
-        int cokePrice = AvailableUpgrades.getWeedPrice(playerData.getUpgrades().getCokeNr());
-        int oxyPrice = AvailableUpgrades.getWeedPrice(playerData.getUpgrades().getOxyNr());
-        int heroinPrice = AvailableUpgrades.getWeedPrice(playerData.getUpgrades().getHeroinNr());
-
-        playerData.money = playerData.money
-        .add(playerData.weed.multiply(new BigInteger(String.valueOf(weedPrice))))
-        .add(playerData.pills.multiply(new BigInteger(String.valueOf(pillsPrice))))
-                .add(playerData.coke.multiply(new BigInteger(String.valueOf(cokePrice))))
-                        .add(playerData.oxy.multiply(new BigInteger(String.valueOf(oxyPrice))))
-                                .add(playerData.heroin.multiply(new BigInteger(String.valueOf(heroinPrice))));
-
-        playerData.weed = BigInteger.ZERO;
-        playerData.pills = BigInteger.ZERO;
-        playerData.coke = BigInteger.ZERO;
-        playerData.oxy = BigInteger.ZERO;
-        playerData.heroin = BigInteger.ZERO;
+        playerData.getDrugs().forEach((drugType, amount) -> {
+            BigInteger money = GoodMath.mul(amount, playerData.getUpgrades().getSellUpgrade(drugType).getCurrentOutput());
+            playerData.addMoney(money);
+            playerData.setDrug(drugType, 0);
+        });
     }
 
     private Polygon createJamaycaPolygon() {
@@ -359,35 +341,25 @@ public class Gameplay {
         return obj;
     }
 
-    public boolean canAffort(int price) {
+    public boolean canAfford(int price) {
         return playerData.money.longValue() > price;
     }
 
-    public void buyWeedSellUpgrade() {
-        int price = AvailableUpgrades.getWeedUpgradePrice(playerData.getUpgrades().getWeedNr() + 1);
-        if(canAffort(price)) {
-            playerData.money = playerData.money.subtract(new BigInteger(String.valueOf(price)));
-            playerData.getUpgrades().setWeedNr(playerData.getUpgrades().getWeedNr()+1);
+    public void buySellUpgrade(DrugType drugType) {
+        Upgrade upgrade = playerData.getUpgrades().getSellUpgrade(drugType);
+        buyUpgrade(upgrade);
+    }
+
+    public void buyProductionUpgrade(DrugType drugType) {
+        Upgrade upgrade = playerData.getUpgrades().getProductionUpgrade(drugType);
+        buyUpgrade(upgrade);
+    }
+
+    private void buyUpgrade(Upgrade upgrade) {
+        int price = upgrade.getNextUpgradePrice();
+        if(canAfford(price)) {
+            playerData.removeMoney(new BigInteger(price+""));
+            upgrade.incrementNr();
         }
-    }
-
-    public void buyPillsSellUpgrade() {
-        int price = AvailableUpgrades.getPillsUpgradePrice(playerData.getUpgrades().getPillsNr() + 1);
-        if(canAffort(price)) {
-            playerData.money = playerData.money.subtract(new BigInteger(String.valueOf(price)));
-            playerData.getUpgrades().setPillsNr(playerData.getUpgrades().getPillsNr()+1);
-        }
-    }
-
-    public void buyCokeSellUpgrade() {
-
-    }
-
-    public void buyOxySellUpgrade() {
-
-    }
-
-    public void buyHeroinSellUpgrade() {
-
     }
 }

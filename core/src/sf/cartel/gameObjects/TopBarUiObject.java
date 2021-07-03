@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
+import sf.cartel.core.DrugType;
 import sf.cartel.core.Globals;
 import sf.cartel.core.PlayerData;
 import sf.cartel.rendering.RenderPipeline;
@@ -45,10 +46,10 @@ public class TopBarUiObject extends GameObject {
         float initalX = spriteWidth * 0.3475f;
         float inc = 194 * sprite.getScaleX();
         pipeline.addUi(playerData.money.toString(), new Vector2(spriteWidth * 0.16f, height), 3.5f,DRAW_ORDER_UI+1);
-        pipeline.addUi(playerData.weed.toString(), new Vector2(initalX, height), 3.5f,DRAW_ORDER_UI+1);
-        pipeline.addUi(playerData.pills.toString(), new Vector2(initalX + inc * 1, height), 3.5f,DRAW_ORDER_UI+1);
-        pipeline.addUi(playerData.coke.toString(), new Vector2(initalX + inc * 2, height), 3.5f,DRAW_ORDER_UI+1);
-        pipeline.addUi(playerData.oxy.toString(), new Vector2(initalX + inc * 3, height), 3.5f,DRAW_ORDER_UI+1);
-        pipeline.addUi(playerData.heroin.toString(), new Vector2(initalX + inc * 4, height), 3.5f,DRAW_ORDER_UI+1);
+        pipeline.addUi(playerData.getDrug(DrugType.Weed).toString(), new Vector2(initalX, height), 3.5f,DRAW_ORDER_UI+1);
+        pipeline.addUi(playerData.getDrug(DrugType.Pills).toString(), new Vector2(initalX + inc * 1, height), 3.5f,DRAW_ORDER_UI+1);
+        pipeline.addUi(playerData.getDrug(DrugType.Coke).toString(), new Vector2(initalX + inc * 2, height), 3.5f,DRAW_ORDER_UI+1);
+        pipeline.addUi(playerData.getDrug(DrugType.Oxy).toString(), new Vector2(initalX + inc * 3, height), 3.5f,DRAW_ORDER_UI+1);
+        pipeline.addUi(playerData.getDrug(DrugType.Heroin).toString(), new Vector2(initalX + inc * 4, height), 3.5f,DRAW_ORDER_UI+1);
     }
 }
