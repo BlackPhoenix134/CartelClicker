@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.logging.FileHandler;
 
 public class ShaderManager {
-    private Map<Integer, ShaderCacheEntry> cache = new HashMap<>();
+    //private Map<Integer, ShaderCacheEntry> cache = new HashMap<>();
     public final static ShaderProgram defaultShader = null; //Passing null to batch makes batch use default shader
 
 
@@ -18,17 +18,17 @@ public class ShaderManager {
         String fullVertexPath = resolvePath(vertexShaderPath);
         String fullFragPath  = resolvePath(fragmentShaderPath);
 
-        int hashCode = ShaderCacheEntry.hashCodeAlgorithm(fullVertexPath, fullFragPath);
-        ShaderProgram retVal;
-        if(cache.containsKey(hashCode)) {
-            retVal = cache.get(hashCode).getShaderProgram();
-        } else {
-            ShaderCacheEntry cacheEntry = new ShaderCacheEntry(
-                    new ShaderProgram(fullVertexPath, fullFragPath));
-            cache.put(cacheEntry.hashCode(), cacheEntry);
-            retVal = cacheEntry.getShaderProgram();
-        }
-        return retVal;
+        //int hashCode = ShaderCacheEntry.hashCodeAlgorithm(fullVertexPath, fullFragPath);
+        //ShaderProgram retVal;
+        //if(cache.containsKey(hashCode)) {
+       //     retVal = cache.get(hashCode).getShaderProgram();
+       // } else {
+         //   ShaderCacheEntry cacheEntry = new ShaderCacheEntry(
+                   /// new ShaderProgram(fullVertexPath, fullFragPath));
+         //   cache.put(cacheEntry.hashCode(), cacheEntry);
+         //   retVal = cacheEntry.getShaderProgram();
+        //}
+        return new ShaderProgram(fullVertexPath, fullFragPath);
     }
 
     public ShaderProgram loadShader(String shaderPath, boolean isVertexShader) {

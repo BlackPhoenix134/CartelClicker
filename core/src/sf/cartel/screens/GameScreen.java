@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 
+import sf.cartel.assets.ShaderManager;
 import sf.cartel.core.CameraData;
 import sf.cartel.core.Gameplay;
 import sf.cartel.core.Globals;
@@ -28,6 +29,7 @@ public class GameScreen extends AbstractScreen {
     private ScreenManager screenManager;
     private InputHandler inputHandler;
     private ObjectClickHandler objectClickHandler;
+    private ShaderManager shaderManager;
     private IngameUi ingameUi;
 
     private Gameplay gameplay;
@@ -36,13 +38,13 @@ public class GameScreen extends AbstractScreen {
     public GameScreen(RenderPipeline renderPipeline, OrthographicCamera camera, ScreenManager screenManager, InputHandler inputHandler) {
         this.renderPipeline = renderPipeline;
         this.screenManager = screenManager;
-
+        this.shaderManager = new ShaderManager();
         this.cameraData = new CameraData(camera);
 
         this.inputHandler = inputHandler;
         this.objectClickHandler = new ObjectClickHandler(cameraData, inputHandler);
 
-        this.gameplay = new Gameplay(gameObjectManager, objectClickHandler, Globals.getPlayerData());
+        this.gameplay = new Gameplay(gameObjectManager, objectClickHandler, Globals.getPlayerData(), shaderManager);
         this.ingameUi = new IngameUi(Globals.getPlayerData(), objectClickHandler, gameplay, screenManager);
     }
 

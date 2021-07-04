@@ -1,5 +1,6 @@
 package sf.cartel.core;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -8,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import sf.cartel.assets.ShaderManager;
 import sf.cartel.core.Math.GoodMath;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.assets.AssetDescriptors;
@@ -16,22 +18,32 @@ import sf.cartel.core.Physics.Polygon;
 import sf.cartel.gameObjects.ClickerObject;
 import sf.cartel.gameObjects.GameObjectManager;
 import sf.cartel.gameObjects.SpriteRenderObject;
+import sf.cartel.gameObjects.WaterObject;
 
 public class Gameplay {
     private GameObjectManager gameObjectManager;
     private ObjectClickHandler objectClickHandler;
     private PlayerData playerData;
+    private ShaderManager shaderManager;
 
     private static final int DRAW_ORDER_WORLD = Globals.DRAW_ORDER_WORLD;
 
 
-    public Gameplay(GameObjectManager gameObjectManager, ObjectClickHandler objectClickHandler, PlayerData playerData) {
+    public Gameplay(GameObjectManager gameObjectManager, ObjectClickHandler objectClickHandler, PlayerData playerData, ShaderManager shaderManager) {
         this.gameObjectManager = gameObjectManager;
         this.objectClickHandler = objectClickHandler;
         this.playerData = playerData;
+        this.shaderManager = shaderManager;
     }
 
     public void initialize() {
+        Texture noiseTexture = new Texture("shader/waterNoise.png");
+        noiseTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+
+        WaterObject waterObj = gameObjectManager.create(WaterObject.class);
+        waterObj.init(shaderManager, new Sprite(Assets.getAsset(AssetDescriptors.WATER)));
+        waterObj.setDrawLayer(DRAW_ORDER_WORLD - 1);
+
         SpriteRenderObject mapObj = gameObjectManager.create(SpriteRenderObject.class);
         mapObj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.MAP)));
         mapObj.setDrawLayer(DRAW_ORDER_WORLD);
