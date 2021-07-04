@@ -41,7 +41,7 @@ public class Gameplay {
         noiseTexture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
 
         WaterObject waterObj = gameObjectManager.create(WaterObject.class);
-        waterObj.init(shaderManager, new Sprite(Assets.getAsset(AssetDescriptors.WATER)));
+        waterObj.init(Assets.getAsset(AssetDescriptors.WATER));
         waterObj.setDrawLayer(DRAW_ORDER_WORLD - 1);
 
         SpriteRenderObject mapObj = gameObjectManager.create(SpriteRenderObject.class);

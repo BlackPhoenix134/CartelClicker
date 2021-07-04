@@ -7,6 +7,7 @@ public class AnimationController {
     TextureRegion[] sheet;
     private int currIdx = 0;
     private float frameTime = 0;
+    private float currFrameTimeElapsed = 0;
 
     public AnimationController(Texture animSheet, int cols, int rows, float frameTime) {
         this.frameTime = frameTime;
@@ -58,5 +59,13 @@ public class AnimationController {
         if(idx > getMaxAnimationIdx())
             return 0;
         return idx;
+    }
+
+    public void addDelta(float delta) {
+        currFrameTimeElapsed += delta;
+        if(currFrameTimeElapsed >= frameTime) {
+            currFrameTimeElapsed = 0;
+            getNextFrame();
+        }
     }
 }

@@ -37,13 +37,18 @@ public class IngameUi  {
     }
 
     private void createUi() {
-
         TopBarUiObject topBarUi = gameObjectManager.create(TopBarUiObject.class);
         topBarUi.setPlayerData(playerData);
         Sprite topBarSprite = new Sprite(Assets.getAsset(AssetDescriptors.TOP_BAR));
         topBarSprite.setScale(Gdx.graphics.getWidth() / topBarSprite.getWidth(), Gdx.graphics.getHeight() / topBarSprite.getHeight());
         topBarSprite.setPosition(Gdx.graphics.getWidth() / 2f, Gdx.graphics.getHeight() / 2f);
         topBarUi.setSprite(topBarSprite);
+
+        AnimatedSpriteDrawableObject animatedSpriteDrawableObject = gameObjectManager.create(AnimatedSpriteDrawableObject.class);
+        animatedSpriteDrawableObject.init(Assets.getAsset(AssetDescriptors.ICON_HEROIN_SHEET), 3, 2, 0.2f);
+        animatedSpriteDrawableObject.setDrawOrder(1000000000);
+        animatedSpriteDrawableObject.getSprite().setScale(1);
+        animatedSpriteDrawableObject.getSprite().setPosition(500, 500);
 
         ClickableSpriteDrawableObject menuButtonUi = gameObjectManager.create(ClickableSpriteDrawableObject.class);
         Sprite menuSprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_MENU));

@@ -16,8 +16,6 @@ public class TopBarUiObject extends GameObject {
 
     private int DRAW_ORDER_UI = Globals.DRAW_ORDER_UI;
 
-
-
     TopBarUiObject(String uuid) {
         super(uuid);
     }
