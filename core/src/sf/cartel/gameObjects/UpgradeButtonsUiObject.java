@@ -187,14 +187,14 @@ public class UpgradeButtonsUiObject extends GameObject {
     @Override
     public void draw(float delta, RenderPipeline pipeline) {
         gameObjectManager.draw(delta, pipeline);
-        pipeline.addUi("Cost: " + productionUpgrade.getNextUpgradePrice(), new Vector2(button1.getPosition().x , button1.getPosition().y + 200), 4, drawOrder + 2);
-        pipeline.addUi("Cost: " + distributionUpgrade.getNextUpgradePrice(), new Vector2(button2.getPosition().x , button1.getPosition().y + 200), 4,  drawOrder + 2);
-        pipeline.addUi("Cost: " + sellUpgrade.getNextUpgradePrice(), new Vector2(button3.getPosition().x , button1.getPosition().y + 200), 4,  drawOrder + 2);
+        pipeline.addUi("Cost: " + Formatter.toScientificNumber(productionUpgrade.getNextUpgradePrice()), new Vector2(button1.getPosition().x , button1.getPosition().y + 200), 4, drawOrder + 2);
+        pipeline.addUi("Cost: " + Formatter.toScientificNumber(distributionUpgrade.getNextUpgradePrice()), new Vector2(button2.getPosition().x , button1.getPosition().y + 200), 4,  drawOrder + 2);
+        pipeline.addUi("Cost: " + Formatter.toScientificNumber(sellUpgrade.getNextUpgradePrice()), new Vector2(button3.getPosition().x , button1.getPosition().y + 200), 4,  drawOrder + 2);
 
 
-        pipeline.addUi("Level: " +  playerData.getUpgrades().getProductionUpgrade(drugType).getNr(), new Vector2(button1.getPosition().x , button1.getPosition().y + 300), 4,  drawOrder + 2);
-        pipeline.addUi("Level: " +  playerData.getUpgrades().getDistributionUpgrade(drugType).getNr(), new Vector2(button2.getPosition().x , button2.getPosition().y + 300), 4,  drawOrder + 2);
-        pipeline.addUi("Level: " +  playerData.getUpgrades().getSellUpgrade(drugType).getNr(), new Vector2(button3.getPosition().x , button3.getPosition().y + 300), 4,  drawOrder + 2);
+        pipeline.addUi("Level: " +  Formatter.toScientificNumber(playerData.getUpgrades().getProductionUpgrade(drugType).getNr()), new Vector2(button1.getPosition().x , button1.getPosition().y + 300), 4,  drawOrder + 2);
+        pipeline.addUi("Level: " +  Formatter.toScientificNumber(playerData.getUpgrades().getDistributionUpgrade(drugType).getNr()), new Vector2(button2.getPosition().x , button2.getPosition().y + 300), 4,  drawOrder + 2);
+        pipeline.addUi("Level: " +  Formatter.toScientificNumber(playerData.getUpgrades().getSellUpgrade(drugType).getNr()), new Vector2(button3.getPosition().x , button3.getPosition().y + 300), 4,  drawOrder + 2);
     }
 
     @Override

@@ -13,4 +13,8 @@ public abstract class Formatter {
                     + " E+" + (valChars.length - 1);
         }
     }
+
+    public static String toScientificNumber(int value) {
+        return toScientificNumber(new BigInteger(String.valueOf(value)));
+    }
 }
