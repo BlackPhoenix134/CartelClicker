@@ -370,28 +370,30 @@ public class Gameplay {
         return playerData.money.longValue() > price;
     }
 
-    public void buySellUpgrade(DrugType drugType) {
+    public boolean buySellUpgrade(DrugType drugType) {
         Upgrade upgrade = playerData.getUpgrades().getSellUpgrade(drugType);
-        buyUpgrade(upgrade);
+        return buyUpgrade(upgrade);
     }
 
-    public void buyProductionUpgrade(DrugType drugType) {
+    public boolean buyProductionUpgrade(DrugType drugType) {
         Upgrade upgrade = playerData.getUpgrades().getProductionUpgrade(drugType);
-        buyUpgrade(upgrade);
+        return buyUpgrade(upgrade);
     }
 
-    public void buyDistributionUpgrade(DrugType drugType) {
+    public boolean buyDistributionUpgrade(DrugType drugType) {
         Upgrade upgrade = playerData.getUpgrades().getDistributionUpgrade(drugType);
-        buyUpgrade(upgrade);
+        return buyUpgrade(upgrade);
     }
 
 
 
-    private void buyUpgrade(Upgrade upgrade) {
+    private boolean buyUpgrade(Upgrade upgrade) {
         int price = upgrade.getNextUpgradePrice();
         if(canAfford(price)) {
             playerData.removeMoney(new BigInteger(price+""));
             upgrade.incrementNr();
+            return true;
         }
+        return false;
     }
 }

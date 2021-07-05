@@ -1,6 +1,11 @@
 package sf.cartel.core;
 
+import com.badlogic.gdx.audio.Sound;
+
 import java.util.Random;
+
+import sf.cartel.assets.AssetDescriptors;
+import sf.cartel.assets.Assets;
 
 public abstract class Globals {
     private static PlayerData playerData;
@@ -12,6 +17,9 @@ public abstract class Globals {
     public static final int DRAW_ORDER_WORLD = 10;
     public static final int DRAW_ORDER_UI = 100;
     public static final int DRAW_ORDER_DIALOG = 1000;
+
+    public static final Sound SOUND_BUTTON_PRESS = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
+
 
 
     public static final Random RANDOM = new Random();

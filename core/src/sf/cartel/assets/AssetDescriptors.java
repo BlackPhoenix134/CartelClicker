@@ -34,12 +34,18 @@ public final class AssetDescriptors {
     public static final AssetDescriptor<Texture> BUTTON_SELL_ALL = new AssetDescriptor<>(UI + "/ButtonSellAll.png", Texture.class);
     public static final AssetDescriptor<Texture> UI_UPGRADE_BACKGROUND = new AssetDescriptor<>(UI + "/InGameMenu.png", Texture.class);
     public static final AssetDescriptor<Texture> UI_UPGRADE_SELECTOR_BACKGROUND = new AssetDescriptor<>(UI + "/SelectorBackground.png", Texture.class);
+    public static final AssetDescriptor<Texture> BUTTON_BUY = new AssetDescriptor<>(UI + "/ButtonBuy.png", Texture.class);
+    public static final AssetDescriptor<Texture> BUTTON_BUY_1x = new AssetDescriptor<>(UI + "/ButtonBuy1x.png", Texture.class);
+    public static final AssetDescriptor<Texture> BUTTON_BUY_10x = new AssetDescriptor<>(UI + "/ButtonBuy10x.png", Texture.class);
+    public static final AssetDescriptor<Texture> BUTTON_BUY_MAX = new AssetDescriptor<>(UI + "/ButtonBuyMax.png", Texture.class);
+
+
 
     public static final AssetDescriptor<Texture> ICON_WEED = new AssetDescriptor<>(ICONS + "/WeedLeaf.png", Texture.class);
-    public static final AssetDescriptor<Texture> ICON_PILLS = new AssetDescriptor<>(ICONS + "/WeedLeaf.png", Texture.class);
-    public static final AssetDescriptor<Texture> ICON_COKE = new AssetDescriptor<>(ICONS + "/WeedLeaf.png",Texture.class);
-    public static final AssetDescriptor<Texture> ICON_OXY = new AssetDescriptor<>(ICONS + "/WeedLeaf.png",Texture.class);
-    public static final AssetDescriptor<Texture> ICON_HEROIN = new AssetDescriptor<>(ICONS + "/WeedLeaf.png",Texture.class);
+    public static final AssetDescriptor<Texture> ICON_PILLS = new AssetDescriptor<>(ICONS + "/pill.png", Texture.class);
+    public static final AssetDescriptor<Texture> ICON_COKE = new AssetDescriptor<>(ICONS + "/Coke.png",Texture.class);
+    public static final AssetDescriptor<Texture> ICON_OXY = new AssetDescriptor<>(ICONS + "/pill2.png",Texture.class);
+    public static final AssetDescriptor<Texture> ICON_HEROIN = new AssetDescriptor<>(ICONS + "/syringe.png",Texture.class);
 
     public static final AssetDescriptor<Texture> ICON_HEROIN_SHEET = new AssetDescriptor<>(ICONS + "/heroinSheet.png",Texture.class);
 

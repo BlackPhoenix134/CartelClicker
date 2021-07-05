@@ -54,6 +54,7 @@ public class UpgradeDialog {
         backgroundObject = createBackground();
         createDrugSelector(backgroundObject);
         createBackButton(backgroundObject);
+
         switchDrugSelection(DrugType.Weed);
     }
 
@@ -87,7 +88,10 @@ public class UpgradeDialog {
         Sprite sprite = new Sprite(Assets.getAsset(AssetDescriptors.UI_UPGRADE_BACKGROUND));
         //sprite.setColor(new Color(1, 1, 1, 0.6f));
         sprite.setPosition(windowSize.x / 2f, windowSize.y / 2f);
-        sprite.setScale(GoodMath.ratio(sprite.getWidth(), windowSize.x), GoodMath.ratio(sprite.getHeight(), windowSize.y));
+
+        //TODO why does ratio with setScale not work anymore?
+        sprite.setScale(GoodMath.ratio(sprite.getWidth(), windowSize.x), GoodMath.ratio(sprite.getHeight(),windowSize.y));
+//        sprite.setSize(windowSize.x, windowSize.y);
         dialogBackground.setSprite(sprite);
         return dialogBackground;
     }

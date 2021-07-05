@@ -60,7 +60,8 @@ public class DrugSelectorUiObject extends GameObject {
     }
 
     private void createSelectors(Sprite backgroundSprite) {
-        float offset = 10;
+        float offset = 5;
+        float offsetHeight = offset; // TODO why does this change/bug the background??! (if set to  offset*10f)
         float boxSpacingRatio = (backgroundSprite.getWidth() / 2) - offset * 2;
 
         ClickableSpriteDrawableObject obj = createSelectorObject(Assets.getAsset(AssetDescriptors.ICON_WEED));
@@ -69,7 +70,7 @@ public class DrugSelectorUiObject extends GameObject {
         sprite.setPosition(
                 backgroundSprite.getX() - offset - Sprites.getScaledWidth(sprite) / 2,
                 backgroundSprite.getY() + Sprites.getScaledHeight(backgroundSprite) / 2
-                        - offset - Sprites.getScaledHeight(sprite) / 2);
+                        - offsetHeight - Sprites.getScaledHeight(sprite) / 2);
         obj.setOnClicked(clickedObj -> onDrugSelected.call(DrugType.Weed));
 
         obj = createSelectorObject(Assets.getAsset(AssetDescriptors.ICON_PILLS));
@@ -78,7 +79,7 @@ public class DrugSelectorUiObject extends GameObject {
         sprite.setPosition(
                 backgroundSprite.getX() + offset + Sprites.getScaledWidth(sprite) / 2,
                 backgroundSprite.getY() + Sprites.getScaledHeight(backgroundSprite) / 2
-                        - offset - Sprites.getScaledHeight(sprite) / 2);
+                        - offsetHeight - Sprites.getScaledHeight(sprite) / 2);
         obj.setOnClicked(clickedObj -> onDrugSelected.call(DrugType.Pills));
 
         obj = createSelectorObject(Assets.getAsset(AssetDescriptors.ICON_COKE));
@@ -103,7 +104,7 @@ public class DrugSelectorUiObject extends GameObject {
         sprite.setPosition(
                 backgroundSprite.getX() - offset - Sprites.getScaledWidth(sprite) / 2,
                 backgroundSprite.getY() - Sprites.getScaledHeight(backgroundSprite) / 2
-                        + offset + Sprites.getScaledHeight(sprite) / 2);
+                        + offsetHeight + Sprites.getScaledHeight(sprite) / 2);
         obj.setOnClicked(clickedObj -> onDrugSelected.call(DrugType.Heroin));
     }
 

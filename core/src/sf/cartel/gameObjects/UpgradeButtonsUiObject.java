@@ -1,5 +1,7 @@
 package sf.cartel.gameObjects;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
@@ -68,13 +70,16 @@ public class UpgradeButtonsUiObject extends GameObject {
 
     private void createUpgradeClicks() {
         button1.setOnClicked(obj -> {
-            gameplay.buyProductionUpgrade(drugType);
+            if (gameplay.buyProductionUpgrade(drugType))
+                Globals.SOUND_BUTTON_PRESS.play();
         });
         button2.setOnClicked(obj -> {
-            gameplay.buyDistributionUpgrade(drugType);
+            if (gameplay.buyDistributionUpgrade(drugType))
+                Globals.SOUND_BUTTON_PRESS.play();
         });
        button3.setOnClicked(obj -> {
-            gameplay.buySellUpgrade(drugType);
+           if (gameplay.buySellUpgrade(drugType))
+               Globals.SOUND_BUTTON_PRESS.play();
         });
 
     }
@@ -87,8 +92,8 @@ public class UpgradeButtonsUiObject extends GameObject {
         upgradeBtn.setCenterTextSize(4);
         upgradeBtn.setDrawOrder(drawOrder + 1);
         upgradeBtn.setUiObject(true);
-        Sprite sprite = new Sprite(Assets.getAsset(AssetDescriptors.SQUARE_40x40));
-        sprite.setScale(3);
+        Sprite sprite = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_BUY_1x));
+        sprite.setScale(Gdx.graphics.getWidth() / sprite.getWidth() * 0.15f, Gdx.graphics.getHeight() / sprite.getHeight() * 0.1f);
         upgradeBtn.setSprite(sprite);
         return upgradeBtn;
     }
@@ -101,9 +106,14 @@ public class UpgradeButtonsUiObject extends GameObject {
     @Override
     public void draw(float delta, RenderPipeline pipeline) {
         gameObjectManager.draw(delta, pipeline);
-        button1.setCenterText(productionUpgrade.getNr() + "");
-        button2.setCenterText(distributionUpgrade.getNr() + "");
-        button3.setCenterText(sellUpgrade.getNr() + "");
+
+//        button1.setCenterText(productionUpgrade.getNr() + "");
+//        button2.setCenterText(distributionUpgrade.getNr() + "");
+//        button3.setCenterText(sellUpgrade.getNr() + "");
+
+        button1.setCenterText("");
+        button2.setCenterText("");
+        button3.setCenterText("");
 
         pipeline.addUi("Cost " + productionUpgrade.getNextUpgradePrice(), new Vector2(button1.getPosition().x , button1.getPosition().y + 200), 4, drawOrder + 2);
         pipeline.addUi("Cost " + distributionUpgrade.getNextUpgradePrice(), new Vector2(button2.getPosition().x , button1.getPosition().y + 200), 4,  drawOrder + 2);
