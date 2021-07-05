@@ -102,10 +102,6 @@ public class GameScreen extends AbstractScreen {
         this.inputHandler.addListener(InputEventType.TOUCH_DOWN, 100, inputEvent -> {
             Vector3 worldPos = cameraData.getOrthographicCamera().unproject(new Vector3(inputEvent.getX1(), inputEvent.getX2(), 0f));
             Gdx.app.log("nega", "new Vector2("+worldPos.x+"f, "+worldPos.y+"f), ");
-
-            //TODO
-//            screenManager.showScreen(MainMenuScreen.class);
-
         });
 
         this.inputHandler.addListener(InputEventType.TOUCH_DOWN, 100,

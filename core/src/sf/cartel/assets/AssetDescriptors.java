@@ -29,6 +29,7 @@ public final class AssetDescriptors {
     public static final AssetDescriptor<Texture> MAP_PART5 = new AssetDescriptor<>(ENVIRONMENT + "/map_part5.png", Texture.class);
 
     public static final AssetDescriptor<Texture> SHIP1_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/ship1Sheet.png", Texture.class);
+    public static final AssetDescriptor<Texture> PLANE1_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/plane1Sheet.png", Texture.class);
 
     public static final AssetDescriptor<Texture> TOP_BAR = new AssetDescriptor<>(UI + "/TopBar.png", Texture.class);
     public static final AssetDescriptor<Texture> POP_UP = new AssetDescriptor<>(UI + "/InfoBox.png", Texture.class);

@@ -3,8 +3,11 @@ package sf.cartel.core.Math;
 import com.badlogic.gdx.math.Vector2;
 
 import java.math.BigInteger;
+import java.util.Random;
 
 public abstract class GoodMath {
+    private static Random random = new Random();
+
     public static Vector2 add(Vector2 a, Vector2 b) {
         return new Vector2(a.x + b.x, a.y + b.y);
     }
@@ -69,5 +72,24 @@ public abstract class GoodMath {
 
     public static BigInteger mul(BigInteger a, int b) {
         return a.multiply(new BigInteger(String.valueOf(b)));
+    }
+
+    public static float map(float value, float a1, float a2, float b1, float b2) {
+        return b1 + (value-a1)*(b2-b1)/(a2-a1);
+    }
+
+    public static float randFloat(float min, float max) {
+        return min + random.nextFloat() * (max - min);
+    }
+
+    public static int randInt(int min, int max) {
+        return random.nextInt((max - min) + 1) + min;
+    }
+
+    public static Vector2 randomOffset(Vector2 vector, float offset) {
+        int sign = 1;
+        if(random.nextBoolean())
+            sign = -1;
+        return new Vector2(vector.x + randFloat(0, offset) * sign, vector.y + randFloat(0, offset) * sign);
     }
 }
