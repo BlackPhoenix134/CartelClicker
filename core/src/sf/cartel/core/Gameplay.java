@@ -1,6 +1,5 @@
 package sf.cartel.core;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -10,13 +9,14 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import sf.cartel.assets.ShaderManager;
-import sf.cartel.core.Math.GoodMath;
+import sf.cartel.core.Visuals.AnimationController;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
 import sf.cartel.core.Physics.Polygon;
 import sf.cartel.gameObjects.ClickerObject;
 import sf.cartel.gameObjects.GameObjectManager;
+import sf.cartel.gameObjects.PathFollowerObject;
 import sf.cartel.gameObjects.SpriteRenderObject;
 import sf.cartel.gameObjects.WaterObject;
 
@@ -48,6 +48,11 @@ public class Gameplay {
         mapObj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.MAP)));
         mapObj.setDrawLayer(DRAW_ORDER_WORLD);
 
+        PathFollowerObject pathFollowerObject = gameObjectManager.create(PathFollowerObject.class);
+        Texture shipTexture = Assets.getAsset(AssetDescriptors.SHIP1_SHEET);
+        pathFollowerObject.init(shipTexture,  new AnimationController(shipTexture, 3, 2, 0.2f), GlobalsPaths.GetShipPath1());
+        pathFollowerObject.getSprite().setScale(0.07f);
+        pathFollowerObject.setTravelSpeed(100);
 
         ClickerObject obj = createClickerObject(createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> addDrug(DrugType.Weed));
         obj.setUnlocked(playerData.getUnlocks().isMap1Unlocked());
