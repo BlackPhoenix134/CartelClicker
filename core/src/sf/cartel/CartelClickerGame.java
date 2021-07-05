@@ -33,7 +33,7 @@ public class CartelClickerGame extends Game {
 
 		screenManager.addScreen(new MainMenuScreen(renderPipeline, camera, screenManager, inputHandler));
 		screenManager.addScreen(new GameScreen(renderPipeline, camera, screenManager, inputHandler));
-		screenManager.addScreen(new OptionsScreen(renderPipeline, camera, screenManager));
+		screenManager.addScreen(new OptionsScreen(renderPipeline, camera, screenManager, inputHandler));
 		screenManager.addScreen(new UpgradeScreen(renderPipeline, camera, screenManager, inputHandler));
 
 		screenManager.showScreen(MainMenuScreen.class);
