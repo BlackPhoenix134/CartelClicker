@@ -39,19 +39,19 @@ public class TopBarUiObject extends GameObject {
         icon.getSprite().setPosition(x, height);
         x += inc;
          icon = createTopBarIcon();
-        icon.init(Assets.getAsset(AssetDescriptors.ICON_COKE_SHEET), 3, 3, 0.4f);
-        icon.getSprite().setPosition(x, height + 15);
-        icon.getSprite().setScale(0.06f);
-
-        x += inc;
-        icon = createTopBarIcon();
         icon.init(Assets.getAsset(AssetDescriptors.ICON_PILLS_SHEET), 3, 3, 0.2f);
         icon.getSprite().setPosition(x, height);
         icon.getSprite().setScale(0.2f);
 
         x += inc;
         icon = createTopBarIcon();
-        icon.init(Assets.getAsset(AssetDescriptors.ICON_HEROIN_SHEET), 3, 2, 0.2f);
+        icon.init(Assets.getAsset(AssetDescriptors.ICON_COKE_SHEET), 3, 3, 0.4f);
+        icon.getSprite().setPosition(x, height + 15);
+        icon.getSprite().setScale(0.06f);
+
+        x += inc;
+        icon = createTopBarIcon();
+        icon.init(Assets.getAsset(AssetDescriptors.ICON_PILLS2_SHEET), 3, 3, 0.2f);
         icon.getSprite().setPosition(x, height);
         icon.getSprite().setScale(0.2f);
 

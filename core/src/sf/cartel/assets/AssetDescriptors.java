@@ -54,6 +54,8 @@ public final class AssetDescriptors {
     public static final AssetDescriptor<Texture> ICON_COKE_SHEET = new AssetDescriptor<>(ICONS + "/cokeSheet.png",Texture.class);
     public static final AssetDescriptor<Texture> ICON_HEROIN_SHEET = new AssetDescriptor<>(ICONS + "/heroinSheet.png",Texture.class);
     public static final AssetDescriptor<Texture> ICON_PILLS_SHEET = new AssetDescriptor<>(ICONS + "/pillsSheet.png",Texture.class);
+    public static final AssetDescriptor<Texture> ICON_PILLS2_SHEET = new AssetDescriptor<>(ICONS + "/pills2Sheet.png",Texture.class);
+    public static final AssetDescriptor<Texture> BLACK = new AssetDescriptor<>(ICONS + "/BlackSheet.png",Texture.class);
 
 
 
