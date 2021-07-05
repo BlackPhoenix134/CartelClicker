@@ -31,7 +31,9 @@ public class MainMenuScreen extends AbstractScreen {
     private SpriteBatch batch;
 
     Texture background = new Texture(Gdx.files.internal("ui/titleScreen.png"));
-//    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/buttonSound.mp3"));
+
+
+    Sound music = Gdx.audio.newSound(Gdx.files.internal("sounds/Monkey-Drama.mp3"));
 
 //    Sound sound2 = Gdx.audio.newSound(Gdx.files.internal("sounds/elevator.mp3"));
 
@@ -44,7 +46,6 @@ public class MainMenuScreen extends AbstractScreen {
         screenWidth = Gdx.graphics.getWidth();
         screenHeight = Gdx.graphics.getHeight();
         batch = new SpriteBatch();
-
     }
 
    @Override
@@ -56,7 +57,7 @@ public class MainMenuScreen extends AbstractScreen {
     @Override
     public void render(float delta) {
 
-//        sound2.play(0.5f);
+//        music.loop(0.5f);
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
