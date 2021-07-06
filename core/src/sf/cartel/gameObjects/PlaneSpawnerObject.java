@@ -1,7 +1,6 @@
 package sf.cartel.gameObjects;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
 
 import java.util.Random;
 
@@ -10,6 +9,12 @@ import sf.cartel.assets.Assets;
 import sf.cartel.core.Extensions.Collections;
 import sf.cartel.core.GlobalsPaths;
 import sf.cartel.core.Math.GoodMath;
+import sf.cartel.core.StateMachines.PathObjectStateMachine;
+import sf.cartel.core.StateMachines.StateMachine;
+import sf.cartel.core.StateMachines.TravelStartState;
+import sf.cartel.core.StateMachines.StateMachineStates;
+import sf.cartel.core.StateMachines.TravelStopState;
+import sf.cartel.core.StateMachines.TravelTravelState;
 import sf.cartel.core.Visuals.AnimationController;
 import sf.cartel.rendering.RenderPipeline;
 
@@ -21,6 +26,7 @@ public class PlaneSpawnerObject extends GameObject {
 
     PlaneSpawnerObject(String uuid) {
         super(uuid);
+        spawn(50);
     }
 
     private void spawn(int amount) {
@@ -29,13 +35,17 @@ public class PlaneSpawnerObject extends GameObject {
     }
 
     private void spawn() {
-        PlanePathFollowerObject plane1Object = gameObjectManager.create(PlanePathFollowerObject.class);
+        StateMachineObject plane1Object = gameObjectManager.create(StateMachineObject.class);
         Texture planeTexture = Assets.getAsset(AssetDescriptors.PLANE1_SHEET);
-        plane1Object.init(planeTexture, new AnimationController(planeTexture, 2, 2, 0.2f), Collections.getRandomItem(GlobalsPaths.getPlaneNodesOffset()));
-        plane1Object.getSprite().setScale(0.01f);
-        plane1Object.setScaleMin(0.01f);
-        plane1Object.setScaleMax(0.035f);
-        plane1Object.setTravelSpeed(100);
+        PathObjectStateMachine stateMachine = new PathObjectStateMachine(plane1Object, Collections.getRandomItem(GlobalsPaths.getPlaneNodesOffset()), 0.01f, 0.035f);
+        stateMachine.addState(StateMachineStates.TravelStart.ordinal(),
+                new TravelStartState(stateMachine, new AnimationController(planeTexture, 2, 2, 0.2f)));
+        stateMachine.addState(StateMachineStates.TravelTravel.ordinal(),
+                new TravelTravelState(stateMachine, new AnimationController(planeTexture, 2, 2, 0.2f)));
+        stateMachine.addState(StateMachineStates.TravelStop.ordinal(),
+                new TravelStopState(stateMachine, new AnimationController(planeTexture, 2, 2, 0.2f)));
+        stateMachine.transition(StateMachineStates.TravelStart.ordinal());
+        plane1Object.init(stateMachine);
     }
 
     @Override

@@ -3,6 +3,8 @@ package sf.cartel.core.StateMachines;
 import java.util.HashMap;
 import java.util.Map;
 
+import sf.cartel.rendering.RenderPipeline;
+
 public class StateMachine {
     private State currentState;
     private Map<Integer, State> states = new HashMap<>();
@@ -30,9 +32,9 @@ public class StateMachine {
             currentState.update(delta);
     }
 
-    public void draw(float delta) {
+    public void draw(float delta, RenderPipeline renderPipeline) {
         if(currentState != null)
-            currentState.draw(delta);
+            currentState.draw(delta, renderPipeline);
     }
 
     public <T extends StateMachine> State<T> getState(int idx) {

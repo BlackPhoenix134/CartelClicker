@@ -4,12 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AnimationController {
+    Texture animSheet;
     TextureRegion[] sheet;
     private int currIdx = 0;
     private float frameTime = 0;
     private float currFrameTimeElapsed = 0;
 
     public AnimationController(Texture animSheet, int cols, int rows, float frameTime) {
+        this.animSheet = animSheet;
         this.frameTime = frameTime;
 
         TextureRegion[][] tmp = TextureRegion.split(animSheet,
@@ -23,6 +25,10 @@ public class AnimationController {
             }
         }
         sheet = frames;
+    }
+
+    public Texture getAnimSheet() {
+        return animSheet;
     }
 
     public float getFrameTime() {

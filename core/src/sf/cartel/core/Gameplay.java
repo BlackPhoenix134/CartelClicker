@@ -3,13 +3,11 @@ package sf.cartel.core;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import sf.cartel.assets.ShaderManager;
-import sf.cartel.core.Extensions.Collections;
 import sf.cartel.core.Visuals.AnimationController;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.assets.AssetDescriptors;
@@ -18,7 +16,6 @@ import sf.cartel.core.Physics.Polygon;
 import sf.cartel.gameObjects.ClickerObject;
 import sf.cartel.gameObjects.GameObjectManager;
 import sf.cartel.gameObjects.PathFollowerObject;
-import sf.cartel.gameObjects.PlanePathFollowerObject;
 import sf.cartel.gameObjects.PlaneSpawnerObject;
 import sf.cartel.gameObjects.SpriteRenderObject;
 import sf.cartel.gameObjects.WaterObject;
