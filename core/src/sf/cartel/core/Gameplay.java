@@ -52,8 +52,8 @@ public class Gameplay {
         PathFollowerObject pathFollowerObject = gameObjectManager.create(PathFollowerObject.class);
         Texture shipTexture = Assets.getAsset(AssetDescriptors.SHIP1_SHEET);
         pathFollowerObject.init(shipTexture, new AnimationController(shipTexture, 3, 2, 0.2f), GlobalsPaths.getShipPath1());
-        pathFollowerObject.getSprite().setScale(0.045f);
-        pathFollowerObject.setTravelSpeed(100);
+        pathFollowerObject.getSprite().setScale(0.015f);
+        pathFollowerObject.setTravelSpeed(40);
 
         PlaneSpawnerObject planeSpawnerObject = gameObjectManager.create(PlaneSpawnerObject.class);
         ShipSpawnerObject shipSpawnerObject = gameObjectManager.create(ShipSpawnerObject.class);

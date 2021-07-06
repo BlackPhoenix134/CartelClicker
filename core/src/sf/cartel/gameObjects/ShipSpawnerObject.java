@@ -36,7 +36,7 @@ public class ShipSpawnerObject extends GameObject {
     private void spawn() {
         StateMachineObject shipObject = gameObjectManager.create(StateMachineObject.class);
         Texture texture = Assets.getAsset(AssetDescriptors.SHIP2_SHEET);
-        TravelStateMachine stateMachine = new TravelStateMachine(shipObject, Collections.getRandomItem(GlobalsPaths.getShipNodes()), 0.01f, 0.035f);
+        TravelStateMachine stateMachine = new TravelStateMachine(shipObject, Collections.getRandomItem(GlobalsPaths.getShipNodes()), 0.01f, 0.025f);
         stateMachine.addState(StateMachineStates.TravelShip.ordinal(),
                 new ShipTravelState(stateMachine, new AnimationController(texture, 2, 2, 0.2f)));
         stateMachine.transition(StateMachineStates.TravelShip.ordinal());
@@ -51,12 +51,12 @@ public class ShipSpawnerObject extends GameObject {
         if(deltaTimer >= spawnTimer) {
             deltaTimer = 0;
             spawnTimer = getNextSpawnTimer();
-            spawn(random.nextInt(2));
+            spawn(random.nextInt(3));
         }
     }
 
     private float getNextSpawnTimer() {
-        return GoodMath.randFloat(4, 6);
+        return GoodMath.randFloat(2, 4);
     }
 
     @Override

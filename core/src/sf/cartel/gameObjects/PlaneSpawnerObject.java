@@ -35,7 +35,7 @@ public class PlaneSpawnerObject extends GameObject {
     private void spawn() {
         StateMachineObject plane1Object = gameObjectManager.create(StateMachineObject.class);
         Texture planeTexture = Assets.getAsset(AssetDescriptors.PLANE1_SHEET);
-        TravelStateMachine stateMachine = new TravelStateMachine(plane1Object, Collections.getRandomItem(GlobalsPaths.getPlaneNodesOffset()), 0.01f, 0.035f);
+        TravelStateMachine stateMachine = new TravelStateMachine(plane1Object, Collections.getRandomItem(GlobalsPaths.getPlaneNodesOffset()), 0.01f, 0.025f);
         stateMachine.addState(StateMachineStates.TravelStart.ordinal(),
                 new TravelStartState(stateMachine, new AnimationController(planeTexture, 2, 2, 0.2f)));
         stateMachine.addState(StateMachineStates.TravelTravel.ordinal(),
@@ -59,7 +59,7 @@ public class PlaneSpawnerObject extends GameObject {
     }
 
     private float getNextSpawnTimer() {
-        return GoodMath.randFloat(3, 5);
+        return GoodMath.randFloat(2, 6);
     }
 
     @Override

@@ -64,7 +64,7 @@ public class ShipTravelState extends State<TravelStateMachine> {
             newScale = GoodMath.map(distanceToNextNode, 0, 60, stateMachine.scaleMin, stateMachine.scaleMax);
         stateMachine.getGameObject().getSprite().setScale(newScale);
 
-        if(GoodMath.equals(newPos, stateMachine.nextPathNode.getPosition(), 5)) {
+        if(GoodMath.equals(newPos, stateMachine.nextPathNode.getPosition(), 0.005f)) {
             if(stateMachine.nextPathNode.hasNextNode()) {
                 stateMachine.currPathNode = stateMachine.nextPathNode;
                 stateMachine.nextPathNode = stateMachine.currPathNode.getRandomNextNode();
