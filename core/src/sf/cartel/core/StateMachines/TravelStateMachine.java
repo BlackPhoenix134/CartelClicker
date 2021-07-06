@@ -7,24 +7,24 @@ import sf.cartel.core.Math.GoodMath;
 import sf.cartel.core.PathNode;
 import sf.cartel.gameObjects.StateMachineObject;
 
-public class PathObjectStateMachine extends StateMachine {
+public class TravelStateMachine extends StateMachine {
     protected PathNode currPathNode;
-    protected PathNode endPathNode;
+    protected PathNode nextPathNode;
     protected float travelSpeed = 100;
     protected float scaleMin = 1;
     protected float scaleMax = 1;
 
     private StateMachineObject gameObject;
 
-    public PathObjectStateMachine(StateMachineObject gameObject, PathNode startNode, float scaleMin, float scaleMax) {
+    public TravelStateMachine(StateMachineObject gameObject, PathNode startNode, float scaleMin, float scaleMax) {
         this.gameObject = gameObject;
         this.scaleMin = scaleMin;
         this.scaleMax = scaleMax;
         currPathNode = startNode;
-        endPathNode = currPathNode.getRandomNextNode();
+        nextPathNode = startNode.getRandomNextNode();
         gameObject.setSprite(new Sprite());
         gameObject.getSprite().setPosition(startNode.getPosition().x, startNode.getPosition().y);
-        gameObject.getSprite().setRotation(GoodMath.sub(endPathNode.getPosition(), currPathNode.getPosition()).angleDeg());
+        gameObject.getSprite().setRotation(GoodMath.sub(nextPathNode.getPosition(), currPathNode.getPosition()).angleDeg());
         gameObject.getSprite().setScale(scaleMin);
     }
 
@@ -39,8 +39,8 @@ public class PathObjectStateMachine extends StateMachine {
         return currPathNode;
     }
 
-    public PathNode getEndPathNode() {
-        return endPathNode;
+    public PathNode getNextPathNode() {
+        return nextPathNode;
     }
 
     public float getTravelSpeed() {

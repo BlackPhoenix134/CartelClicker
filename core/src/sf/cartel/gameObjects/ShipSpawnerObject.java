@@ -9,21 +9,22 @@ import sf.cartel.assets.Assets;
 import sf.cartel.core.Extensions.Collections;
 import sf.cartel.core.GlobalsPaths;
 import sf.cartel.core.Math.GoodMath;
-import sf.cartel.core.StateMachines.TravelStateMachine;
-import sf.cartel.core.StateMachines.TravelStartState;
+import sf.cartel.core.StateMachines.ShipTravelState;
 import sf.cartel.core.StateMachines.StateMachineStates;
+import sf.cartel.core.StateMachines.TravelStartState;
+import sf.cartel.core.StateMachines.TravelStateMachine;
 import sf.cartel.core.StateMachines.TravelStopState;
 import sf.cartel.core.StateMachines.TravelTravelState;
 import sf.cartel.core.Visuals.AnimationController;
 import sf.cartel.rendering.RenderPipeline;
 
-public class PlaneSpawnerObject extends GameObject {
+public class ShipSpawnerObject extends GameObject {
     private GameObjectManager gameObjectManager = new GameObjectManager();
     private float spawnTimer = 1;
     private float deltaTimer;
     private Random random = new Random();
 
-    PlaneSpawnerObject(String uuid) {
+    ShipSpawnerObject(String uuid) {
         super(uuid);
     }
 
@@ -33,17 +34,13 @@ public class PlaneSpawnerObject extends GameObject {
     }
 
     private void spawn() {
-        StateMachineObject plane1Object = gameObjectManager.create(StateMachineObject.class);
-        Texture planeTexture = Assets.getAsset(AssetDescriptors.PLANE1_SHEET);
-        TravelStateMachine stateMachine = new TravelStateMachine(plane1Object, Collections.getRandomItem(GlobalsPaths.getPlaneNodesOffset()), 0.01f, 0.035f);
-        stateMachine.addState(StateMachineStates.TravelStart.ordinal(),
-                new TravelStartState(stateMachine, new AnimationController(planeTexture, 2, 2, 0.2f)));
-        stateMachine.addState(StateMachineStates.TravelTravel.ordinal(),
-                new TravelTravelState(stateMachine, new AnimationController(planeTexture, 2, 2, 0.2f)));
-        stateMachine.addState(StateMachineStates.TravelStop.ordinal(),
-                new TravelStopState(stateMachine, new AnimationController(planeTexture, 2, 2, 0.2f)));
-        stateMachine.transition(StateMachineStates.TravelStart.ordinal());
-        plane1Object.init(stateMachine);
+        StateMachineObject shipObject = gameObjectManager.create(StateMachineObject.class);
+        Texture texture = Assets.getAsset(AssetDescriptors.SHIP2_SHEET);
+        TravelStateMachine stateMachine = new TravelStateMachine(shipObject, Collections.getRandomItem(GlobalsPaths.getShipNodes()), 0.01f, 0.035f);
+        stateMachine.addState(StateMachineStates.TravelShip.ordinal(),
+                new ShipTravelState(stateMachine, new AnimationController(texture, 2, 2, 0.2f)));
+        stateMachine.transition(StateMachineStates.TravelShip.ordinal());
+        shipObject.init(stateMachine);
     }
 
     @Override
@@ -59,7 +56,7 @@ public class PlaneSpawnerObject extends GameObject {
     }
 
     private float getNextSpawnTimer() {
-        return GoodMath.randFloat(3, 5);
+        return GoodMath.randFloat(4, 6);
     }
 
     @Override

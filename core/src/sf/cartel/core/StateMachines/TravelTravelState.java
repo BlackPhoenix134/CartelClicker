@@ -11,16 +11,16 @@ import sf.cartel.core.PathNode;
 import sf.cartel.core.Visuals.AnimationController;
 import sf.cartel.rendering.RenderPipeline;
 
-public class TravelTravelState extends State<PathObjectStateMachine> {
+public class TravelTravelState extends State<TravelStateMachine> {
     private AnimationController animationController;
     private float initialDistance;
 
-    public TravelTravelState(PathObjectStateMachine stateMachine, AnimationController animationController) {
+    public TravelTravelState(TravelStateMachine stateMachine, AnimationController animationController) {
         super(stateMachine);
         this.animationController = animationController;
 
         PathNode currNode = stateMachine.getCurrPathNode();
-        PathNode nextNode = stateMachine.getEndPathNode();
+        PathNode nextNode = stateMachine.getNextPathNode();
 
         initialDistance = Vector2.dst(currNode.getPosition().x, currNode.getPosition().y,
                 nextNode.getPosition().x, nextNode.getPosition().y);
@@ -44,11 +44,11 @@ public class TravelTravelState extends State<PathObjectStateMachine> {
         Sprite sprite = stateMachine.getGameObject().getSprite();
 
         Vector2 currentPos = new Vector2(sprite.getX(), sprite.getY());
-        Vector2 newPos = GoodMath.moveTowards(currentPos, stateMachine.endPathNode.getPosition(), delta * stateMachine.travelSpeed);
+        Vector2 newPos = GoodMath.moveTowards(currentPos, stateMachine.nextPathNode.getPosition(), delta * stateMachine.travelSpeed);
         sprite.setPosition(newPos.x, newPos.y);
 
         float distanceToTarget = Vector2.dst(sprite.getX(), sprite.getY(),
-                stateMachine.endPathNode.getPosition().x, stateMachine.endPathNode.getPosition().y);
+                stateMachine.nextPathNode.getPosition().x, stateMachine.nextPathNode.getPosition().y);
         float distancePercent = distanceToTarget / initialDistance;
 
         float newScale;
@@ -59,7 +59,7 @@ public class TravelTravelState extends State<PathObjectStateMachine> {
         else
             newScale = stateMachine.scaleMax;
         sprite.setScale(newScale);
-        if(GoodMath.equals(newPos, stateMachine.endPathNode.getPosition(), 5)) {
+        if(GoodMath.equals(newPos, stateMachine.nextPathNode.getPosition(), 5)) {
             stateMachine.transition(StateMachineStates.TravelStop.ordinal());
         }
     }

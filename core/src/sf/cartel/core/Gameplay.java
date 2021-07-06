@@ -17,6 +17,7 @@ import sf.cartel.gameObjects.ClickerObject;
 import sf.cartel.gameObjects.GameObjectManager;
 import sf.cartel.gameObjects.PathFollowerObject;
 import sf.cartel.gameObjects.PlaneSpawnerObject;
+import sf.cartel.gameObjects.ShipSpawnerObject;
 import sf.cartel.gameObjects.SpriteRenderObject;
 import sf.cartel.gameObjects.WaterObject;
 
@@ -50,11 +51,12 @@ public class Gameplay {
 
         PathFollowerObject pathFollowerObject = gameObjectManager.create(PathFollowerObject.class);
         Texture shipTexture = Assets.getAsset(AssetDescriptors.SHIP1_SHEET);
-        pathFollowerObject.init(shipTexture,  new AnimationController(shipTexture, 3, 2, 0.2f), GlobalsPaths.getShipPath1());
+        pathFollowerObject.init(shipTexture, new AnimationController(shipTexture, 3, 2, 0.2f), GlobalsPaths.getShipPath1());
         pathFollowerObject.getSprite().setScale(0.045f);
         pathFollowerObject.setTravelSpeed(100);
 
         PlaneSpawnerObject planeSpawnerObject = gameObjectManager.create(PlaneSpawnerObject.class);
+        ShipSpawnerObject shipSpawnerObject = gameObjectManager.create(ShipSpawnerObject.class);
 
         ClickerObject obj = createClickerObject(GlobalsMapPolygon.createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> addDrug(DrugType.Weed));
         obj.setUnlocked(playerData.getUnlocks().isMap1Unlocked());

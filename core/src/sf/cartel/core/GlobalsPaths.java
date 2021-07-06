@@ -1,6 +1,7 @@
 package sf.cartel.core;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Path;
 import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
@@ -78,6 +79,78 @@ public abstract class GlobalsPaths {
             }
         }
 
+        return startNodes;
+    }
+
+    public static List<PathNode> getShipNodes() {
+        List<PathNode> startNodes = new ArrayList<PathNode>();
+
+        PathNode node = new PathNode(new Vector2(-132.24178f, 245.75986f));
+        startNodes.add(node);
+        node = node.addNode(new Vector2(-79.55583f, 250.8258f));
+        node = node.addNode(new Vector2(-4.57959f, 211.31131f));
+        node = node.addNode(new Vector2(16.697418f, 147.48022f));
+
+        node = new PathNode(new Vector2(16.697418f, 147.48022f));
+        startNodes.add(node);
+        node = node.addNode(new Vector2(-4.57959f, 211.31131f));
+        node = node.addNode(new Vector2(-79.55583f, 250.8258f));
+        node = node.addNode(new Vector2(-132.24178f, 245.75986f));
+
+        node = new PathNode(new Vector2(58.238266f, 12.725691f));
+        startNodes.add(node);
+        node = node.addNode(new Vector2(145.37279f, -62.25051f));
+        node = node      .addNode(new Vector2(194.006f, -116.9629f));
+        node = node       .addNode(new Vector2(237.57326f, -181.80719f));
+
+        node = new PathNode(new Vector2(237.57326f, -181.80719f));
+        startNodes.add(node);
+        node = node.addNode(new Vector2(194.006f, -116.9629f));
+        node = node.addNode(new Vector2(145.37279f, -62.25051f));
+        node = node.addNode(new Vector2(58.238266f, 12.725691f));
+
+        node = new PathNode(new Vector2(237.57326f, -181.80719f));
+        startNodes.add(node);
+        node = node.addNode(new Vector2(-38.01497f, -156.47739f));
+        node = node.addNode(new Vector2(-87.66136f, -125.06841f));
+        node = node.addNode(new Vector2(-158.5848f, -68.32968f));
+        node = node.addNode(new Vector2(-197.08607f, -14.630497f));
+        node = node.addNode(new Vector2(-202.15202f, 20.831215f));
+
+        node = new PathNode(new Vector2(-202.15202f, 20.831215f));
+        startNodes.add(node);
+        node = node.addNode(new Vector2(-197.08607f, -14.630497f));
+        node = node.addNode(new Vector2(-158.5848f, -68.32968f));
+        node = node.addNode(new Vector2(-87.66136f, -125.06841f));
+        node = node.addNode(new Vector2(-38.01497f, -156.47739f));
+        node = node.addNode(new Vector2(237.57326f, -181.80719f));
+
+
+        node = new PathNode(new Vector2(401.7103f, -279.07358f));
+        startNodes.add(node);
+        node = node.addNode(new Vector2(436.15878f, -250.70422f));
+        node = node.addNode(new Vector2(451.3567f, -145.33224f));
+        node = node.addNode(new Vector2(445.2775f, 5.6333294f));
+        node = node.addNode(new Vector2(398.67078f, 152.54616f));
+        node = node.addNode(new Vector2(372.3277f, 228.53558f));
+
+        node = new PathNode(new Vector2(372.3277f, 228.53558f));
+        startNodes.add(node);
+        node = node.addNode(new Vector2(398.67078f, 152.54616f));
+        node = node.addNode(new Vector2(445.2775f, 5.6333294f));
+        node = node.addNode(new Vector2(451.3567f, -145.33224f));
+        node = node.addNode(new Vector2(436.15878f, -250.70422f));
+        node = node.addNode(new Vector2(401.7103f, -279.07358f));
+
+        node = new PathNode(new Vector2(302.41754f, 245.75986f));
+        startNodes.add(node);
+        node = node.addNode(new Vector2(51.145905f, 230.56198f));
+        node = node.addNode(new Vector2(-123.12309f, 296.4194f));
+
+        node = new PathNode(new Vector2(-123.12309f, 296.4194f));
+        startNodes.add(node);
+        node = node.addNode(new Vector2(51.145905f, 230.56198f));
+        node = node.addNode(new Vector2(302.41754f, 245.75986f));
         return startNodes;
     }
 }

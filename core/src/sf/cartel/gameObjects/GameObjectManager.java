@@ -1,5 +1,7 @@
 package sf.cartel.gameObjects;
 
+import com.badlogic.gdx.Gdx;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +47,8 @@ public class GameObjectManager {
             gameObjects.put(obj.getUuid(), obj);
             return (T) obj;
         } catch (Exception _) {
+            _.printStackTrace();
+            Gdx.app.exit();
             return null;
         }
     }

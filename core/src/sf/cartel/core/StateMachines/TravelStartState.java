@@ -1,21 +1,18 @@
 package sf.cartel.core.StateMachines;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import sf.cartel.core.Extensions.Sprites;
 import sf.cartel.core.Globals;
 import sf.cartel.core.Math.GoodMath;
-import sf.cartel.core.StateMachines.PathObjectStateMachine;
-import sf.cartel.core.StateMachines.State;
 import sf.cartel.core.Visuals.AnimationController;
 import sf.cartel.rendering.RenderPipeline;
 
-public class TravelStartState extends State<PathObjectStateMachine> {
+public class TravelStartState extends State<TravelStateMachine> {
     private AnimationController animationController;
     private float deltaAccumulator;
 
-    public TravelStartState(PathObjectStateMachine stateMachine, AnimationController animationController) {
+    public TravelStartState(TravelStateMachine stateMachine, AnimationController animationController) {
         super(stateMachine);
         this.animationController = animationController;
     }
