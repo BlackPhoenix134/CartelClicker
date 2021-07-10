@@ -1,8 +1,10 @@
 package sf.cartel.core;
 
 import com.badlogic.gdx.assets.AssetDescriptor;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -47,6 +49,7 @@ public class Gameplay {
 
         SpriteRenderObject mapObj = gameObjectManager.create(SpriteRenderObject.class);
         mapObj.setSprite(new Sprite(Assets.getAsset(AssetDescriptors.MAP)));
+        mapObj.getSprite().setScale(1/3f);
         mapObj.setDrawLayer(DRAW_ORDER_WORLD);
 
         PathFollowerObject pathFollowerObject = gameObjectManager.create(PathFollowerObject.class);
@@ -57,21 +60,37 @@ public class Gameplay {
 
         PlaneSpawnerObject planeSpawnerObject = gameObjectManager.create(PlaneSpawnerObject.class);
         ShipSpawnerObject shipSpawnerObject = gameObjectManager.create(ShipSpawnerObject.class);
+        shipSpawnerObject.init(objectClickHandler);
 
         ClickerObject obj = createClickerObject(GlobalsMapPolygon.createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> addDrug(DrugType.Weed));
         obj.setUnlocked(playerData.getUnlocks().isMap1Unlocked());
+        obj.getSprite().setScale(1/3f);
+        Vector2 center = GlobalsMapPolygon.createJamaycaPolygon().getCenter();
+        obj.getSprite().setPosition(center.x, center.y);
 
         obj = createClickerObject(GlobalsMapPolygon.createQuakamolePolygon(), AssetDescriptors.MAP_PART2, (clickerObj) -> addDrug(DrugType.Pills));
         obj.setUnlocked(playerData.getUnlocks().isMap2Unlocked());
+        obj.getSprite().setScale(1/3f);
+        center = GlobalsMapPolygon.createQuakamolePolygon().getCenter();
+        obj.getSprite().setPosition(center.x, center.y);
 
         obj = createClickerObject(GlobalsMapPolygon.createBelizePolygon(), AssetDescriptors.MAP_PART3, (clickerObj) -> { });
         obj.setUnlocked(playerData.getUnlocks().isMap3Unlocked());
+        obj.getSprite().setScale(1/3f);
+        center = GlobalsMapPolygon.createBelizePolygon().getCenter();
+        obj.getSprite().setPosition(center.x, center.y);
 
         obj = createClickerObject(GlobalsMapPolygon.createElSalvadorPolygon(), AssetDescriptors.MAP_PART4, (clickerObj) -> { });
         obj.setUnlocked(playerData.getUnlocks().isMap4Unlocked());
+        obj.getSprite().setScale(1/3f);
+        center = GlobalsMapPolygon.createElSalvadorPolygon().getCenter();
+        obj.getSprite().setPosition(center.x, center.y);
 
         obj = createClickerObject(GlobalsMapPolygon.createHondurasPolygon(), AssetDescriptors.MAP_PART5, (clickerObj) -> addDrug(DrugType.Heroin));
         obj.setUnlocked(playerData.getUnlocks().isMap5Unlocked());
+        obj.getSprite().setScale(1/3f);
+        center = GlobalsMapPolygon.createHondurasPolygon().getCenter();
+        obj.getSprite().setPosition(center.x, center.y);
 
        // createClickerObject(-266.06906f,119.20669f);
       //  createClickerObject(-104.98304f,97.85793f);
@@ -85,7 +104,7 @@ public class Gameplay {
     public void addDistributionDrugs() {
         for(DrugType drugType : playerData.getDrugs().keySet()) {
             Upgrade upgrade = playerData.getUpgrades().getDistributionUpgrade(drugType);
-            playerData.addDrug(drugType, upgrade.getProductionAmount());
+            playerData.addDrug(drugType, upgrade.getProductionAmount() * 1000);
         }
     }
 
@@ -111,6 +130,7 @@ public class Gameplay {
         obj.setOnClicked(onClicked);
         obj.setArea2D(polygon);
         obj.setSprite(new Sprite(Assets.getAsset(assetDescriptor)));
+        obj.getSprite().setColor(new Color(0,0,0,0));
         objectClickHandler.addTouchDownClickable(obj, 10, false);
         return obj;
     }
