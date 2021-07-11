@@ -1,0 +1,370 @@
+[
+{
+	"class": "sf.cartel.core.PathNode",
+	"nextNodes": [
+		{
+			"nextNodes": [
+				{
+					"nextNodes": [
+						{
+							"nextNodes": [],
+							"position": {
+								"x": 16.697418,
+								"y": 147.48022
+							}
+						}
+					],
+					"position": {
+						"x": -4.57959,
+						"y": 211.31131
+					}
+				}
+			],
+			"position": {
+				"x": -79.55583,
+				"y": 250.8258
+			}
+		}
+	],
+	"position": {
+		"x": -132.24178,
+		"y": 245.75986
+	}
+},
+{
+	"class": "sf.cartel.core.PathNode",
+	"nextNodes": [
+		{
+			"nextNodes": [
+				{
+					"nextNodes": [
+						{
+							"nextNodes": [],
+							"position": {
+								"x": -132.24178,
+								"y": 245.75986
+							}
+						}
+					],
+					"position": {
+						"x": -79.55583,
+						"y": 250.8258
+					}
+				}
+			],
+			"position": {
+				"x": -4.57959,
+				"y": 211.31131
+			}
+		}
+	],
+	"position": {
+		"x": 16.697418,
+		"y": 147.48022
+	}
+},
+{
+	"class": "sf.cartel.core.PathNode",
+	"nextNodes": [
+		{
+			"nextNodes": [
+				{
+					"nextNodes": [
+						{
+							"nextNodes": [],
+							"position": {
+								"x": 237.57326,
+								"y": -181.80719
+							}
+						}
+					],
+					"position": {
+						"x": 194.006,
+						"y": -116.9629
+					}
+				}
+			],
+			"position": {
+				"x": 145.37279,
+				"y": -62.25051
+			}
+		}
+	],
+	"position": {
+		"x": 58.238266,
+		"y": 12.725691
+	}
+},
+{
+	"class": "sf.cartel.core.PathNode",
+	"nextNodes": [
+		{
+			"nextNodes": [
+				{
+					"nextNodes": [
+						{
+							"nextNodes": [],
+							"position": {
+								"x": 58.238266,
+								"y": 12.725691
+							}
+						}
+					],
+					"position": {
+						"x": 145.37279,
+						"y": -62.25051
+					}
+				}
+			],
+			"position": {
+				"x": 194.006,
+				"y": -116.9629
+			}
+		}
+	],
+	"position": {
+		"x": 237.57326,
+		"y": -181.80719
+	}
+},
+{
+	"class": "sf.cartel.core.PathNode",
+	"nextNodes": [
+		{
+			"nextNodes": [
+				{
+					"nextNodes": [
+						{
+							"nextNodes": [
+								{
+									"nextNodes": [
+										{
+											"nextNodes": [],
+											"position": {
+												"x": -202.15202,
+												"y": 20.831215
+											}
+										}
+									],
+									"position": {
+										"x": -197.08607,
+										"y": -14.630497
+									}
+								}
+							],
+							"position": {
+								"x": -158.5848,
+								"y": -68.32968
+							}
+						}
+					],
+					"position": {
+						"x": -87.66136,
+						"y": -125.06841
+					}
+				}
+			],
+			"position": {
+				"x": -38.01497,
+				"y": -156.47739
+			}
+		}
+	],
+	"position": {
+		"x": 237.57326,
+		"y": -181.80719
+	}
+},
+{
+	"class": "sf.cartel.core.PathNode",
+	"nextNodes": [
+		{
+			"nextNodes": [
+				{
+					"nextNodes": [
+						{
+							"nextNodes": [
+								{
+									"nextNodes": [
+										{
+											"nextNodes": [],
+											"position": {
+												"x": 237.57326,
+												"y": -181.80719
+											}
+										}
+									],
+									"position": {
+										"x": -38.01497,
+										"y": -156.47739
+									}
+								}
+							],
+							"position": {
+								"x": -87.66136,
+								"y": -125.06841
+							}
+						}
+					],
+					"position": {
+						"x": -158.5848,
+						"y": -68.32968
+					}
+				}
+			],
+			"position": {
+				"x": -197.08607,
+				"y": -14.630497
+			}
+		}
+	],
+	"position": {
+		"x": -202.15202,
+		"y": 20.831215
+	}
+},
+{
+	"class": "sf.cartel.core.PathNode",
+	"nextNodes": [
+		{
+			"nextNodes": [
+				{
+					"nextNodes": [
+						{
+							"nextNodes": [
+								{
+									"nextNodes": [
+										{
+											"nextNodes": [],
+											"position": {
+												"x": 372.3277,
+												"y": 228.53558
+											}
+										}
+									],
+									"position": {
+										"x": 398.67078,
+										"y": 152.54616
+									}
+								}
+							],
+							"position": {
+								"x": 445.2775,
+								"y": 5.6333294
+							}
+						}
+					],
+					"position": {
+						"x": 451.3567,
+						"y": -145.33224
+					}
+				}
+			],
+			"position": {
+				"x": 436.15878,
+				"y": -250.70422
+			}
+		}
+	],
+	"position": {
+		"x": 401.7103,
+		"y": -279.07358
+	}
+},
+{
+	"class": "sf.cartel.core.PathNode",
+	"nextNodes": [
+		{
+			"nextNodes": [
+				{
+					"nextNodes": [
+						{
+							"nextNodes": [
+								{
+									"nextNodes": [
+										{
+											"nextNodes": [],
+											"position": {
+												"x": 401.7103,
+												"y": -279.07358
+											}
+										}
+									],
+									"position": {
+										"x": 436.15878,
+										"y": -250.70422
+									}
+								}
+							],
+							"position": {
+								"x": 451.3567,
+								"y": -145.33224
+							}
+						}
+					],
+					"position": {
+						"x": 445.2775,
+						"y": 5.6333294
+					}
+				}
+			],
+			"position": {
+				"x": 398.67078,
+				"y": 152.54616
+			}
+		}
+	],
+	"position": {
+		"x": 372.3277,
+		"y": 228.53558
+	}
+},
+{
+	"class": "sf.cartel.core.PathNode",
+	"nextNodes": [
+		{
+			"nextNodes": [
+				{
+					"nextNodes": [],
+					"position": {
+						"x": -123.12309,
+						"y": 296.4194
+					}
+				}
+			],
+			"position": {
+				"x": 51.145905,
+				"y": 230.56198
+			}
+		}
+	],
+	"position": {
+		"x": 302.41754,
+		"y": 245.75986
+	}
+},
+{
+	"class": "sf.cartel.core.PathNode",
+	"nextNodes": [
+		{
+			"nextNodes": [
+				{
+					"nextNodes": [],
+					"position": {
+						"x": 302.41754,
+						"y": 245.75986
+					}
+				}
+			],
+			"position": {
+				"x": 51.145905,
+				"y": 230.56198
+			}
+		}
+	],
+	"position": {
+		"x": -123.12309,
+		"y": 296.4194
+	}
+}
+]
