@@ -30,6 +30,10 @@ public class StateMachineObject extends GameObject {
         return sprite;
     }
 
+    public StateMachine getStateMachine() {
+        return stateMachine;
+    }
+
     public void setSprite(Sprite sprite) {
          this.sprite = sprite;
     }

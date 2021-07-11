@@ -20,6 +20,8 @@ import sf.cartel.gameObjects.GameObjectManager;
 import sf.cartel.gameObjects.PathFollowerObject;
 import sf.cartel.gameObjects.PlaneSpawnerObject;
 import sf.cartel.gameObjects.ShipSpawnerObject;
+import sf.cartel.gameObjects.SkyscraperObject;
+import sf.cartel.gameObjects.SkyscraperSpawnerObject;
 import sf.cartel.gameObjects.SpriteRenderObject;
 import sf.cartel.gameObjects.WaterObject;
 
@@ -58,7 +60,9 @@ public class Gameplay {
         pathFollowerObject.getSprite().setScale(0.015f);
         pathFollowerObject.setTravelSpeed(40);
 
+        SkyscraperSpawnerObject skyscraperSpawnerObject = gameObjectManager.create(SkyscraperSpawnerObject.class);
         PlaneSpawnerObject planeSpawnerObject = gameObjectManager.create(PlaneSpawnerObject.class);
+        planeSpawnerObject.init(skyscraperSpawnerObject);
         ShipSpawnerObject shipSpawnerObject = gameObjectManager.create(ShipSpawnerObject.class);
         shipSpawnerObject.init(objectClickHandler);
 

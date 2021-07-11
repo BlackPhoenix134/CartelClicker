@@ -2,6 +2,7 @@ package sf.cartel.core.Extensions;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 
 public abstract class Sprites {
     public static float getScaledWidth(Sprite sprite) {
@@ -17,5 +18,9 @@ public abstract class Sprites {
         sprite.setSize(texture.getWidth(), texture.getHeight());
         sprite.setOrigin(texture.getWidth() / 2f, texture.getHeight() / 2f);
         return sprite;
+    }
+
+    public static Vector2 position(Sprite sprite) {
+        return new Vector2(sprite.getX(), sprite.getY());
     }
 }

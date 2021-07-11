@@ -14,6 +14,7 @@ import sf.cartel.rendering.RenderPipeline;
 public class GameObjectManager {
     private Map<String, GameObject> gameObjects = new HashMap<>();
     private List<GameObject> deadObjects = new ArrayList<>();
+    private List<GameObject> objectsToSpawn = new ArrayList<>();
 
     public void update(float delta) {
         for(GameObject obj : gameObjects.values()) {
@@ -32,6 +33,10 @@ public class GameObjectManager {
             obj.onObjectDestroyed();
         }
         deadObjects.clear();
+        for(GameObject obj : objectsToSpawn) {
+            gameObjects.put(obj.getUuid(), obj);
+        }
+        objectsToSpawn.clear();
     }
 
     public void draw(float delta, RenderPipeline pipeline) {
@@ -44,7 +49,8 @@ public class GameObjectManager {
         //ToDo: proper exception handling
         try {
             GameObject obj = clazz.getDeclaredConstructor(String.class).newInstance(uniqueID);
-            gameObjects.put(obj.getUuid(), obj);
+            //gameObjects.put(obj.getUuid(), obj);
+            objectsToSpawn.add(obj);
             return (T) obj;
         } catch (Exception _) {
             _.printStackTrace();

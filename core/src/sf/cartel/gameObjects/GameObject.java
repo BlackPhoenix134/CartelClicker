@@ -1,6 +1,7 @@
 package sf.cartel.gameObjects;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 
 import sf.cartel.rendering.RenderPipeline;
 
@@ -30,4 +31,5 @@ public abstract class GameObject {
 
     protected void onObjectDestroyed() {
     }
+
 }

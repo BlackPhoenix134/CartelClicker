@@ -20,8 +20,6 @@ public abstract class Globals {
 
     public static final Sound SOUND_BUTTON_PRESS = Assets.getAsset(AssetDescriptors.SOUND_BUTTON);
 
-
-
     public static final Random RANDOM = new Random();
 
     public static PlayerData getPlayerData() {

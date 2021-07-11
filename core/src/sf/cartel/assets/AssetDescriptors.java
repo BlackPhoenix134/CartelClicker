@@ -29,9 +29,18 @@ public final class AssetDescriptors {
     public static final AssetDescriptor<Texture> MAP_PART5 = new AssetDescriptor<>(ENVIRONMENT + "/map_part5.png", Texture.class);
 
     public static final AssetDescriptor<Texture> SHIP1_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/ship1Sheet.png", Texture.class);
+
+
     public static final AssetDescriptor<Texture> SHIP2_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/ship2Sheet.png", Texture.class);
     public static final AssetDescriptor<Texture> SHIP2_DESTROYED_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/ship2DestroyedSheet.png", Texture.class);
     public static final AssetDescriptor<Texture> PLANE1_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/plane1Sheet.png", Texture.class);
+    public static final AssetDescriptor<Texture> PLANE1_DESTROYED_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/plane1DestroyedSheet.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> BUILDING1_BUILD_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/building1BuildSheet.png", Texture.class);
+    public static final AssetDescriptor<Texture> BUILDING1_DESTROYED_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/building1DestroyedSheet.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> EXPLOSION1_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/explosion1Sheet.png", Texture.class);
+
 
     public static final AssetDescriptor<Texture> TOP_BAR = new AssetDescriptor<>(UI + "/TopBar.png", Texture.class);
     public static final AssetDescriptor<Texture> POP_UP = new AssetDescriptor<>(UI + "/InfoBox.png", Texture.class);

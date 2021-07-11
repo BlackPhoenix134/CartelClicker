@@ -1,12 +1,15 @@
 package sf.cartel.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
 
+import sf.cartel.assets.AssetDescriptors;
+import sf.cartel.assets.Assets;
 import sf.cartel.assets.ShaderManager;
 import sf.cartel.core.CameraData;
 import sf.cartel.core.Gameplay;
@@ -14,6 +17,7 @@ import sf.cartel.core.Globals;
 import sf.cartel.core.PlayerData;
 import sf.cartel.core.SaveGame;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
+import sf.cartel.gameObjects.AnimatedSpriteDrawableObject;
 import sf.cartel.gameObjects.GameObjectManager;
 import sf.cartel.gameObjects.IngameUi;
 import sf.cartel.input.InputEventType;
@@ -46,6 +50,7 @@ public class GameScreen extends AbstractScreen {
 
         this.gameplay = new Gameplay(gameObjectManager, objectClickHandler, Globals.getPlayerData(), shaderManager);
         this.ingameUi = new IngameUi(Globals.getPlayerData(), objectClickHandler, gameplay, screenManager);
+
     }
 
     @Override
@@ -99,7 +104,7 @@ public class GameScreen extends AbstractScreen {
         gameplay.initialize();
 
 
-        this.inputHandler.addListener(InputEventType.TOUCH_DOWN, 100, inputEvent -> {
+        this.inputHandler.addListener(InputEventType.TOUCH_DOWN, 1, inputEvent -> {
             Vector3 worldPos = cameraData.getOrthographicCamera().unproject(new Vector3(inputEvent.getX1(), inputEvent.getX2(), 0f));
             Gdx.app.log("nega", "new Vector2("+worldPos.x+"f, "+worldPos.y+"f), ");
         });
