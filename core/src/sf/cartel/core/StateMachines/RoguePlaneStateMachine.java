@@ -53,7 +53,7 @@ public class RoguePlaneStateMachine extends StateMachine {
             int mult = 1;
             if(Globals.RANDOM.nextBoolean())
                 mult = -1;
-            explosion.getSprite().setRotation(Globals.getRandomFloat(0, 9) * mult);
+            explosion.getSprite().setRotation(Globals.getRandomFloat(0, 5) * mult);
 
             mult = 1;
             if(Globals.RANDOM.nextBoolean())
