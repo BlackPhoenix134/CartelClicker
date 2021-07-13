@@ -81,7 +81,7 @@ public class UnlockDialog extends GameObject {
         dialogBackground.setDrawOrder(dialogDrawOrder);
         dialogBackground.setUiObject(false);
         Sprite sprite = new Sprite(Assets.getAsset(AssetDescriptors.UI_INFO_BOX));
-        sprite.setScale(0.85f);
+        sprite.setScale(0.3f);
         float height = Sprites.scaledHeight(sprite);
         sprite.setPosition(mapPosition.x, mapPosition.y + height/3);
         dialogBackground.setSprite(sprite);
@@ -111,7 +111,7 @@ public class UnlockDialog extends GameObject {
         ClickableSpriteDrawableObject buttonObj = gameObjectManager.create(ClickableSpriteDrawableObject.class);
         buttonObj.setDrawOrder(dialogDrawOrder + 1);
         buttonObj.setUiObject(false);
-        Sprite btnTexture = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_BACK));
+        Sprite btnTexture = new Sprite(Assets.getAsset(AssetDescriptors.BUTTON_UNLOCK));
         btnTexture.setScale(0.6f);
         buttonObj.setSprite(btnTexture);
         Sprite bgSprite = backgroundDrawable.getSprite();

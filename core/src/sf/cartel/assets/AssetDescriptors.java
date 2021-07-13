@@ -53,6 +53,7 @@ public final class AssetDescriptors {
     public static final AssetDescriptor<Texture> BUTTON_BUY_1x = new AssetDescriptor<>(UI + "/ButtonBuy1x.png", Texture.class);
     public static final AssetDescriptor<Texture> BUTTON_BUY_10x = new AssetDescriptor<>(UI + "/ButtonBuy10x.png", Texture.class);
     public static final AssetDescriptor<Texture> BUTTON_BUY_MAX = new AssetDescriptor<>(UI + "/ButtonBuyMax.png", Texture.class);
+    public static final AssetDescriptor<Texture> BUTTON_UNLOCK = new AssetDescriptor<>(UI + "/ButtonUnlock.png", Texture.class);
 
 
 
