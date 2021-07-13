@@ -92,7 +92,8 @@ public class Gameplay {
         obj = createClickerObject(GlobalsMapPolygon.createElSalvadorPolygon(),  playerData, DrugType.Oxy, AssetDescriptors.MAP_PART4,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Oxy));
         sprite = obj.getSprite();
         sprite.setScale(1/3f);
-        sprite.setPosition(mapPos.x-mapWidth*(0.5f-0.251f), mapPos.y+mapHeight*(0.5f-0.244f));
+        //sprite.setPosition(mapPos.x-mapWidth*(0.5f-0.251f), mapPos.y+mapHeight*(0.5f-0.244f));
+        sprite.setPosition(mapPos.x-mapWidth*(0.5f-0.251f), mapPos.y+mapHeight*(0.5f-0.424f));
 
         obj = createClickerObject(GlobalsMapPolygon.createHondurasPolygon(),playerData, DrugType.Heroin,  AssetDescriptors.MAP_PART5,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Heroin));
         sprite = obj.getSprite();
