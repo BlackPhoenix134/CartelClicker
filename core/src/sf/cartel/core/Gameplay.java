@@ -128,7 +128,7 @@ public class Gameplay {
     public void addDistributionDrugs() {
         for(DrugType drugType : playerData.getDrugs().keySet()) {
             Upgrade upgrade = playerData.getUpgrades().getDistributionUpgrade(drugType);
-            playerData.addDrug(drugType, upgrade.getProductionAmount() * 1000);
+            playerData.addDrug(drugType, upgrade.getProductionAmount());
         }
     }
 
