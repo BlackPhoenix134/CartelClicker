@@ -3,6 +3,8 @@ package sf.cartel.gameObjects;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
+import sf.cartel.core.DrugType;
+import sf.cartel.core.PlayerData;
 import sf.cartel.rendering.RenderPipeline;
 
 

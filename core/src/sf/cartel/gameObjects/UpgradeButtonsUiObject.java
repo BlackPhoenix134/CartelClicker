@@ -1,7 +1,6 @@
 package sf.cartel.gameObjects;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
@@ -67,39 +66,39 @@ public class UpgradeButtonsUiObject extends GameObject {
 
         button1 = createUpgradeButton(textureX1);
         Sprite sprite = button1.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.5f);
+        sprite.setPosition(Sprites.scaledWidth(backgroundSprite) * 0.32f, Sprites.scaledHeight(backgroundSprite)  * 0.5f);
 
         button1x10 = createUpgradeButton(textureX10);
         sprite = button1x10.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.3f);
+        sprite.setPosition(Sprites.scaledWidth(backgroundSprite) * 0.32f, Sprites.scaledHeight(backgroundSprite)  * 0.3f);
 
         button1xMAX = createUpgradeButton(textureMAX);
         sprite = button1xMAX.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.32f, Sprites.getScaledHeight(backgroundSprite)  * 0.1f);
+        sprite.setPosition(Sprites.scaledWidth(backgroundSprite) * 0.32f, Sprites.scaledHeight(backgroundSprite)  * 0.1f);
 
         button2 = createUpgradeButton(textureX1);
         sprite = button2.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.60f, Sprites.getScaledHeight(backgroundSprite)  * 0.5f);
+        sprite.setPosition(Sprites.scaledWidth(backgroundSprite) * 0.60f, Sprites.scaledHeight(backgroundSprite)  * 0.5f);
 
         button2x10 = createUpgradeButton(textureX10);
         sprite = button2x10.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.60f, Sprites.getScaledHeight(backgroundSprite)  * 0.3f);
+        sprite.setPosition(Sprites.scaledWidth(backgroundSprite) * 0.60f, Sprites.scaledHeight(backgroundSprite)  * 0.3f);
 
         button2xMAX = createUpgradeButton(textureMAX);
         sprite = button2xMAX.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.60f, Sprites.getScaledHeight(backgroundSprite)  * 0.1f);
+        sprite.setPosition(Sprites.scaledWidth(backgroundSprite) * 0.60f, Sprites.scaledHeight(backgroundSprite)  * 0.1f);
 
         button3 = createUpgradeButton(textureX1);
         sprite = button3.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.85f, Sprites.getScaledHeight(backgroundSprite)  * 0.5f);
+        sprite.setPosition(Sprites.scaledWidth(backgroundSprite) * 0.85f, Sprites.scaledHeight(backgroundSprite)  * 0.5f);
 
         button3x10 = createUpgradeButton(textureX10);
         sprite = button3x10.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.85f, Sprites.getScaledHeight(backgroundSprite)  * 0.3f);
+        sprite.setPosition(Sprites.scaledWidth(backgroundSprite) * 0.85f, Sprites.scaledHeight(backgroundSprite)  * 0.3f);
 
         button3xMAX = createUpgradeButton(textureMAX);
         sprite = button3xMAX.getSprite();
-        sprite.setPosition(Sprites.getScaledWidth(backgroundSprite) * 0.85f, Sprites.getScaledHeight(backgroundSprite)  * 0.1f);
+        sprite.setPosition(Sprites.scaledWidth(backgroundSprite) * 0.85f, Sprites.scaledHeight(backgroundSprite)  * 0.1f);
 
         createUpgradeClicks();
     }

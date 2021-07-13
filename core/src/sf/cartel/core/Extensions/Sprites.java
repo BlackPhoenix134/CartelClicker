@@ -5,11 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class Sprites {
-    public static float getScaledWidth(Sprite sprite) {
+    public static float scaledWidth(Sprite sprite) {
         return sprite.getWidth() * sprite.getScaleX();
     }
 
-    public static float getScaledHeight(Sprite sprite) {
+    public static float scaledHeight(Sprite sprite) {
         return sprite.getHeight() * sprite.getScaleY();
     }
 

@@ -43,7 +43,7 @@ public final class AssetDescriptors {
 
 
     public static final AssetDescriptor<Texture> TOP_BAR = new AssetDescriptor<>(UI + "/TopBar.png", Texture.class);
-    public static final AssetDescriptor<Texture> POP_UP = new AssetDescriptor<>(UI + "/InfoBox.png", Texture.class);
+    public static final AssetDescriptor<Texture> UI_INFO_BOX = new AssetDescriptor<>(UI + "/InfoBox.png", Texture.class);
     public static final AssetDescriptor<Texture> BUTTON_MENU = new AssetDescriptor<>(UI + "/ButtonMenu.png", Texture.class);
     public static final AssetDescriptor<Texture> BUTTON_UPGRADE = new AssetDescriptor<>(UI + "/ButtonUpgrade.png", Texture.class);
     public static final AssetDescriptor<Texture> BUTTON_SELL_ALL = new AssetDescriptor<>(UI + "/ButtonSellAll.png", Texture.class);

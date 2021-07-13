@@ -23,6 +23,7 @@ import sf.cartel.gameObjects.ShipSpawnerObject;
 import sf.cartel.gameObjects.SkyscraperObject;
 import sf.cartel.gameObjects.SkyscraperSpawnerObject;
 import sf.cartel.gameObjects.SpriteRenderObject;
+import sf.cartel.gameObjects.UnlockDialog;
 import sf.cartel.gameObjects.WaterObject;
 
 public class Gameplay {
@@ -66,43 +67,54 @@ public class Gameplay {
         ShipSpawnerObject shipSpawnerObject = gameObjectManager.create(ShipSpawnerObject.class);
         shipSpawnerObject.init(objectClickHandler);
 
-        ClickerObject obj = createClickerObject(GlobalsMapPolygon.createJamaycaPolygon(), AssetDescriptors.MAP_PART1, (clickerObj) -> addDrug(DrugType.Weed));
-        obj.setUnlocked(playerData.getUnlocks().isMap1Unlocked());
+        ClickerObject obj = createClickerObject(GlobalsMapPolygon.createJamaycaPolygon(), playerData, DrugType.Weed, AssetDescriptors.MAP_PART1, (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Weed));
         obj.getSprite().setScale(1/3f);
         Vector2 center = GlobalsMapPolygon.createJamaycaPolygon().getCenter();
         obj.getSprite().setPosition(center.x, center.y);
 
-        obj = createClickerObject(GlobalsMapPolygon.createQuakamolePolygon(), AssetDescriptors.MAP_PART2, (clickerObj) -> addDrug(DrugType.Pills));
-        obj.setUnlocked(playerData.getUnlocks().isMap2Unlocked());
+        obj = createClickerObject(GlobalsMapPolygon.createQuakamolePolygon(), playerData,  DrugType.Pills, AssetDescriptors.MAP_PART2,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Pills));
         obj.getSprite().setScale(1/3f);
         center = GlobalsMapPolygon.createQuakamolePolygon().getCenter();
         obj.getSprite().setPosition(center.x, center.y);
 
-        obj = createClickerObject(GlobalsMapPolygon.createBelizePolygon(), AssetDescriptors.MAP_PART3, (clickerObj) -> { });
-        obj.setUnlocked(playerData.getUnlocks().isMap3Unlocked());
+        obj = createClickerObject(GlobalsMapPolygon.createBelizePolygon(), playerData,   DrugType.Coke,AssetDescriptors.MAP_PART3,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Coke));
         obj.getSprite().setScale(1/3f);
         center = GlobalsMapPolygon.createBelizePolygon().getCenter();
         obj.getSprite().setPosition(center.x, center.y);
 
-        obj = createClickerObject(GlobalsMapPolygon.createElSalvadorPolygon(), AssetDescriptors.MAP_PART4, (clickerObj) -> { });
-        obj.setUnlocked(playerData.getUnlocks().isMap4Unlocked());
+        obj = createClickerObject(GlobalsMapPolygon.createElSalvadorPolygon(),  playerData, DrugType.Oxy, AssetDescriptors.MAP_PART4,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Oxy));
         obj.getSprite().setScale(1/3f);
         center = GlobalsMapPolygon.createElSalvadorPolygon().getCenter();
         obj.getSprite().setPosition(center.x, center.y);
 
-        obj = createClickerObject(GlobalsMapPolygon.createHondurasPolygon(), AssetDescriptors.MAP_PART5, (clickerObj) -> addDrug(DrugType.Heroin));
-        obj.setUnlocked(playerData.getUnlocks().isMap5Unlocked());
+        obj = createClickerObject(GlobalsMapPolygon.createHondurasPolygon(),playerData, DrugType.Heroin,  AssetDescriptors.MAP_PART5,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Heroin));
         obj.getSprite().setScale(1/3f);
         center = GlobalsMapPolygon.createHondurasPolygon().getCenter();
         obj.getSprite().setPosition(center.x, center.y);
+    }
 
-       // createClickerObject(-266.06906f,119.20669f);
-      //  createClickerObject(-104.98304f,97.85793f);
-      //  createClickerObject(-211.07986f,42.86872f);
-      //  createClickerObject(-11.824852f,7.287426f);
-      //  createClickerObject(31.519592f,-150.56396f);
-      //  createClickerObject(172.55075f,-239.84058f);
-      //  createClickerObject(354.33862f,253.76854f);
+    private void onMapPartClicked(ClickerObject clickerObj, DrugType drugType) {
+        if(playerData.getUnlocks().isUnlocked(drugType))
+            addDrug(drugType);
+        else {
+            UnlockDialog unlockDialog = gameObjectManager.create(UnlockDialog.class);
+            unlockDialog.init(objectClickHandler, playerData, this, drugType, clickerObj.getPosition());
+        }
+    }
+
+    public boolean isUnlocked(DrugType drugType) {
+        return playerData.getUnlocks().isUnlocked(drugType);
+    }
+
+    public boolean canAffordUnlock(DrugType drugType) {
+        return playerData.money.longValue() > playerData.getUnlocks().getUnlockPrice(drugType).longValue();
+    }
+
+    public void unlock(DrugType drugType) {
+        if(!isUnlocked(drugType) && canAffordUnlock(drugType)) {
+            playerData.removeMoney(playerData.getUnlocks().getUnlockPrice(drugType));
+            playerData.getUnlocks().setUnlocked(drugType, true);
+        }
     }
 
     public void addDistributionDrugs() {
@@ -118,7 +130,6 @@ public class Gameplay {
 
     public void sellAllDrugs() {
         playerData.getDrugs().forEach((drugType, amount) -> {
-
             // Todo clean up and make all values in top bar decimals
             BigDecimal saleMultiplier = playerData.getUpgrades().getSellUpgrade(drugType).getSaleMultiplier();
             BigDecimal basePrice = new BigDecimal(playerData.getUpgrades().getSellUpgrade(drugType).getBasePrice());
@@ -129,13 +140,15 @@ public class Gameplay {
         });
     }
 
-    private ClickerObject createClickerObject(Polygon polygon, AssetDescriptor<Texture> assetDescriptor, Consumer<ClickerObject> onClicked) {
+    private ClickerObject createClickerObject(Polygon polygon, PlayerData playerData, DrugType drugType, AssetDescriptor<Texture> assetDescriptor, Consumer<ClickerObject> onClicked) {
         ClickerObject obj = gameObjectManager.create(ClickerObject.class);
+        obj.init(playerData, drugType);
+
         obj.setOnClicked(onClicked);
         obj.setArea2D(polygon);
         obj.setSprite(new Sprite(Assets.getAsset(assetDescriptor)));
         obj.getSprite().setColor(new Color(0,0,0,0));
-        objectClickHandler.addTouchDownClickable(obj, 10, false);
+        objectClickHandler.addTouchUpClickable(obj, 10, false);
         return obj;
     }
 

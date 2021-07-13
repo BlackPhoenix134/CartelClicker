@@ -1,15 +1,10 @@
 package sf.cartel.gameObjects;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.soap.Text;
 
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
@@ -55,7 +50,7 @@ public class DrugSelectorUiObject extends GameObject {
         Sprite bgSprite = new Sprite(Assets.getAsset(AssetDescriptors.UI_UPGRADE_SELECTOR_BACKGROUND));
         bgSprite.setScale(dialogBackground.getWidth() / bgSprite.getWidth() * 0.19f, dialogBackground.getHeight() / bgSprite.getHeight() * .8f);
         bgObject.setSprite(bgSprite);
-        bgSprite.setPosition(Sprites.getScaledWidth(dialogBackground) * 0.11f, Sprites.getScaledHeight(dialogBackground) * 0.45f);
+        bgSprite.setPosition(Sprites.scaledWidth(dialogBackground) * 0.11f, Sprites.scaledHeight(dialogBackground) * 0.45f);
         return bgSprite;
     }
 
@@ -68,25 +63,25 @@ public class DrugSelectorUiObject extends GameObject {
         Sprite sprite = obj.getSprite();
         sprite.setScale(GoodMath.ratio(sprite.getWidth(), boxSpacingRatio));
         sprite.setPosition(
-                backgroundSprite.getX() - offset - Sprites.getScaledWidth(sprite) / 2,
-                backgroundSprite.getY() + Sprites.getScaledHeight(backgroundSprite) / 2
-                        - offsetHeight - Sprites.getScaledHeight(sprite) / 2);
+                backgroundSprite.getX() - offset - Sprites.scaledWidth(sprite) / 2,
+                backgroundSprite.getY() + Sprites.scaledHeight(backgroundSprite) / 2
+                        - offsetHeight - Sprites.scaledHeight(sprite) / 2);
         obj.setOnClicked(clickedObj -> onDrugSelected.call(DrugType.Weed));
 
         obj = createSelectorObject(Assets.getAsset(AssetDescriptors.ICON_PILLS));
         sprite = obj.getSprite();
         sprite.setScale(GoodMath.ratio(sprite.getWidth(), boxSpacingRatio));
         sprite.setPosition(
-                backgroundSprite.getX() + offset + Sprites.getScaledWidth(sprite) / 2,
-                backgroundSprite.getY() + Sprites.getScaledHeight(backgroundSprite) / 2
-                        - offsetHeight - Sprites.getScaledHeight(sprite) / 2);
+                backgroundSprite.getX() + offset + Sprites.scaledWidth(sprite) / 2,
+                backgroundSprite.getY() + Sprites.scaledHeight(backgroundSprite) / 2
+                        - offsetHeight - Sprites.scaledHeight(sprite) / 2);
         obj.setOnClicked(clickedObj -> onDrugSelected.call(DrugType.Pills));
 
         obj = createSelectorObject(Assets.getAsset(AssetDescriptors.ICON_COKE));
         sprite = obj.getSprite();
         sprite.setScale(GoodMath.ratio(sprite.getWidth(), boxSpacingRatio));
         sprite.setPosition(
-                backgroundSprite.getX() - offset - Sprites.getScaledWidth(sprite) / 2,
+                backgroundSprite.getX() - offset - Sprites.scaledWidth(sprite) / 2,
                 backgroundSprite.getY());
         obj.setOnClicked(clickedObj -> onDrugSelected.call(DrugType.Coke));
 
@@ -94,7 +89,7 @@ public class DrugSelectorUiObject extends GameObject {
         sprite = obj.getSprite();
         sprite.setScale(GoodMath.ratio(sprite.getWidth(), boxSpacingRatio));
         sprite.setPosition(
-                backgroundSprite.getX() + offset + Sprites.getScaledWidth(sprite) / 2,
+                backgroundSprite.getX() + offset + Sprites.scaledWidth(sprite) / 2,
                 backgroundSprite.getY());
         obj.setOnClicked(clickedObj -> onDrugSelected.call(DrugType.Oxy));
 
@@ -102,9 +97,9 @@ public class DrugSelectorUiObject extends GameObject {
         sprite = obj.getSprite();
         sprite.setScale(GoodMath.ratio(sprite.getWidth(), boxSpacingRatio));
         sprite.setPosition(
-                backgroundSprite.getX() - offset - Sprites.getScaledWidth(sprite) / 2,
-                backgroundSprite.getY() - Sprites.getScaledHeight(backgroundSprite) / 2
-                        + offsetHeight + Sprites.getScaledHeight(sprite) / 2);
+                backgroundSprite.getX() - offset - Sprites.scaledWidth(sprite) / 2,
+                backgroundSprite.getY() - Sprites.scaledHeight(backgroundSprite) / 2
+                        + offsetHeight + Sprites.scaledHeight(sprite) / 2);
         obj.setOnClicked(clickedObj -> onDrugSelected.call(DrugType.Heroin));
     }
 

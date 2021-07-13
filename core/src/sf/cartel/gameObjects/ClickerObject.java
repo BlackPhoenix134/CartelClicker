@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 
 import sf.cartel.core.Consumer;
 import sf.cartel.core.Consumer2;
+import sf.cartel.core.DrugType;
 import sf.cartel.core.Physics.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -13,17 +14,26 @@ import sf.cartel.core.Physics.Area2D;
 import sf.cartel.core.Clickable;
 import sf.cartel.core.Globals;
 import sf.cartel.core.PlayerData;
+import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.input.InputEvent;
 import sf.cartel.rendering.RenderPipeline;
+import sun.security.action.GetLongAction;
 
 public class ClickerObject extends GameObject implements Clickable {
     private Sprite sprite;
     private boolean isUnlocked;
     private Consumer<ClickerObject> onClicked;
     private Area2D area2D;
+    private  PlayerData playerData;
+    private  DrugType drugType;
 
     ClickerObject(String uuid) {
         super(uuid);
+    }
+
+    public void init(PlayerData playerData, DrugType drugType) {
+        this.playerData = playerData;
+        this.drugType = drugType;
     }
 
     public Sprite getSprite() {
@@ -46,13 +56,10 @@ public class ClickerObject extends GameObject implements Clickable {
         this.onClicked = onClicked;
     }
 
-
     @Override
     public void onClicked(InputEvent inputEvent) {
-        if(isUnlocked)  {
-            inputEvent.setConsumed(true);
-            onClicked.call(this);
-        }
+        inputEvent.setConsumed(true);
+        onClicked.call(this);
     }
 
     @Override
@@ -72,11 +79,15 @@ public class ClickerObject extends GameObject implements Clickable {
 
     @Override
     public void update(float delta) {
-
+        if(playerData.getUnlocks().isUnlocked(drugType))
+            sprite.setColor(0f, 0.8f, 0.8f, 1f);
+        else
+            sprite.setColor(0.8f, 0f, 0f, 1f);
     }
 
     @Override
     public void draw(float delta, RenderPipeline pipeline) {
-        pipeline.add(sprite, 10);
+        pipeline.add(sprite, Globals.DRAW_ORDER_WORLD + 2);
     }
+
 }

@@ -88,7 +88,6 @@ public class GameScreen extends AbstractScreen {
         renderPipeline.begin();
         gameObjectManager.draw(delta, renderPipeline);
         ingameUi.draw(delta, renderPipeline);
-
         renderPipeline.end();
 
         cameraData.update(null);
@@ -102,7 +101,6 @@ public class GameScreen extends AbstractScreen {
         inputHandler.unsubscribeAll();
         objectClickHandler.subscribeEvents();
         gameplay.initialize();
-
 
         this.inputHandler.addListener(InputEventType.TOUCH_DOWN, 1, inputEvent -> {
             Vector3 worldPos = cameraData.getOrthographicCamera().unproject(new Vector3(inputEvent.getX1(), inputEvent.getX2(), 0f));

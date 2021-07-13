@@ -1,8 +1,6 @@
 package sf.cartel.gameObjects;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
@@ -28,8 +26,8 @@ public class TopBarUiObject extends GameObject {
 
     public void init(Sprite sprite) {
         this.sprite = sprite;
-        float spriteWidth = Sprites.getScaledWidth(sprite);
-        float height = Gdx.graphics.getHeight() - ( Sprites.getScaledHeight(sprite) * 0.04f);
+        float spriteWidth = Sprites.scaledWidth(sprite);
+        float height = Gdx.graphics.getHeight() - ( Sprites.scaledHeight(sprite) * 0.04f);
         float x = spriteWidth * 0.27f;
         float inc = 194 * sprite.getScaleX();
 

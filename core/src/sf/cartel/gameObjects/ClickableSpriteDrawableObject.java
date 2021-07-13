@@ -111,6 +111,7 @@ public class ClickableSpriteDrawableObject extends GameObject implements Clickab
     public Area2D getArea2D() {
         float scaledWidth = sprite.getWidth() * sprite.getScaleX();
         float scaledHeight = sprite.getHeight() * sprite.getScaleY();
+
         return new Rectangle(sprite.getX() - scaledWidth/2, sprite.getY() - scaledHeight/2,
                 scaledWidth, scaledHeight);
     }

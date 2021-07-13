@@ -9,6 +9,8 @@ import sf.cartel.core.Math.GoodMath;
 public class PlayerData {
     public BigInteger money = BigInteger.ZERO;
 
+    private PlayerUnlocks unlocks = new PlayerUnlocks();
+    private PlayerUpgrades upgrades = new PlayerUpgrades();
     private Map<DrugType, BigInteger> drugs = new HashMap<>();
 
     public Map<DrugType, BigInteger> getDrugs() {
@@ -47,8 +49,6 @@ public class PlayerData {
         return getDrug(drugType);
     }
 
-    private PlayerUnlocks unlocks = new PlayerUnlocks();
-    private PlayerUpgrades upgrades = new PlayerUpgrades();
 
     public PlayerUnlocks getUnlocks() {
         return unlocks;

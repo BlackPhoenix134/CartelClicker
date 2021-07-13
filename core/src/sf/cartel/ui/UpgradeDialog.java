@@ -112,7 +112,7 @@ public class UpgradeDialog {
         Sprite backgroundSprite = backgroundDrawable.getSprite();
 
         Sprite backBtn = backBtnDrawable.getSprite();
-        backBtn.setPosition(Sprites.getScaledWidth(backgroundSprite)*0.075f, Sprites.getScaledHeight(backgroundSprite)  *.95f);
+        backBtn.setPosition(Sprites.scaledWidth(backgroundSprite)*0.075f, Sprites.scaledHeight(backgroundSprite)  *.95f);
 
         backBtnDrawable.setOnClicked((item) -> {
             soundButton.play();

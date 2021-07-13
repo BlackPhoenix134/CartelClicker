@@ -1,6 +1,7 @@
 package sf.cartel.core.clickHandler;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import sf.cartel.core.CameraData;
 import sf.cartel.core.Clickable;
+import sf.cartel.core.Physics.Area2D;
 import sf.cartel.input.InputEvent;
 import sf.cartel.input.InputEventType;
 import sf.cartel.input.InputHandler;
@@ -59,7 +61,6 @@ public class ObjectClickHandler {
 
     private void invokeClicked(List<ObjectClickInformation> objectClickInfos, InputEvent inputEvent) {
         int idx = 0;
-        Gdx.app.log("SEXY", "clicked at " + inputEvent.getX1() + " " + inputEvent.getX2());
         while(idx < objectClickInfos.size() && !inputEvent.isConsumed()) {
             ObjectClickInformation currInfo = objectClickInfos.get(idx);
             if(currInfo.contains(inputEvent, cameraData.getOrthographicCamera()))
