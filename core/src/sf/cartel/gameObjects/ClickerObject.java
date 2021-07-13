@@ -26,6 +26,7 @@ public class ClickerObject extends GameObject implements Clickable {
     private Area2D area2D;
     private  PlayerData playerData;
     private  DrugType drugType;
+    private int drawOrder = Globals.DRAW_ORDER_WORLD + 3;
 
     ClickerObject(String uuid) {
         super(uuid);
@@ -79,15 +80,19 @@ public class ClickerObject extends GameObject implements Clickable {
 
     @Override
     public void update(float delta) {
-        if(playerData.getUnlocks().isUnlocked(drugType))
-            sprite.setColor(0f, 0.6f, 1f, 0.5f);
-        else
-            sprite.setColor(0.8f, 0f, 0f, 0.5f);
+        if(playerData.getUnlocks().isUnlocked(drugType)) {
+            sprite.setColor(0f, 0.6f, 1f, 1f);
+            drawOrder = Globals.DRAW_ORDER_WORLD + 2;
+        }
+        else {
+            sprite.setColor(0.8f, 0f, 0f, 1f);
+            drawOrder = Globals.DRAW_ORDER_WORLD + 3;
+        }
     }
 
     @Override
     public void draw(float delta, RenderPipeline pipeline) {
-        pipeline.add(sprite, Globals.DRAW_ORDER_WORLD + 2);
+        pipeline.add(sprite, drawOrder);
     }
 
 }
