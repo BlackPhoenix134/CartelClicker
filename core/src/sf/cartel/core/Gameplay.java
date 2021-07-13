@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import sf.cartel.assets.ShaderManager;
+import sf.cartel.core.Extensions.Sprites;
 import sf.cartel.core.Visuals.AnimationController;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.assets.AssetDescriptors;
@@ -67,30 +68,36 @@ public class Gameplay {
         ShipSpawnerObject shipSpawnerObject = gameObjectManager.create(ShipSpawnerObject.class);
         shipSpawnerObject.init(objectClickHandler);
 
+
+        float mapWidth = Sprites.scaledWidth(mapObj.getSprite());
+        float mapHeight = Sprites.scaledHeight(mapObj.getSprite());
+
+        Vector2 mapPos = Sprites.position(mapObj.getSprite());
+
         ClickerObject obj = createClickerObject(GlobalsMapPolygon.createJamaycaPolygon(), playerData, DrugType.Weed, AssetDescriptors.MAP_PART1, (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Weed));
-        obj.getSprite().setScale(1/3f);
-        Vector2 center = GlobalsMapPolygon.createJamaycaPolygon().getCenter();
-        obj.getSprite().setPosition(center.x, center.y);
+        Sprite sprite = obj.getSprite();
+        sprite.setScale(1/3f);
+        sprite.setPosition(mapPos.x+mapWidth*(0.5f-0.9325f), mapPos.y+mapHeight*(0.5f-0.117f));
 
         obj = createClickerObject(GlobalsMapPolygon.createQuakamolePolygon(), playerData,  DrugType.Pills, AssetDescriptors.MAP_PART2,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Pills));
-        obj.getSprite().setScale(1/3f);
-        center = GlobalsMapPolygon.createQuakamolePolygon().getCenter();
-        obj.getSprite().setPosition(center.x, center.y);
+         sprite = obj.getSprite();
+        sprite.setScale(1/3f);
+        sprite.setPosition(mapPos.x-mapWidth*(0.5f-0.177f), mapPos.y+mapHeight*(0.5f-0.263f));
 
         obj = createClickerObject(GlobalsMapPolygon.createBelizePolygon(), playerData,   DrugType.Coke,AssetDescriptors.MAP_PART3,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Coke));
-        obj.getSprite().setScale(1/3f);
-        center = GlobalsMapPolygon.createBelizePolygon().getCenter();
-        obj.getSprite().setPosition(center.x, center.y);
+        sprite = obj.getSprite();
+        sprite.setScale(1/3f);
+        sprite.setPosition(mapPos.x+mapWidth*(0.5f-0.274f), mapPos.y+mapHeight*(0.5f-0.166f));
 
         obj = createClickerObject(GlobalsMapPolygon.createElSalvadorPolygon(),  playerData, DrugType.Oxy, AssetDescriptors.MAP_PART4,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Oxy));
-        obj.getSprite().setScale(1/3f);
-        center = GlobalsMapPolygon.createElSalvadorPolygon().getCenter();
-        obj.getSprite().setPosition(center.x, center.y);
+        sprite = obj.getSprite();
+        sprite.setScale(1/3f);
+        sprite.setPosition(mapPos.x+mapWidth*(0.5f-0.251f), mapPos.y+mapHeight*(0.5f-0.244f));
 
         obj = createClickerObject(GlobalsMapPolygon.createHondurasPolygon(),playerData, DrugType.Heroin,  AssetDescriptors.MAP_PART5,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Heroin));
-        obj.getSprite().setScale(1/3f);
-        center = GlobalsMapPolygon.createHondurasPolygon().getCenter();
-        obj.getSprite().setPosition(center.x, center.y);
+        sprite = obj.getSprite();
+        sprite.setScale(1/3f);
+        sprite.setPosition(mapPos.x+mapWidth*(0.5f-0.409f), mapPos.y+mapHeight*(0.5f-0.379f));
     }
 
     private void onMapPartClicked(ClickerObject clickerObj, DrugType drugType) {
