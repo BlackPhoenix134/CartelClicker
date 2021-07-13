@@ -77,7 +77,7 @@ public class Gameplay {
         ClickerObject obj = createClickerObject(GlobalsMapPolygon.createJamaycaPolygon(), playerData, DrugType.Weed, AssetDescriptors.MAP_PART1, (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Weed));
         Sprite sprite = obj.getSprite();
         sprite.setScale(1/3f);
-        sprite.setPosition(mapPos.x+mapWidth*(0.5f-0.9325f), mapPos.y+mapHeight*(0.5f-0.117f));
+        sprite.setPosition(mapPos.x-mapWidth*(0.5f-0.9325f), mapPos.y+mapHeight*(0.5f-0.117f));
 
         obj = createClickerObject(GlobalsMapPolygon.createQuakamolePolygon(), playerData,  DrugType.Pills, AssetDescriptors.MAP_PART2,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Pills));
          sprite = obj.getSprite();
@@ -87,17 +87,17 @@ public class Gameplay {
         obj = createClickerObject(GlobalsMapPolygon.createBelizePolygon(), playerData,   DrugType.Coke,AssetDescriptors.MAP_PART3,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Coke));
         sprite = obj.getSprite();
         sprite.setScale(1/3f);
-        sprite.setPosition(mapPos.x+mapWidth*(0.5f-0.274f), mapPos.y+mapHeight*(0.5f-0.166f));
+        sprite.setPosition(mapPos.x-mapWidth*(0.5f-0.274f), mapPos.y+mapHeight*(0.5f-0.166f));
 
         obj = createClickerObject(GlobalsMapPolygon.createElSalvadorPolygon(),  playerData, DrugType.Oxy, AssetDescriptors.MAP_PART4,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Oxy));
         sprite = obj.getSprite();
         sprite.setScale(1/3f);
-        sprite.setPosition(mapPos.x+mapWidth*(0.5f-0.251f), mapPos.y+mapHeight*(0.5f-0.244f));
+        sprite.setPosition(mapPos.x-mapWidth*(0.5f-0.251f), mapPos.y+mapHeight*(0.5f-0.244f));
 
         obj = createClickerObject(GlobalsMapPolygon.createHondurasPolygon(),playerData, DrugType.Heroin,  AssetDescriptors.MAP_PART5,  (clickerObj) -> onMapPartClicked(clickerObj, DrugType.Heroin));
         sprite = obj.getSprite();
         sprite.setScale(1/3f);
-        sprite.setPosition(mapPos.x+mapWidth*(0.5f-0.409f), mapPos.y+mapHeight*(0.5f-0.379f));
+        sprite.setPosition(mapPos.x-mapWidth*(0.5f-0.409f), mapPos.y+mapHeight*(0.5f-0.379f));
     }
 
     private void onMapPartClicked(ClickerObject clickerObj, DrugType drugType) {

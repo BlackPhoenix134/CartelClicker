@@ -80,7 +80,7 @@ public class ClickerObject extends GameObject implements Clickable {
     @Override
     public void update(float delta) {
         if(playerData.getUnlocks().isUnlocked(drugType))
-            sprite.setColor(0f, 0.8f, 0.8f, 1f);
+            sprite.setColor(0f, 0.6f, 1f, 1f);
         else
             sprite.setColor(0.8f, 0f, 0f, 1f);
     }
