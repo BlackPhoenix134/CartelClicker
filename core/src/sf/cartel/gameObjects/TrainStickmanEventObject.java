@@ -229,7 +229,6 @@ public class TrainStickmanEventObject extends GameObject {
 
 
         stickmanPoints.add(new Vector2[]{
-                new Vector2(187.00023f, 24.505013f),
                 new Vector2(-140.7737f, 129.53574f),
                 new Vector2(-191.17545f, 108.074356f),
                 new Vector2(-218.48994f, 72.30537f),
@@ -240,8 +239,6 @@ public class TrainStickmanEventObject extends GameObject {
 
 
         stickmanPoints.add(new Vector2[]{
-
-                new Vector2(-113.4592f, -84.10263f),
                 new Vector2(3.6029034f, -2.1591434f),
                 new Vector2(-47.774345f, 20.928095f),
                 new Vector2(-54.92815f, 75.5571f),
