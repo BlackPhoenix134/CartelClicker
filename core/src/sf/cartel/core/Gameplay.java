@@ -12,6 +12,7 @@ import java.math.BigInteger;
 import sf.cartel.assets.ShaderManager;
 import sf.cartel.core.Extensions.Sprites;
 import sf.cartel.core.Visuals.AnimationController;
+import sf.cartel.core.Visuals.FourDirSheet;
 import sf.cartel.core.clickHandler.ObjectClickHandler;
 import sf.cartel.assets.AssetDescriptors;
 import sf.cartel.assets.Assets;
@@ -24,6 +25,8 @@ import sf.cartel.gameObjects.ShipSpawnerObject;
 import sf.cartel.gameObjects.SkyscraperObject;
 import sf.cartel.gameObjects.SkyscraperSpawnerObject;
 import sf.cartel.gameObjects.SpriteRenderObject;
+import sf.cartel.gameObjects.TrainObject;
+import sf.cartel.gameObjects.TrainStickmanEventObject;
 import sf.cartel.gameObjects.UnlockDialog;
 import sf.cartel.gameObjects.WaterObject;
 
@@ -99,6 +102,9 @@ public class Gameplay {
         sprite = obj.getSprite();
         sprite.setScale(1/3f);
         sprite.setPosition(mapPos.x-mapWidth*(0.5f-0.409f), mapPos.y+mapHeight*(0.5f-0.379f));
+
+        TrainStickmanEventObject trainStickmanEventObject = gameObjectManager.create(TrainStickmanEventObject.class);
+        trainStickmanEventObject.init();
     }
 
     private void onMapPartClicked(ClickerObject clickerObj, DrugType drugType) {

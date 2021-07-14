@@ -41,6 +41,12 @@ public final class AssetDescriptors {
 
     public static final AssetDescriptor<Texture> EXPLOSION1_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/explosion1Sheet.png", Texture.class);
 
+    public static final AssetDescriptor<Texture> TRAIN_4DIR_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/train4BatchSheet.png", Texture.class);
+    public static final AssetDescriptor<Texture> STICKMAN = new AssetDescriptor<>(ENVIRONMENT + "/stickman.png", Texture.class);
+
+    public static final AssetDescriptor<Texture> BLOOD_SPLATTER1_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/bloodSplatter1Sheet.png", Texture.class);
+    public static final AssetDescriptor<Texture> BLOOD_SPLATTER2_SHEET = new AssetDescriptor<>(ENVIRONMENT + "/bloodSplatter2Sheet.png", Texture.class);
+
 
     public static final AssetDescriptor<Texture> TOP_BAR = new AssetDescriptor<>(UI + "/TopBar.png", Texture.class);
     public static final AssetDescriptor<Texture> UI_INFO_BOX = new AssetDescriptor<>(UI + "/InfoBox.png", Texture.class);

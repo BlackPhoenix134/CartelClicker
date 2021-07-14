@@ -3,6 +3,7 @@ package sf.cartel.gameObjects;
 import com.badlogic.gdx.Gdx;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,10 @@ public class GameObjectManager {
     private Map<String, GameObject> gameObjects = new HashMap<>();
     private List<GameObject> deadObjects = new ArrayList<>();
     private List<GameObject> objectsToSpawn = new ArrayList<>();
+
+    public Collection<GameObject> getGameObjects() {
+        return gameObjects.values();
+    }
 
     public void update(float delta) {
         for(GameObject obj : gameObjects.values()) {
