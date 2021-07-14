@@ -76,7 +76,7 @@ public class StickmanObject extends GameObject {
 
     public void kill() {
         if(isAlive()) {
-            trainStickmanEventObject.returnSpline(trackPoints);
+            trainStickmanEventObject.returnSpline(this, trackPoints);
             BloodSplatter1Object splatter1Object = gameObjectManager.create(BloodSplatter1Object.class);
             splatter1Object.getSprite().setPosition(sprite.getX(), sprite.getY());
             splatter1Object.getSprite().setScale(0.05f);

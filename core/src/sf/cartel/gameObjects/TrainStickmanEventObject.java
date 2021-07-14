@@ -1,5 +1,6 @@
 package sf.cartel.gameObjects;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 
@@ -20,6 +21,8 @@ public class TrainStickmanEventObject extends GameObject {
     private TrainObject trainObject1;
     private TrainObject trainObject2;
     private Queue<Vector2[]> stickmanPoints = new ArrayDeque<>();
+    private StickmanObject stickmanObjectJoe;
+    private StickmanObject stickmanObjectDon;
 
     TrainStickmanEventObject(String uuid) {
         super(uuid);
@@ -85,10 +88,24 @@ public class TrainStickmanEventObject extends GameObject {
 
     private void spawnStickman(int value) {
         for (int i = 0; i < value && stickmanPoints.peek() != null; i++) {
-            StickmanObject stickmanObject = gameObjectManagerStickmans.create(StickmanObject.class);
-            stickmanObject.init(new Sprite(Assets.getAsset(AssetDescriptors.STICKMAN)), stickmanPoints.poll(), this, gameObjectManager);
-            stickmanObject.getSprite().setScale(0.03f);
+            if(stickmanObjectDon == null) {
+                stickmanObjectDon = spawnStickman(Assets.getAsset(AssetDescriptors.STICKMAN_DON));
+                stickmanObjectDon.getSprite().setScale(stickmanObjectDon.getSprite().getScaleX() * 1.5f);
+            }
+            else if(stickmanObjectJoe == null) {
+                stickmanObjectJoe = spawnStickman(Assets.getAsset(AssetDescriptors.STICKMAN_JOE));
+                stickmanObjectJoe.getSprite().setScale(stickmanObjectJoe.getSprite().getScaleX() * 1.5f);
+            }
+            else
+                spawnStickman(Assets.getAsset(AssetDescriptors.STICKMAN));
         }
+    }
+
+    private StickmanObject spawnStickman(Texture texture) {
+        StickmanObject stickmanObject = gameObjectManagerStickmans.create(StickmanObject.class);
+        stickmanObject.init(new Sprite(texture), stickmanPoints.poll(), this, gameObjectManager);
+        stickmanObject.getSprite().setScale(0.03f);
+        return stickmanObject;
     }
 
     @Override
@@ -323,7 +340,11 @@ public class TrainStickmanEventObject extends GameObject {
 
     }
 
-    public void returnSpline(Vector2[] trackPoints) {
+    public void returnSpline(StickmanObject stickmanObject, Vector2[] trackPoints) {
+        if(stickmanObject == stickmanObjectJoe)
+            stickmanObjectJoe = null;
+        if(stickmanObject == stickmanObjectDon)
+            stickmanObjectDon = null;
         stickmanPoints.add(trackPoints);
     }
 }
