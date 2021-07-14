@@ -88,12 +88,12 @@ public class TopBarUiObject extends GameObject {
         float height = Gdx.graphics.getHeight() - (sprite.getHeight() * sprite.getScaleY() * 0.04f);
         float initalX = spriteWidth * 0.3475f;
         float inc = 194 * sprite.getScaleX();
-        pipeline.addUi(Formatter.toScientificNumber(playerData.money), new Vector2(spriteWidth * 0.16f, height), 3.5f,DRAW_ORDER_UI+1);
-        pipeline.addUi(Formatter.toScientificNumber(playerData.getDrug(DrugType.Weed)), new Vector2(initalX, height), 3.5f,DRAW_ORDER_UI+1);
-        pipeline.addUi(Formatter.toScientificNumber(playerData.getDrug(DrugType.Pills)), new Vector2(initalX + inc * 1, height), 3.5f,DRAW_ORDER_UI+1);
-        pipeline.addUi(Formatter.toScientificNumber(playerData.getDrug(DrugType.Coke)), new Vector2(initalX + inc * 2, height), 3.5f,DRAW_ORDER_UI+1);
-        pipeline.addUi(Formatter.toScientificNumber(playerData.getDrug(DrugType.Oxy)), new Vector2(initalX + inc * 3, height), 3.5f,DRAW_ORDER_UI+1);
-        pipeline.addUi(Formatter.toScientificNumber(playerData.getDrug(DrugType.Heroin)), new Vector2(initalX + inc * 4, height), 3.5f,DRAW_ORDER_UI+1);
+        pipeline.addUi(Formatter.toScientificNumber(playerData.money), new Vector2(spriteWidth * 0.16f, height), 2.0f,DRAW_ORDER_UI+1);
+        pipeline.addUi(Formatter.toScientificNumber(playerData.getDrug(DrugType.Weed)), new Vector2(initalX, height), 2.0f,DRAW_ORDER_UI+1);
+        pipeline.addUi(Formatter.toScientificNumber(playerData.getDrug(DrugType.Pills)), new Vector2(initalX + inc * 1, height), 2.0f,DRAW_ORDER_UI+1);
+        pipeline.addUi(Formatter.toScientificNumber(playerData.getDrug(DrugType.Coke)), new Vector2(initalX + inc * 2, height), 2.0f,DRAW_ORDER_UI+1);
+        pipeline.addUi(Formatter.toScientificNumber(playerData.getDrug(DrugType.Oxy)), new Vector2(initalX + inc * 3, height), 2.0f,DRAW_ORDER_UI+1);
+        pipeline.addUi(Formatter.toScientificNumber(playerData.getDrug(DrugType.Heroin)), new Vector2(initalX + inc * 4, height), 2.0f,DRAW_ORDER_UI+1);
 
     }
 
