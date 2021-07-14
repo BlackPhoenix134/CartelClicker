@@ -170,45 +170,6 @@ public class TrainStickmanEventObject extends GameObject {
                 new Vector2(-35.117973f, 16.329948f)
         });
 
-
-        stickmanPoints.add(new Vector2[]{
-                new Vector2(46.910015f, 31.055416f),
-                new Vector2(45.888474f, -1.8898888f),
-                new Vector2(10.90003f, -14.914776f),
-                new Vector2(-23.577595f, 7.55954f),
-                new Vector2(-10.552707f, 46.6342f),
-                new Vector2(48.953136f, 71.662415f)
-        });
-
-
-        stickmanPoints.add(new Vector2[]{
-
-                new Vector2(-12.35546f, 132.14769f),
-                new Vector2(-67.167305f, 128.69798f),
-                new Vector2(-75.9832f, 96.11752f),
-                new Vector2(-77.516396f, 35.556232f),
-                new Vector2(-46.85244f, -13.8894005f),
-                new Vector2(30.574074f, -15.422588f),
-                new Vector2(55.871822f, 49.73831f),
-                new Vector2(33.64047f, 107.616516f)
-        });
-
-
-
-
-
-
-        stickmanPoints.add(new Vector2[]{
-                new Vector2(-134.16142f, 110.48168f),
-                new Vector2(-78.74181f, 93.62594f),
-                new Vector2(-62.65226f, 57.61597f),
-                new Vector2(-83.59422f, 42.037186f),
-                new Vector2(-139.01382f, 45.612637f),
-                new Vector2(-169.66061f, 53.52972f),
-                new Vector2(-170.1714f, 94.13672f)
-        });
-
-
         stickmanPoints.add(new Vector2[]{
                 new Vector2(-14.6947365f, 126.36525f),
                 new Vector2(-34.284363f, 79.68361f),
@@ -216,75 +177,6 @@ public class TrainStickmanEventObject extends GameObject {
                 new Vector2(-37.20197f, 14.662744f),
                 new Vector2(14.898096f, 43.83879f),
                 new Vector2(36.988487f, 93.02123f)
-        });
-
-        stickmanPoints.add(new Vector2[]{
-                new Vector2(-21.780361f, 127.19885f),
-                new Vector2(-91.38601f, 115.11164f),
-                new Vector2(-123.896454f, 80.51721f),
-                new Vector2(-87.21802f, 42.171585f),
-                new Vector2(-38.03556f, 38.420387f),
-                new Vector2(-13.0275345f, 88.019615f),
-                new Vector2(-5.525116f, 115.11164f)
-        });
-        stickmanPoints.add(new Vector2[]{
-                new Vector2(55.744522f, 65.095604f),
-                new Vector2(17.398912f, 56.342785f),
-                new Vector2(-50.53958f, 52.174793f),
-                new Vector2(-78.04839f, 82.18442f),
-                new Vector2(-90.55242f, 52.174793f),
-                new Vector2(-83.88361f, 25.082766f),
-                new Vector2(-3.8579395f, 4.6595354f),
-                new Vector2(52.41012f, 43.005188f)
-        });
-
-        stickmanPoints.add(new Vector2[]{
-                new Vector2(-14.6947365f, 126.36525f),
-                new Vector2(-34.284363f, 79.68361f),
-                new Vector2(-62.626785f, 49.673985f),
-                new Vector2(-37.20197f, 14.662744f),
-                new Vector2(14.898096f, 43.83879f),
-                new Vector2(36.988487f, 93.02123f)
-        });
-        stickmanPoints.add(new Vector2[]{
-                new Vector2(-14.6947365f, 126.36525f),
-                new Vector2(-34.284363f, 79.68361f),
-                new Vector2(-62.626785f, 49.673985f),
-                new Vector2(-37.20197f, 14.662744f),
-                new Vector2(14.898096f, 43.83879f),
-                new Vector2(36.988487f, 93.02123f)
-        });
-
-
-
-        stickmanPoints.add(new Vector2[]{
-                new Vector2(-21.780361f, 127.19885f),
-                new Vector2(-91.38601f, 115.11164f),
-                new Vector2(-123.896454f, 80.51721f),
-                new Vector2(-87.21802f, 42.171585f),
-                new Vector2(-38.03556f, 38.420387f),
-                new Vector2(-13.0275345f, 88.019615f),
-                new Vector2(-5.525116f, 115.11164f)
-        });
-
-
-        stickmanPoints.add(new Vector2[]{
-                new Vector2(12.397282f, -14.930066f),
-                new Vector2(37.82212f, 48.00678f),
-                new Vector2(-25.114765f, 97.60603f),
-                new Vector2(-101.80604f, 99.27324f),
-                new Vector2(-75.54761f, 44.672367f),
-                new Vector2(-35.117973f, 16.329948f)
-        });
-        stickmanPoints.add(new Vector2[]{
-                new Vector2(55.744522f, 65.095604f),
-                new Vector2(17.398912f, 56.342785f),
-                new Vector2(-50.53958f, 52.174793f),
-                new Vector2(-78.04839f, 82.18442f),
-                new Vector2(-90.55242f, 52.174793f),
-                new Vector2(-83.88361f, 25.082766f),
-                new Vector2(-3.8579395f, 4.6595354f),
-                new Vector2(52.41012f, 43.005188f)
         });
 
 
@@ -298,46 +190,77 @@ public class TrainStickmanEventObject extends GameObject {
                 new Vector2(-3.8579395f, 4.6595354f),
                 new Vector2(52.41012f, 43.005188f)
         });
-
         stickmanPoints.add(new Vector2[]{
-                new Vector2(46.910015f, 31.055416f),
-                new Vector2(45.888474f, -1.8898888f),
-                new Vector2(10.90003f, -14.914776f),
-                new Vector2(-23.577595f, 7.55954f),
-                new Vector2(-10.552707f, 46.6342f),
-                new Vector2(48.953136f, 71.662415f)
+                new Vector2(-58.505054f, -26.221912f),
+                new Vector2(-81.592285f, 25.155338f),
+                new Vector2(-99.476776f, 89.539505f),
+                new Vector2(-23.711588f, 104.17227f),
+                new Vector2(18.235683f, 55.071228f),
+                new Vector2(18.235683f, 11.172925f),
+                new Vector2(-29.239517f, -11.589149f)
         });
 
         stickmanPoints.add(new Vector2[]{
-                new Vector2(-134.16142f, 110.48168f),
-                new Vector2(-78.74181f, 93.62594f),
-                new Vector2(-62.65226f, 57.61597f),
-                new Vector2(-83.59422f, 42.037186f),
-                new Vector2(-139.01382f, 45.612637f),
-                new Vector2(-169.66061f, 53.52972f),
-                new Vector2(-170.1714f, 94.13672f)
-        });
-        stickmanPoints.add(new Vector2[]{
-                new Vector2(12.397282f, -14.930066f),
-                new Vector2(37.82212f, 48.00678f),
-                new Vector2(-25.114765f, 97.60603f),
-                new Vector2(-101.80604f, 99.27324f),
-                new Vector2(-75.54761f, 44.672367f),
-                new Vector2(-35.117973f, 16.329948f)
+                new Vector2(-168.0882f, 112.626755f),
+                new Vector2(-9.729165f, 66.77743f),
+                new Vector2(10.75671f, 12.4736185f),
+                new Vector2(-40.945724f, -1.5087967f),
+                new Vector2(-110.85782f, 57.022247f),
+                new Vector2(-182.72095f, 90.840195f)
         });
 
         stickmanPoints.add(new Vector2[]{
-
-                new Vector2(-12.35546f, 132.14769f),
-                new Vector2(-67.167305f, 128.69798f),
-                new Vector2(-75.9832f, 96.11752f),
-                new Vector2(-77.516396f, 35.556232f),
-                new Vector2(-46.85244f, -13.8894005f),
-                new Vector2(30.574074f, -15.422588f),
-                new Vector2(55.871822f, 49.73831f),
-                new Vector2(33.64047f, 107.616516f)
+                new Vector2(-5.827075f, 120.10574f),
+                new Vector2(-58.505054f, 89.539505f),
+                new Vector2(-65.0085f, 29.057419f),
+                new Vector2(6.2042847f, 29.057419f),
+                new Vector2(40.02223f, 88.23883f),
+                new Vector2(4.2532387f, 120.10574f)
         });
 
+        stickmanPoints.add(new Vector2[]{
+                new Vector2(-5.827075f, 120.10574f),
+                new Vector2(-58.505054f, 89.539505f),
+                new Vector2(-65.0085f, 29.057419f),
+                new Vector2(6.2042847f, 29.057419f),
+                new Vector2(40.02223f, 88.23883f),
+                new Vector2(4.2532387f, 120.10574f)
+        });
+
+
+        stickmanPoints.add(new Vector2[]{
+                new Vector2(187.00023f, 24.505013f),
+                new Vector2(-140.7737f, 129.53574f),
+                new Vector2(-191.17545f, 108.074356f),
+                new Vector2(-218.48994f, 72.30537f),
+                new Vector2(-177.51819f, 69.053635f),
+                new Vector2(-139.473f, 92.79123f),
+                new Vector2(-130.04301f, 128.23505f)
+        });
+
+
+        stickmanPoints.add(new Vector2[]{
+
+                new Vector2(-113.4592f, -84.10263f),
+                new Vector2(3.6029034f, -2.1591434f),
+                new Vector2(-47.774345f, 20.928095f),
+                new Vector2(-54.92815f, 75.5571f),
+                new Vector2(-5.1767397f, 92.140884f),
+                new Vector2(34.819466f, 62.875366f),
+                new Vector2(37.420845f, 14.424658f)
+        });
+
+
+        stickmanPoints.add(new Vector2[]{
+
+                new Vector2(37.420845f, 14.424658f),
+                new Vector2(8.155329f, 108.074356f),
+                new Vector2(-58.505054f, 90.840195f),
+                new Vector2(-77.03989f, 21.578442f),
+                new Vector2(-5.827075f, 20.928095f),
+                new Vector2(27.340492f, 60.27398f),
+                new Vector2(6.2042847f, 108.074356f)
+        });
     }
 
     public void returnSpline(StickmanObject stickmanObject, Vector2[] trackPoints) {
