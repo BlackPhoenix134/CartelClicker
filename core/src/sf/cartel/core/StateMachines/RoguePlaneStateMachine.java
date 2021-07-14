@@ -45,7 +45,7 @@ public class RoguePlaneStateMachine extends StateMachine {
             ExplosionObject explosion = gameObjectManager.create(ExplosionObject.class);
             explosion.init(new AnimationController(Assets.getAsset(AssetDescriptors.EXPLOSION1_SHEET), 5, 3, Globals.getRandomFloat(0.075f, 0.015f)));
 
-            explosion.setDrawOrder(Globals.DRAW_ORDER_WORLD + 10);
+            explosion.setDrawOrder(Globals.DRAW_ORDER_WORLD_OBJECTS + 2);
             explosion.getSprite().setScale(Globals.getRandomFloat(0.015f, 0.03f));
             Color color = explosion.getSprite().getColor();
             explosion.getSprite().setColor(color.r, color.g, color.b, 0.5f);

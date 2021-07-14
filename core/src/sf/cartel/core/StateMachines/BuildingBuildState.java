@@ -40,6 +40,6 @@ public class BuildingBuildState extends State<SkyscraperStateMachine> {
     @Override
     public void draw(float delta, RenderPipeline pipeline) {
         stateMachine.getGameObject().getSprite().setRegion(animationController.getCurrentFrame());
-        pipeline.add(stateMachine.getGameObject().getSprite(), Globals.DRAW_ORDER_WORLD + 2);
+        pipeline.add(stateMachine.getGameObject().getSprite(), Globals.DRAW_ORDER_WORLD_OBJECTS);
     }
 }

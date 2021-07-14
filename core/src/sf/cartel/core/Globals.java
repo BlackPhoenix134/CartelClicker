@@ -15,6 +15,7 @@ public abstract class Globals {
     public static final int CLICK_ORDER_UI_DIALOG = 1000;
 
     public static final int DRAW_ORDER_WORLD = 10;
+    public static final int DRAW_ORDER_WORLD_OBJECTS = 50;
     public static final int DRAW_ORDER_UI = 100;
     public static final int DRAW_ORDER_DIALOG = 1000;
 
